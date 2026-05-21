@@ -1,3 +1,4 @@
+'##E#
 ' ***************************************************************************
 ' *****                                 Schiebepuzzle für Grundschulkinder                                   *****
 ' *****             von Rudolf Rosenkränzer, Auf der Hard 3, 54456 Tawern                     *****
@@ -17,15 +18,15 @@ Global bildnummer%(21)            ' Nummer des richtig eingeordneten Bilds
 Global platz%(21)                   ' Nummer des Platzes
 Global px%(21)                     ' X-Koordinate des Platzes (oben links)
 Global py%(21)                     ' Y-Koordinate des Platzes (oben links)
-If _Y / _X = 0.75
+If _Y / _X = 0.75 ' Seitenverhältnis 3 : 4
   OpenW Full Hidden # 2, , , , , 0000000000      ' Vollbild
   Win_2.AutoRedraw = 1
   OpenW Full Hidden # 1, , , , , 0000000000
   Win_1.AutoRedraw = 1
-Else If _Y / _X < 0.75
-  xxxxx% = Int( _X / 2 - _Y / 3 * 2)
-  bbbbb% = Int(_Y / 3 * 4)
-  yyyyy% = _Y
+Else If _Y / _X < 0.75                                 ' Monitorbild breiter als 3 : 4
+  yyyyy% = _Y                                           ' alte Fensterhöhe bleibt
+  bbbbb% = Int(yyyyy% / 3 * 4)                            ' neue Fensterbreite
+  xxxxx% = Int(_X / 2 - bbbbb% / 2) ' Abstand des Fensters vom linken Monitorrand
   OpenW # 3, 0, 0, _X , yyyyy%, 0000000000      '  Hintergrundfenster
   Win_3.AutoRedraw = 1
   Win_3.Disable
@@ -34,13 +35,26 @@ Else If _Y / _X < 0.75
   DefFill 0
   RGBColor RGB(30, 0, 0) ' dunkelbraun
   PBox 0, 0, _X, _Y
-  OpenW Hidden # 2, xxxxx%, 0, bbbbb%, yyyyy% , 0000000000      '  4 : 3, Spielen
+  OpenW Hidden # 2, xxxxx%, 0, bbbbb%, yyyyy% , 0000000000      '  4 : 3, Schiebepuzzle
   Win_2.AutoRedraw = 1
   OpenW Hidden # 1, xxxxx%, 0, bbbbb%, yyyyy% , 0000000000      '  4 : 3, Aufbaufenster
   Win_1.AutoRedraw = 1
-Else
-  Alert 1 | 128, "Bildauflösung: Das Verhältnis von Höhe zu Breite|muss auf 3 : 4 oder breiter eingestellt werden!", 1, "OK"
-  ende
+Else If _Y / _X > 0.75                                   ' Monitorbild schmaler als 3 : 4
+  xxxxx% =  _X                                           '  alte Fensterbreite bleibt
+  bbbbb% = Int(xxxxx% / 4 * 3)                             ' neue Fensterhöhe
+  yyyyy% = Int(_Y / 2 - bbbbb% / 2)                 '  Abstand des Fensters vom oberen Monitorrand
+  OpenW # 3, 0, 0, xxxxx% , _Y, 0000000000      '  Hintergrundfenster
+  Win_3.AutoRedraw = 1
+  Win_3.Disable
+  Output = Win_3
+  DefLine 0, 1
+  DefFill 0
+  RGBColor RGB(30, 0, 0) ' dunkelbraun
+  PBox 0, 0, _X, _Y
+  OpenW Hidden # 2, 0, yyyyy%, xxxxx%, bbbbb% , 0000000000      '  4 : 3, Schiebepuzzle
+  Win_2.AutoRedraw = 1
+  OpenW Hidden # 1, 0, yyyyy%, xxxxx%, bbbbb% , 0000000000      '  4 : 3, Aufbaufenster
+  Win_1.AutoRedraw = 1
 EndIf
 Repeat
   PeekEvent
@@ -64,7 +78,6 @@ Font "Times New Roman", Weight 700, Width 0, Height Int(72 * fx), To schrift5%
 Font CharSet 1
 Font "Wingdings", Weight 400, Width 0, Height Int(90 * fx), To schriftw3%
 Set puzzlebild =  LoadPicture("bild\puzzle\Zahlen_bis_20.jpg")
-'##E#
 Set grins = LoadPicture("bild\grins.bmp")
 Set grins2 = LoadPicture("bild\puzzle\grins.jpg")
 Output = Win_2
@@ -120,7 +133,7 @@ Win_1.Show
 SetFont schrift2%
 GraphMode R2_COPYPEN, TRANSPARENT
 SetFont schrift0%
-t$ = "Kombipaket Version 8.1, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
+t$ = "Kombipaket Version 8.3, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
 RGBColor RGB(255, 255, 255) ' weiß
 Text _X / 2 - TxtLen(t$) / 2, 465 * fy, t$
 Clr t$
@@ -778,7 +791,7 @@ Return
 $DatFile
 $FormVersion = 2
 :{frm1 66
-EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE00UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
+EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE20UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
 AAQAAcAAACAA
 $ExeName = C:\Users\Rudolf Rosenkränzer\Documents\GB32\Programme\SchiebepuzzleNeu1.Exe
 $FileDescription = Beschreibung

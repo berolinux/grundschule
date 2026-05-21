@@ -7,6 +7,7 @@ Global aa%, aaa%, abstandx#, abstandy#, alert|, altaa%, altart|, altbreite%, alt
 Global altrichtig%, altunten%, altrichtig1%, altstelle%, altx%, alty%, anf|, anfang|
 Global anzahl%, art_$, art|, asc%, aufgabenwahl|, bb%, b%, beginn|, bild%, bild1%, breite%
 Global cc%, ccc%, d$, dd%, ddd%, drucken|, du$, ee%, eee%, eingabe$, einzelner|, ende|
+'##E#
 Global falsch%, falsch_alt%, falsch1|, fehler|, fenster$, fertig0|, fertig1|, fertig2|
 Global fertig3|, firsttime|, fortsetzung|, fx#, fy#, gib$, h2DC%, h3DC%, h4DC%, h5DC%, hNULL%
 Global h4%, h5%, hilfe_$, hilfe|, hilferuf|, hintergrund1$, hintergrund2$, hintergrund3$
@@ -18,15 +19,15 @@ Global schriftdr%, seite%, seitenh%, sekunden%, speichern|, start|, start1|, ste
 Global tastbild%, taste%, unteny%, wahl%, wahl_|, wortzahl|, x%, xxx%, xpunkt%, xx%, xxxx#, xxxxx%
 Global y%, yyy%, yy%, yyyy#, zeilenh%, zeit#, zeitm_$, zeitm%, zeitneu#, zeits_$, zeits%, yyyyy%
 Global Picture grins, heul, katze, hase, kirche, blume
-If _Y / _X = 0.75
+If _Y / _X = 0.75 ' Seitenverhältnis 3 : 4
   OpenW Full Hidden # 2, , , , , 0000000000      ' Vollbild
   Win_2.AutoRedraw = 1
   OpenW Full Hidden # 1, , , , , 0000000000
   Win_1.AutoRedraw = 1
-Else If _Y / _X < 0.75
-  xxxxx% = Int( _X / 2 - _Y / 3 * 2)
-  bbbbb% = Int(_Y / 3 * 4)
-  yyyyy% = _Y
+Else If _Y / _X < 0.75                                 ' Monitorbild breiter als 3 : 4
+  yyyyy% = _Y                                           ' alte Fensterhöhe bleibt
+  bbbbb% = Int(yyyyy% / 3 * 4)                            ' neue Fensterbreite
+  xxxxx% = Int(_X / 2 - bbbbb% / 2) ' Abstand des Fensters vom linken Monitorrand
   OpenW # 3, 0, 0, _X , yyyyy%, 0000000000      '  Hintergrundfenster
   Win_3.AutoRedraw = 1
   Win_3.Disable
@@ -35,14 +36,26 @@ Else If _Y / _X < 0.75
   DefFill 0
   RGBColor RGB(30, 0, 0) ' dunkelbraun
   PBox 0, 0, _X, _Y
-'##E#
   OpenW Hidden # 2, xxxxx%, 0, bbbbb%, yyyyy% , 0000000000      '  4 : 3, Lesen
   Win_2.AutoRedraw = 1
   OpenW Hidden # 1, xxxxx%, 0, bbbbb%, yyyyy% , 0000000000      '  4 : 3, Aufbaufenster
   Win_1.AutoRedraw = 1
-Else
-  Alert 1 | 128, "Bildauflösung: Das Verhältnis von Höhe zu Breite|muss auf 3 : 4 oder breiter eingestellt werden!", 1, "OK"
-  ende
+Else If _Y / _X > 0.75                                   ' Monitorbild schmaler als 3 : 4
+  xxxxx% =  _X                                           '  alte Fensterbreite bleibt
+  bbbbb% = Int(xxxxx% / 4 * 3)                             ' neue Fensterhöhe
+  yyyyy% = Int(_Y / 2 - bbbbb% / 2)                 '  Abstand des Fensters vom oberen Monitorrand
+  OpenW # 3, 0, 0, xxxxx% , _Y, 0000000000      '  Hintergrundfenster
+  Win_3.AutoRedraw = 1
+  Win_3.Disable
+  Output = Win_3
+  DefLine 0, 1
+  DefFill 0
+  RGBColor RGB(30, 0, 0) ' dunkelbraun
+  PBox 0, 0, _X, _Y
+  OpenW Hidden # 2, 0, yyyyy%, xxxxx%, bbbbb% , 0000000000      '  4 : 3, Lesen
+  Win_2.AutoRedraw = 1
+  OpenW Hidden # 1, 0, yyyyy%, xxxxx%, bbbbb% , 0000000000      '  4 : 3, Aufbaufenster
+  Win_1.AutoRedraw = 1
 EndIf
 TopW # 1
 Output = Win_1
@@ -149,7 +162,7 @@ Text 393 * fx - TxtLen(text$(cc%)) / 2, 200 * fy, text$(cc%)
 Text 540 * fx - TxtLen(text$(dd%)) / 2, 200 * fy, text$(dd%)
 GraphMode R2_COPYPEN, TRANSPARENT
 SetFont schrift0%
-ink$ = "Kombipaket Version 8.2, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
+ink$ = "Kombipaket Version 8.3, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
 RGBColor RGB(255, 255, 255) ' weiß
 Text _X / 2 - TxtLen(ink$) / 2, 465 * fy, ink$
 Clr ink$
@@ -270,7 +283,7 @@ hauptmenue
     alert| = 2
   EndIf
 Return
->Procedure menue                ' Hauptmenü mit Abfrage
+Procedure menue                ' Hauptmenü mit Abfrage
   Output = Win_2
   Repeat
     PeekEvent
@@ -3319,7 +3332,7 @@ $FormVersion = 2
 :{frm1 66
 EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE20UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
 AAQAAcAAACAA
-$ExeName = C:\Users\Rudolf Rosenkränzer\Documents\GB32\Programme\LesenNeu1.Exe
+$ExeName = C:\Users\Rudolf Rosenkränzer\Documents\GB32\Programme\Lesen 8_3.Exe
 $FileDescription = Beschreibung
 $Comments = Autor: Rudolf Rosenkränzer
 $CompanyName = Rudolf Rosenkränzer

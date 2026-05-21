@@ -1,4 +1,3 @@
-'##E#
 ' ***************************************************************************
 ' *****                  Schreiben f¸r Grundschulkinder                        *****
 ' *****      von Rudolf Rosenkr‰nzer, Auf der Hard 3, 54456 Tawern        *****
@@ -28,15 +27,17 @@ Global txt$(95)         ' vorgegebene Textzeilen
 Global fehler$(15)      ' falsch geschriebene Wˆrter, die ge¸bt werden kˆnnen
 Global twort$(9)        ' Wˆrter im Wortschatz
 Global b_|(256)
+'##E#
 Global m|(9)
 Global wort$(15)
 Global aaa%(65)
-If _Y / _X > 0.73 And _Y / _X < 0.77             ' Seitenverh‰ltnis 3 : 4
+If _Y / _X >= 0.74 And _Y / _X <= 0.76             ' Seitenverh‰ltnis 3 : 4
   OpenW Full Hidden # 2, , , , , 0000000000      ' Vollbild
   Win_2.AutoRedraw = 1
   OpenW Full Hidden # 1, , , , , 0000000000
   Win_1.AutoRedraw = 1
 Else If _Y / _X < 0.74                                 ' Breitbild
+'##B#
   xxxxx% = _X
   yyyyy% = _Y
   OpenW # 3, 0, 0, xxxxx% , yyyyy%, 0000000000      '  Hintergrundfenster
@@ -48,39 +49,78 @@ Else If _Y / _X < 0.74                                 ' Breitbild
   RGBColor RGB(30, 0, 0) ' dunkelbraun
   PBox 0, 0, _X, _Y
   If _Y < 600
-    OpenW Hidden # 2, Int(xxxxx% / 2) - 320, Int(yyyyy% / 2) - 240, 640, 480, 0000000000      '  640x480, Schreiben
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 321, Int(yyyyy% / 2) - 241, 642, 482, 0000000000      '  640x480, Schreiben
     Win_2.AutoRedraw = 1
-    OpenW Hidden # 1, Int(xxxxx% / 2) - 320, Int(yyyyy% / 2) - 240, 640, 480, 0000000000
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 321, Int(yyyyy% / 2) - 241, 642, 482, 0000000000
     Win_1.AutoRedraw = 1
     Set tastatur = LoadPicture("bild\tastatur1.bmp")
   Else If _Y < 768
-    OpenW Hidden # 2, Int(xxxxx% / 2) - 400, Int(yyyyy% / 2) - 300, 800, 600, 0000000000      '  800x600, Schreiben
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 401, Int(yyyyy% / 2) - 301, 802, 602, 0000000000      '  800x600, Schreiben
     Win_2.AutoRedraw = 1
-    OpenW Hidden # 1, Int(xxxxx% / 2) - 400, Int(yyyyy% / 2) - 300, 800, 600, 0000000000
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 401, Int(yyyyy% / 2) - 301, 802, 602, 0000000000
     Win_1.AutoRedraw = 1
     Set tastatur = LoadPicture("bild\tastatur2.bmp")
   Else If _Y < 864
-    OpenW Hidden # 2, Int(xxxxx% / 2) - 512, Int(yyyyy% / 2) - 384, 1024, 768, 0000000000      ' 1024x768, Schreiben
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 513, Int(yyyyy% / 2) - 385, 1026, 770, 0000000000      ' 1024x768, Schreiben
     Win_2.AutoRedraw = 1
-    OpenW Hidden # 1, Int(xxxxx% / 2) - 512, Int(yyyyy% / 2) - 384, 1024, 768, 0000000000
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 513, Int(yyyyy% / 2) - 385, 1026, 770, 0000000000
     Win_1.AutoRedraw = 1
     Set tastatur = LoadPicture("bild\tastatur3.bmp")
   Else If _Y < 1024
-    OpenW Hidden # 2, Int(xxxxx% / 2) - 576, Int(yyyyy% / 2) - 432, 1152, 864, 0000000000      '  1152x864, Schreiben
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 577, Int(yyyyy% / 2) - 433, 1154, 866, 0000000000      '  1152x864, Schreiben
     Win_2.AutoRedraw = 1
-    OpenW Hidden # 1, Int(xxxxx% / 2) - 576, Int(yyyyy% / 2) - 432, 1152, 864, 0000000000
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 577, Int(yyyyy% / 2) - 433, 1154, 866, 0000000000
     Win_1.AutoRedraw = 1
     Set tastatur = LoadPicture("bild\tastatur4.bmp")
   Else If _Y > 1023
-    OpenW Hidden # 2, Int(xxxxx% / 2) - 640, Int(yyyyy% / 2) - 512, 1280, 1024, 0000000000      '  1280x1024, Schreiben
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 641, Int(yyyyy% / 2) - 513, 1282, 1026, 0000000000      '  1280x1024, Schreiben
     Win_2.AutoRedraw = 1
-    OpenW Hidden # 1, Int(xxxxx% / 2) - 640, Int(yyyyy% / 2) - 512, 1280, 1024, 0000000000
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 641, Int(yyyyy% / 2) - 513, 1282, 1026, 0000000000
     Win_1.AutoRedraw = 1
     Set tastatur = LoadPicture("bild\tastatur5.bmp")
   EndIf
-Else                                                          ' Hochformatbild
-  Alert 1 | 128, "Bildauflˆsung: Das Verh‰ltnis von Hˆhe zu Breite|muss auf 3 : 4 oder breiter eingestellt werden!", 1, "OK"
-  ende
+Else If _Y / _X > 0.76                                                          ' Hochformatbild
+  xxxxx% = _X
+  yyyyy% = _Y
+  OpenW # 3, 0, 0, xxxxx% , yyyyy%, 0000000000      '  Hintergrundfenster
+  Win_3.AutoRedraw = 1
+  Win_3.Disable
+  Output = Win_3
+  DefLine 0, 1
+  DefFill 0
+  RGBColor RGB(30, 0, 0) ' dunkelbraun
+  PBox 0, 0, _X, _Y
+  If _X < 800
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 321, Int(yyyyy% / 2) - 241, 642, 482, 0000000000      '  640x480, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 321, Int(yyyyy% / 2) - 241, 642, 482, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur1.bmp")
+  Else If _X < 1024
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 401, Int(yyyyy% / 2) - 301, 802, 602, 0000000000      '  800x600, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 401, Int(yyyyy% / 2) - 301, 802, 602, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur2.bmp")
+  Else If _X < 1152
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 513, Int(yyyyy% / 2) - 385, 1026, 770, 0000000000      ' 1024x768, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 513, Int(yyyyy% / 2) - 385, 1026, 770, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur3.bmp")
+  Else If _X < 1280
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 577, Int(yyyyy% / 2) - 433, 1154, 866, 0000000000      '  1152x864, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 577, Int(yyyyy% / 2) - 433, 1154, 866, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur4.bmp")
+  Else If _X > 1279
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 641, Int(yyyyy% / 2) - 513, 1282, 1026, 0000000000      '  1280x1024, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 641, Int(yyyyy% / 2) - 513, 1282, 1026, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur5.bmp")
+  EndIf
 EndIf
 For i% = 1 To 32
   aaa%(i%) = -1
@@ -134,7 +174,7 @@ Win_1.Show
 GraphMode R2_COPYPEN, TRANSPARENT
 SetFont schrift0%
 Color RGB(255, 255, 255)   ' weiﬂ
-a$ = "Kombipaket Version 8.2, Rudolf Rosenkr‰nzer, 54456 Tawern, Tel. 06501/180202"
+a$ = "Kombipaket Version 8.3, Rudolf Rosenkr‰nzer, 54456 Tawern, Tel. 06501/180202"
 Text _X / 2 - TxtLen(a$) / 2, 465 * fy, a$
 Clr a$
 SetFont schrift1%
