@@ -1,0 +1,294 @@
+'##E#
+Global monat%, jahr%, mon$, i%, j%, fertig%, linienfarbe%, linienbreite%
+Global farbe_tage%, farbe_namen%, farbe_zus_tage%, farbe_bes_tage%
+Global heute As Date, rand%, seitenbreite%, links%, oben%, rechts%, unten%, drucken%, faktor#
+Global Dim farbe%(15)
+LoadForm frm1 Full
+LoadForm frm2, 0, 0
+farbe_tage% = $000040
+farbe_namen% = $004000
+farbe_zus_tage% = $a0a0a0
+farbe_bes_tage% = $0000e0
+linienfarbe% = $000040
+cmd3.SetFocus
+heute = mv1.Value
+Do
+  Sleep
+Until Me Is Nothing
+>Sub cmd3_Click   ' Schriftart und Schriftgröße
+  Ocx CommDlg cd
+  cd.Flags = 8003   'Anzeige von Bildschirmfonts, die auch für den Drucker verfügbar sind
+  cd.ShowFont
+  Set mv1.Font = cd.Font   'Aktivieren des ausgewählten Fonts
+  cmd4.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd4_Click   ' Farbe für Tage des Monats
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  farbe_tage% = cd.Color
+  mv1.ForeColor = farbe_tage%
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = farbe_tage%
+      farbe%(i%) = farbe_tage%
+      i% = 15
+    EndIf
+  Next i%
+  cmd1.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd1_Click   ' Farbe für Namen der Tage
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  farbe_namen% = cd.Color
+  mv1.TitleBackColor = farbe_namen%
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = farbe_namen%
+      farbe%(i%) = farbe_namen%
+      i% = 15
+    EndIf
+  Next i%
+  cmd2.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd2_Click   ' Farbe für zusätzliche Tage
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  farbe_zus_tage% = cd.Color
+  mv1.TrailingForeColor = farbe_zus_tage%
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = farbe_zus_tage%
+      farbe%(i%) = farbe_zus_tage%
+      i% = 15
+    EndIf
+  Next i%
+  cmd5.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd5_Click   ' Auswahl besonderer Tage
+  Clr fertig%
+  lb1.Clear  ' ListBox leeren
+  jahr% = mv1.Year
+  monat% = mv1.Month
+  Select mv1.Month
+  Case 1
+    mon$ = "Januar"
+  Case 2
+    mon$ = "Februar"
+  Case 3
+    mon$ = "März"
+  Case 4
+    mon$ = "April"
+  Case 5
+    mon$ = "Mai"
+  Case 6
+    mon$ = "Juni"
+  Case 7
+    mon$ = "Juli"
+  Case 8
+    mon$ = "August"
+  Case 9
+    mon$ = "September"
+  Case 10
+    mon$ = "Oktober"
+  Case 11
+    mon$ = "November"
+  Case 12
+    mon$ = "Dezember"
+  EndSelect
+  lb1.Visible = True
+  lb1.AddItem "Klicke jetzt die besonderen"
+  lb1.AddItem "Tage im " + mon$ + #32 + Str$(mv1.Year) + " an:"
+  lb1.AddItem "Wähle danach die Farbe für diese Tage!"
+  cmd7.SetFocus
+  Do
+    Sleep
+  Until Me Is Nothing
+
+>Sub mv1_SelChange(startDate As Date, EndDate As Date) ' Änderung der Auswahl von Tag, Monat oder Jahr
+  If lb1.Visible = True And mv1.Month = monat% And mv1.Year = jahr%  And lb1.FindExact(mv1.Value) = True
+    lb1.AddItem Str$(mv1.Value)
+    mv1.DayBold(mv1.Value) = True
+    cmd7.SetFocus
+  Else If lb1.Visible = True And lb1.FindExact(mv1.Value) = True And fertig% = 0
+    lb1.Clear ' Listbox leeren
+    lb1.Visible = False
+    Alert 129, "Du kannst nur Tage im ausgewählten Monat|anklicken!|Wähle jetzt wieder den Monat, dann die besonderen Tage!", 1, "     OK     "
+    Clr fertig%, mon$
+    lb1.Clear  ' ListBox leeren
+    lb1.Visible = False
+    mv1.Value = heute
+    jahr% = mv1.Year
+    monat% = mv1.Month
+    cmd5.SetFocus
+  EndIf
+  Do
+    Sleep
+  Until Me Is Nothing
+
+>Sub cmd7_Click   ' Farbe für besondere Tage und die Monatsüberschrift
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  farbe_bes_tage% = cd.Color
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = farbe_bes_tage%
+      farbe%(i%) = farbe_bes_tage%
+      i% = 15
+    EndIf
+  Next i%
+  cmd8.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd8_Click   ' Rahmen für ein Bild
+  Ocx CommDlg cd
+  cd.Flags = $322     ' Ränder als Vorgabe (2), keine Auswahl von Drucker (20), Seitenorientierung (100), Papierformat (200)
+  cd.ShowPageSetup
+  links% = cd.pgLeft  ' Erweitern des linken Randes
+  oben% = cd.pgTop  ' oberer Rand
+  rechts% = cd.pgRight
+  unten% = cd.pgBottom
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  linienfarbe% = cd.Color
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = linienfarbe%
+      farbe%(i%) = linienfarbe%
+      i% = 15
+    EndIf
+  Next i%
+  Set Me = frm1
+  Ocx Frame fra = , 146 , 200, 188, 220
+  fra.BorderStyle = 1
+  fra.Transparent = 0
+  fra.Caption = "Wie dick soll die Linie sein?"
+  OcxOcx fra Option opt1 = "  sehr dünn" , 20, 30, 80, 20
+  OcxOcx fra Option opt2 = "  dünn", 20, 60, 80, 20
+  OcxOcx fra Option opt3 = "  mittel", 20, 90, 80, 20
+  OcxOcx fra Option opt4 = "  dick", 20, 120, 80, 20
+  OcxOcx fra Option opt5 = "  doppelt", 20, 150, 80, 20
+  OcxOcx fra Command com = , 50, 180, 100, 30
+  com.Caption = "Weiter"
+  cmd6.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub com_Click     ' Auswahl der Liniendicke fertig
+  If opt1.Value = 1
+    linienbreite% = 1
+  Else If opt2.Value = 1
+    linienbreite% = 4
+  Else If opt3.Value = 1
+    linienbreite% = 9
+  Else If opt4.Value = 1
+    linienbreite% = 15
+  Else If opt5.Value = 1
+    linienbreite% = 3
+  Else
+    linienbreite% = 0
+  EndIf
+  cmd6.SetFocus
+  fra.Visible = False
+  Do
+    Sleep
+  Until Me Is Nothing
+
+>Sub cmd6_Click   ' Monatskalender drucken
+  linienbreite% = 1
+  Do
+    Sleep
+  Until Me Is Nothing
+
+>Sub cmd10_Click  ' Neu
+  Clr fertig%, mon$
+  lb1.Clear  ' ListBox leeren
+  lb1.Visible = False
+  mv1.Value = heute
+  jahr% = mv1.Year
+  monat% = mv1.Month
+  mv1.FontName = "Times New Roman"
+  mv1.FontBold = True
+  mv1.FontItalic = False
+  mv1.FontSize = 20
+  mv1.ForeColor = $000040
+  farbe_tage% = $000040
+  mv1.TitleBackColor = $004000
+  farbe_namen% = $004000
+  mv1.TrailingForeColor = $a0a0a0
+  farbe_zus_tage% = $a0a0a0
+  farbe_bes_tage% = $0000e0
+  linienfarbe% = $000040
+  For i% = 0 To 15
+    farbe%(i%) = 0
+    cd.Colors(i%) = 0
+  Next i%
+  cmd3.SetFocus
+  Do
+    Sleep
+  Until Me Is Nothing
+
+>Sub cmd9_Click   ' Ende
+  Alert 130, "Willst du das Programm beenden?", 2, "     zurück     |     Ende     ", i%
+  If i% = 2
+    End
+  EndIf
+$DatFile
+$FormVersion = 2
+:{1} 377, 790
+1FAUDtWMtFgFDgWANGgBkBhQZY//iIUIyER8I87W8/eRjgSExERFRMTIkEXME937SM2vB+8rDNVQ
+SkiA+1u0BYgBBAIMQBoAoaISBQkAIERT0BIIOBG94qCHiBEFcjKMgDkEC/DhQIUClgLXx6zQg5Qj
+fLIJ4L4KEE/ZKc855LlThcKcEeDh36S4d8IuEnSh777IAq1UPE61lQf8IuEniHtheQx++++e18XL
+c/dMsfHOXL7KqThaVVUw3U0/HgGT50yptzUOtsKMVr1aWbRQV08Ml660RpOPPHTnXVHJOMYgmzrz
+JJTfXVjfblQJ6OuFocmKxyICqb1WIeiixU055560osR750ynjvjshQpWySPKxSWdagSMkhRySall
+Ea5nQmaJ3Kq+aaggFxhQ7XQ75djdJ04FwCJkBsOeo3rphuXsVTtze3vhe/t0/DB5QLEUxLEa3hQ6
+NSom0BlrPPVdVlVrVvV1NHd2b9OsgUvDKM1/BCtenL5OAAA=
+:{frm2 601, 1031
+VJAUDtWMNJwBEgkA/JgBGCRUvAvFENRsh9y9U9GhCFRwpNREhUiQ3IREREhECFRkVcYMRMigj9a9
+t8PY7/8/5CUTMxFBBIRQNP/aBNCiERABFECEImIgQASmLHQIEChphmhgVw+FwLc/8GcAq6ZedM/G
+B+0SDErBHkDhD7+j+rrzR/53OnJbHIIE4a45Qi3WB0lAFejCbQfJMEoruQWeo9Fo7erBhf/UY925
+cXfvj7rjRJY4g0LfcnlotUKPiDGtYNgeNSbacF+RU9lROyB8vRkVJljj55odir175LfpgOJSTcl9
+ZxZAKX+SHoqyLv+gHHqv0lC+soMAPNGDY5SXqtQdfG43UP7UYlv0d0Mey4UXQQIAR3lAd1BEA1vA
+XI7GahfwVZdGz918cETVWv5ZtRQd2pQLHr7cij9sEHBqTbhuEs2W635zzcf+OrykdAUChHaBfayt
+D3BuQ9LEQtbgdVHgx0FAbL4iTufmvMbKI0Cjie5KyPsbN/hfC7xNW5978mGCJe9bF464NTh1tH8t
+YvuPfXfQnDmPKcZ+CeC8wsVUGGCcF9tFTtCSC/m3nZOxegRem4kXToVQwpElmwbJBkwvDsHo5Cxp
+x39Hyh1LbpgULnbYLs5ZQDvrxWwqFebQLsYK8rvySl+Jte+Piq7njXySB4MZsdI7rAIc+FCslPZc
+4J8/9wYDwDB0oCmFE7+CHpFDhfUl33QYKYEGYthiAEB5XASI9LEc7GWhf5ZeExY+duTcVb8rvG9I
+WBfwoSEKLzRPIvEXjY+4OyjPJVwOpKg+HCmA6AAAAA==
+:{frm1 172, 181
+oCAUDtWMgCQtAsJA1CQA4AxLwT1jwrwzw/PFz+T8E8lEORUIz7gEkQRYSQvweOXYOZzQh+ZRE+N8
+uJMRERERE4JhLW+HrgR4QPCBeelnose5ZiVlZERoER2dHREREROhLXpAV0svJiI8BdhNmDWQmD6J
+QQU11UvAaCu0o6KKHRERMz8/HWREhVE+RE//xubMAgiUKgEhNtJhfRodRS5cCCKRkGRkREREjBAA
+AA==
+$ExeName = ..\Programme\KalenderDemo.Exe
+$LanguageId = 0407
+$FileFlags# = 3
+$DatFile

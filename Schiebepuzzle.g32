@@ -1,0 +1,762 @@
+' ***************************************************************************
+' *****                 Schiebepuzzle für Grundschulkinder                     *****
+' *****     von Rudolf Rosenkränzer, Auf der Hard 3, 54456 Tawern         *****
+' *****                       Telefon 06501/180202                            *****
+' ***************************************************************************
+Global a%, alert|, alta%, alta1%, aus%, ausgelagert%, b%, beginn|, bild$, bild1$
+Global breite%, fenster$, fx#, fy#, grins1$, hintergrund$, hoehe%, i%, j%, k%
+Global klick%, min%, pfad$, richtig%, schrift0%, schrift1%
+Global schrift2%, schrift3%, schrift5%, schriftw3%, sek%, t$
+Global x%, xx%, xxx%, y%, yy%, yyy%, zeit#,  zeitneu#
+Global Picture grins
+Global Picture grins2
+Global Picture puzzlebild            ' Puzzlevorlage
+Global teilbild$(21)                 ' 20 Teile des Puzzle
+Global bildnummer%(21)            ' Nummer des richtig eingeordneten Bilds
+Global platz%(21)                   ' Nummer des Platzes
+Global px%(21)                     ' X-Koordinate des Platzes (oben links)
+Global py%(21)                     ' Y-Koordinate des Platzes (oben links)
+OpenW Full Hidden # 2, , , , , 0000000000      ' Vollbild
+Win_2.AutoRedraw = 1
+OpenW Full Hidden # 1, , , , , 0000000000
+Win_1.AutoRedraw = 1
+TopW # 1
+pfad$ = CurDir$
+If Right$(pfad$) = "\"
+  pfad$ = Left$(pfad$, Len(pfad$) - 1)
+EndIf
+DefMouse 0
+fx# = _X / 640
+fy# = _Y / 480
+Font Orientation 0, Escapement 0, StrikeOut 0, Italic 0
+Font StrikeOut 0, Underline 0, Family FF_DONTCARE, Pitch DEFAULT_PITCH
+Font CharSet ANSI_CHARSET, Quality DEFAULT_QUALITY
+Font "arial", Weight 400, Width 7 * fx * 0.8, Height Int(16 * fx), To schrift0%
+Font "arial", Weight 400, Width 0, Height Int(21 * fx), To schrift1%
+Font "arial", Weight 400, Width 0, Height Int(25 * fx), To schrift2%
+Font "arial", Weight 400, Width 0, Height Int(39 * fx), To schrift3%
+Font "Times New Roman", Weight 700, Width 0, Height Int(72 * fx), To schrift5%
+Font CharSet 1
+Font "Wingdings", Weight 400, Width 0, Height Int(90 * fx), To schriftw3%
+Set puzzlebild =  LoadPicture("bild\puzzle\zahlen_bis_20.jpg")
+Set grins = LoadPicture("bild\grins.bmp")
+Set grins2 = LoadPicture("bild\puzzle\grins.jpg")
+Output = Win_2
+RGBColor RGB(100, 0, 0) ' dunkelbraun   Aufbau und Einlesen: Grins im Rahmen (Gewinn)
+PBox 0, 0, 90 * fy, 70 * fy
+RGBColor RGB(255, 255, 198)  ' creme
+PRBox 2 * fx, 2 * fy, 88 * fx, 68 * fy
+DefLine 0, 3 * fy
+RGBColor RGB(255, 0, 0)  ' rot
+RBox 1 * fx, 1 * fy, 89 * fx, 69 * fy
+PaintPicture grins2, 5 * fx, 5 * fy, 80 * fx, 60 * fy
+Get 0, 0, 90 * fx, 70 * fy, grins1$
+Set grins2 = Nothing
+Output = Win_1
+RGBColor RGB(75, 0, 0)
+PBox 0, 0, _X, _Y
+DefMouse 0
+RGBColor RGB(255, 255, 198), RGB(255, 255, 198) ' creme/creme
+DefFill 0          ' Füllen mit Farbe ohne Muster
+PRBox 3 * fx, 3 * fy, 633 * fx, 475 * fy
+DefLine 0, 12 * fx
+DefFill 42         ' ohne Füllung
+PRBox 7 * fx, 8 * fy, 631 * fx, 473 * fy
+DefFill 0
+DefLine 0, 1 * fx
+RGBColor RGB(100, 0, 0) ' dunkelbraun
+PBox 0, 0, _X, 280 * fy ' obere Bildhälfte
+RGBColor RGB(255, 0, 0) ' rot
+DefLine 0, Ceil(3 * fx)
+Line 6 * fx, 280 * fy, 632 * fx, 280 * fy ' Trennung oben/unten
+DefLine 0, 12 * fx
+DefFill 42
+PRBox 6 * fx, 7 * fy, 632 * fx, 473 * fy
+DefLine 0, 3 * fx
+breite% = 64 * fx
+hoehe% = 60 * fy
+xx% = 160 * fx    ' Koordinaten Puzzle oben links
+yy% = 80 * fy
+Box xx% - 2 * fx, 30 * fy - 2 * fy, xx% + breite% * 5 + 2 * fx, 30 * fy + hoehe% * 4 + 2 * fy ' Rahmen für Puzzlebild
+DefFill 0
+DefLine 0, 1 * fx
+PaintPicture puzzlebild, xx%, 30 * fy, breite% * 5, hoehe% * 4         ' Puzzlebild
+RGBColor RGB(30, 30, 120)
+koordinaten
+DefLine 0, 1
+For i% = 0 To 5  ' senkrecht
+  Line xx% + breite% * i%, 30 * fy, xx% + breite% * i%, 30 * fy + hoehe% * 4
+Next i%
+For i% = 0 To 4  ' waagerecht
+  Line xx%, 30 * fy + hoehe% * i%, xx% + breite% * 5, 30 * fy + hoehe% * i%
+Next i%
+Win_1.Show
+SetFont schrift2%
+GraphMode R2_COPYPEN, TRANSPARENT
+SetFont schrift0%
+'##E#
+t$ = "Kombipaket Version 8.0, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
+RGBColor RGB(255, 255, 255) ' weiß
+Text _X / 2 - TxtLen(t$) / 2, 465 * fy, t$
+Clr t$
+RGBColor RGB(255, 255, 198) ' creme
+PBox 20 * fx, 300 * fy, 619 * fx, 400 * fy
+PaintPicture grins, 500 * fx, 295 * fy, 50 * fx, 56 * fy
+SetFont schrift3%
+RGBColor RGB(255, 0, 0) ' rot
+For i% = 1 To 14
+  Text 90 * fx, 320 * fy, Left$("Viel Spaß beim", i%)
+  zeit# = oTimer
+  Repeat
+    PeekEvent
+    zeitneu# = oTimer
+  Until zeitneu# > zeit# + 20
+Next i%
+SetFont schrift5%
+RGBColor RGB(0, 0, 235) ' blau
+If _X > 640
+  Text 90 * fx + TxtLen("Schieb"), 360 * fy, "e"
+  Text 90 * fx - 80, 360 * fy, "Schieb"
+  Text 90 * fx + TxtLen("Schiebe") + 80, 360 * fy, "puzzle"
+  Get 90 * fx - 80, 360 * fy, 90 * fx - 80 + TxtLen("Schieb"), 360 * fy + 75 * fy, bild$
+  Get 90 * fx + TxtLen("Schiebe") + 80, 360 * fy, 90 * fx + TxtLen("Schiebepuzzle") + 80, 360 * fy + 75 * fy, bild1$
+  zeit# = oTimer
+  Repeat
+    zeitneu# = oTimer
+  Until zeitneu# > zeit# + 1000
+  For i% = 1 To 80 Step 2
+    Put 90 * fx - 80 + i%, 360 * fy, bild$
+    Put 90 * fx + TxtLen("Schiebe") + 80 - i%, 360 * fy, bild1$
+  Next i%
+Else
+  Text 90 * fx + TxtLen("Schieb"), 360 * fy, "e"
+  Text 90 * fx - 70, 360 * fy, "Schieb"
+  Text 90 * fx + TxtLen("Schiebe") + 70, 360 * fy, "puzzle"
+  Get 90 * fx - 70, 360 * fy, 90 * fx - 70 + TxtLen("Schieb"), 360 * fy + 75 * fy, bild$
+  Get 90 * fx + TxtLen("Schiebe") + 70, 360 * fy, 90 * fx + TxtLen("Schiebepuzzle") + 70, 360 * fy + 75 * fy, bild1$
+  zeit# = oTimer
+  Repeat
+    zeitneu# = oTimer
+  Until zeitneu# > zeit# + 1000
+  For i% = 1 To 70 Step 2
+    Put 90 * fx - 70 + i%, 360 * fy, bild$
+    Put 90 * fx + TxtLen("Schiebe") + 70 - i%, 360 * fy, bild1$
+  Next i%
+EndIf
+Clr bild$, bild1$
+zeit# = oTimer
+Repeat
+  zeitneu# = oTimer
+Until zeitneu# > zeit# + 2000 ' 2 Sekunden
+hauptmenue
+>Procedure hauptmenue                ' mit Kontrolle
+  neu:
+  Clr beginn|, a%, alta%, alta1%, ausgelagert%
+  For i% = 0 To 20
+    teilbild$(i%) = ""
+    bildnummer%(i%) = 0
+    platz%(i%) = 0
+  Next i%
+  GraphMode R2_COPYPEN, OPAQUE
+  seitenaufbau
+  Win_2.Show
+  spielen
+  zeitneu# = oTimer
+  sek% = (zeitneu# - zeit#) / 1000
+  min% = Int(sek% / 60)
+  zuruecklagern
+  RGBColor RGB(100, 0, 0) ' dunkelbraun                                     ' Ergebnis des Spiels
+  DefLine 0, 1
+  Get 0, 49 * fy, 15 * fx, 121 * fy, hintergrund$
+  For i% = 1 To 116 * fx
+    Put 38 * fx - 115 * fx + i%, 50 * fy, grins1$
+    Line 38 * fx - 115 * fx + i% - 1, 50 * fy, 38 * fx - 115 * fx + i% - 1, 50 * fy + 70 * fy
+  Next i%
+  Put 0, 49 * fy, hintergrund$
+  Clr hintergrund$
+  RGBColor RGB(60, 90, 60)  'dunkelgrün
+  PBox 42 * fx, 241 * fy, 67 * fx, 258 * fy
+  PBox 99 * fx, 241 * fy, 124 * fx, 258 * fy
+  RGBColor RGB(255, 0, 0)  ' rot
+  DefLine 0, 2 * fx
+  Box 41 * fx, 240 * fy, 68 * fx, 259 * fy
+  Box 98 * fx, 240 * fy, 125 * fx, 259 * fy
+  SetFont schrift5
+  RGBColor RGB(255, 255, 255) ' weiß
+  GraphMode R2_COPYPEN, TRANSPARENT
+  Text 50 * fx, 343 * fy, "gewonnen!"
+  SetFont schrift0
+  Text 43 * fx, 220 * fy, "Deine Zeit:"
+  RGBColor RGB(255, 255, 150)                    ' hellgelb
+  Text 64 * fx - TxtLen(Str$(min%)), 243 * fy, Str$(min%) + "   min"
+  Text 121 * fx - TxtLen(Str$(sek% - min% * 60)), 243 * fy, Str$(sek% - min% * 60) + "   s"
+  menueabfrage
+  GoTo neu
+Return
+>Procedure seitenaufbau               ' Aufbau des Hauptmenüs
+  Output = Win_2
+  Repeat
+    PeekEvent
+  Until MouseK = 0 And _Mess = 0
+  GraphMode R2_COPYPEN, TRANSPARENT
+  DefLine 0, 1 * fx                            ' Aufbau der Seite
+  RGBColor RGB(75, 0, 0)
+  PBox 0, 0, _X, _Y
+  RGBColor RGB(100, 0, 0) ' dunkelbraun
+  PRBox 3 * fx, 3 * fy, 633 * fx, 475 * fy
+  RGBColor RGB(255, 0, 0) ' rot
+  DefLine 0, 12 * fx
+  DefFill 42
+  PRBox 6 * fx, 7 * fy, 632 * fx, 473 * fy
+  DefLine 0, 3 * fx
+  Box xx% - 2 * fx, yy% - 2 * fy, xx% + breite% * 5 + 2 * fx, yy% + hoehe% * 4 + 2 * fy   ' Box für Puzzle
+  DefFill 0
+  DefLine 0, 1 * fx
+  PaintPicture puzzlebild, xx%, yy%, breite% * 5, hoehe% * 4 ' Puzzlebild
+  teilbilder                             ' Teilbilder des Puzzle auslesen
+  RGBColor RGB(60, 120, 90)
+  DefLine 0, 1
+  For i% = 0 To 5  'senkrechte Linien
+    Line xx% + breite% * i%, yy%, xx% + breite% * i%, yy% + hoehe% * 4
+  Next i%
+  For i% = 0 To 4  'waagerechte Linien
+    Line xx%, yy% + hoehe% * i%, xx% + breite% * 5, yy% + hoehe% * i%
+  Next i%
+  SetFont schriftw3%
+  RGBColor RGB(255, 255, 255) ' weiß
+  Text 445 * fx, 390 * fy, "7"    ' Tastatur
+  SetFont schrift0%
+  Text 376 * fx, 390 * fy, "Taste F1:"
+  Text 376 * fx, 405 * fy, "Hilfe: ein/aus"
+  Text 500 * fx, 390 * fy, "Taste F8: Ende"
+  RGBColor RGB(255, 0, 0) ' rot
+  PBox 461 * fx, 431 * fy, 466 * fx, 436 * fy
+  PBox 500 * fx, 431 * fy, 505 * fx, 436 * fy
+  For i% = 0 To 20
+    bildnummer%(i%) = i%     ' Bildnummer = Nummer des Platzes
+    platz%(i%) = i%           ' Platznummer = Bildnummer
+  Next i%
+Return
+>Procedure spielen                     ' Puzzlespiel
+  GraphMode R2_COPYPEN, OPAQUE
+  zurueck:
+  Do                            ' Beginn des Spiels
+    Repeat
+      PeekEvent
+    Until MouseK = 0 And _Mess = 0
+    Clr t$
+    Repeat
+      Sleep
+      Mouse x%, y%, k%
+      t$ = InKey$
+    Until k% = 1  Or (Len(t$) > 1 And (Asc(Right$(t$)) = 119 Or Asc(Right$(t$)) = 112)) ' F8 oder F1
+    Repeat
+      PeekEvent
+    Until MouseK = 0 And _Mess = 0
+    If Len(t$) > 1 And Asc(Right$(t$)) = 112                ' F1, Hilfe
+      Get 0, 0, _X, _Y, fenster$
+      hilfetext
+      Repeat
+        Sleep
+        t$ = InKey$
+      Until t$ <> ""
+      Put 0, 0, fenster$
+      Clr fenster$
+    EndIf
+    If Len(t$) > 1 And Asc(Right$(t$)) = 119                 ' F8, Ende
+      RGBColor RGB(0, 0, 0) ' schwarz
+      DefMouse 0
+      Repeat
+        PeekEvent
+      Until MouseK = 0
+      alert2("Willst du wirklich aufhören?", "neu", "Ende")
+      If alert| = 2
+        ende
+      Else
+        hauptmenue
+      EndIf
+      Repeat
+        PeekEvent
+      Until MouseK = 0
+      GoTo zurueck
+    EndIf
+    If k% = 1      ' linke Maustaste
+      If x% > xx% And x% < (xx% + breite% * 5 - 1) And y% > yy% And y% < (yy% + hoehe% * 4 - 1)  ' innerhalb des Puzzlebilds
+        xxx% = x% - xx%  ' X-Wert innerhalb des Puzzle
+        yyy% = y% - yy%   ' Y-Wert innerhalb des Puzzle
+        klick% = Ceil(xxx% / breite%) + 5 * Int(yyy% / hoehe%)   'Platznummer der angeklickten Stelle
+        If klick% = bildnummer(0)  ' Leerfeld
+          GoTo zurueck
+        EndIf
+        If beginn| = 0                                                  ' nur beim ersten Durchlauf
+          If klick% = platz%(7) Or klick% = platz%(8) Or klick% = platz%(9) Or klick% = platz%(12) Or klick% = platz%(13) Or klick% = platz%(14) ' keine Randstücke
+            GoTo zurueck
+          EndIf
+          Repeat
+            PeekEvent
+          Until MouseK = 0 And _Mess = 0
+          auslagern   ' ein Teilbild auslagern
+          If beginn| = 0
+            GoTo zurueck
+          EndIf
+          Repeat
+            PeekEvent
+          Until MouseK = 0 And _Mess = 0
+          For i% = 0 To 15                                           ' Teilbilder vertauschen
+            zufall:
+            a% = Random(21)
+            If a% = 0 Or a% = ausgelagert% Or a% = alta% Or a% = alta1%
+              GoTo zufall
+            EndIf
+            alta% = a%
+            alta1% = alta%
+            Select a%
+            Case 1, 2, 3, 4, 5
+              If a% + 5 <> ausgelagert%
+                b% = a% + 5
+              Else
+                GoTo zufall
+              EndIf
+            Case 6, 7, 8, 9, 10
+              If a% + 5 <> ausgelagert%
+                b% = a% + 5
+              Else
+                GoTo zufall
+              EndIf
+            Case 11, 12, 13, 14, 15
+              If a% + 5 <> ausgelagert%
+                b% = a% + 5
+              Else
+                GoTo zufall
+              EndIf
+            Case 16, 17, 18, 19, 20
+              If a% - 15 <> ausgelagert%
+                b% = a% - 15
+              Else
+                GoTo zufall
+              EndIf
+            EndSelect
+            Select a%
+            Case 1, 6, 11, 16
+              If a% + 4 <> ausgelagert%
+                a% = a% + 4
+              Else
+                GoTo zufall
+              EndIf
+            Case 2, 7, 12, 17, 3, 13
+              If a% + 2 <> ausgelagert%
+                a% = a% + 2
+              Else
+                GoTo zufall
+              EndIf
+            Case 4, 9, 14, 19, 8, 18
+              If a% - 2 <> ausgelagert%
+                a% = a% - 2
+              Else
+                GoTo zufall
+              EndIf
+            Case 5, 10, 15, 20
+              If a% - 4 <> ausgelagert%
+                a% = a% - 4
+              Else
+                GoTo zufall
+              EndIf
+            EndSelect
+            Put px%(a%), py%(a%), teilbild$(platz%(b%))
+            Put px%(b%), py%(b%), teilbild$(platz%(a%))
+            Swap bildnummer%(platz%(a%)), bildnummer%(platz%(b%))
+            Swap platz%(a%), platz%(b%)
+          Next i%
+        EndIf
+        Repeat
+          PeekEvent
+        Until MouseK = 0 And _Mess = 0
+        bewegen
+        Repeat
+          PeekEvent
+        Until MouseK = 0 And _Mess = 0
+        Clr richtig%
+        RGBColor RGB(0, 0, 0)
+        j% = bildnummer%(0)
+        For i% = 1 To 20                          ' Kontrolle
+          If i% = ausgelagert%
+            i% = i% + 1
+          EndIf
+          If platz%(i%) = i%                      ' Bild am richtigen Platz
+            richtig% = richtig% + 1
+          EndIf
+          Exit If richtig% = 19 And bildnummer%(0) = ausgelagert%
+        Next i%
+      Else ' Klick außerhalb des Puzzle
+        GoTo zurueck
+      EndIf
+    EndIf
+    Exit If richtig% = 19 And bildnummer%(0) = ausgelagert%
+  Loop
+Return
+>Procedure bewegen                   ' Puzzleteile bewegen
+  RGBColor RGB(60, 90, 60)  'dunkelgrün
+  If klick% <> bildnummer%(0)                ' falls nicht der Leerplatz
+    If klick% = bildnummer%(0) + 5           ' Bewegung nach oben
+      For i% = 1 To hoehe%
+        Put px%(klick%), py%(klick%) - i%, teilbild$(platz%(klick%))
+        If i% < hoehe%
+          Line px%(klick%), py%(klick%) + hoehe% - i%, px%(klick%) + breite%, py%(klick%) + hoehe% - i% ' Linie für Hintergrund
+        EndIf
+      Next i%
+      Swap bildnummer%(platz%(klick% - 5)), bildnummer%(platz%(klick%))
+      Swap platz%(klick% - 5), platz%(klick%)
+    Else If klick% = bildnummer%(0) - 5      ' Bewegung nach unten
+      For i% = 1 To hoehe%
+        Put px%(klick%), py%(klick%) + i%, teilbild$(platz%(klick%))
+        If i% < hoehe%
+          Line px%(klick%), py%(klick%) - 1 + i%, px%(klick%) + breite%, py%(klick%) - 1 + i% ' Linie für Hintergrund
+        EndIf
+      Next i%
+      Swap bildnummer%(platz%(klick% + 5)), bildnummer%(platz%(klick%))
+      Swap platz%(klick% + 5), platz%(klick%)
+    Else If klick% = bildnummer%(0) - 1      ' Bewegung nach rechts
+      For i% = 1 To breite%
+        Put px%(klick%) + i%, py%(klick%), teilbild$(platz%(klick%))
+        If i% < breite%
+          Line px%(klick%) - 1 + i%, py%(klick%), px%(klick%) - 1 + i%, py%(klick%) + hoehe% ' Linie für Hintergrund
+        EndIf
+      Next i%
+      Swap bildnummer%(platz%(klick% + 1)), bildnummer%(platz%(klick%))
+      Swap platz%(klick% + 1), platz%(klick%)
+    Else If klick% = bildnummer%(0) + 1      ' Bewegung nach links
+      For i% = 1 To breite%
+        Put px%(klick%) - i%, py%(klick%), teilbild$(platz%(klick%))
+        If i% < breite%
+          Line px%(klick%) + breite% - i%, py%(klick%), px%(klick%) + breite% - i%, py%(klick%) + hoehe% ' Linie für Hintergrund
+        EndIf
+      Next i%
+      Swap bildnummer%(platz%(klick% - 1)), bildnummer%(platz%(klick%))
+      Swap platz%(klick% - 1), platz%(klick%)
+    EndIf
+  EndIf
+Return
+>Procedure auslagern                  ' ein Puzzleteil auslagern
+  PaintPicture puzzlebild, xx%, yy%, breite% * 5, hoehe% * 4 ' neu zeichnen, damit die Linien verschwinden
+  beginn| = 1
+  RGBColor RGB(60, 90, 60)  ' dunkelgrün
+  Select klick%
+  Case 2, 3, 4 ' oben Mitte
+    Get px%(klick%), py%(klick%) - 4 * fy, px%(klick%) + breite%, py%(klick%) - 1, hintergrund$
+    For i% = 1 To hoehe% + 4 * fy
+      Put px%(klick%), py%(klick%) - i%, teilbild$(klick%)
+      Line px%(klick%), py%(klick%) + hoehe% - i%, px%(klick%) + breite%, py%(klick%) + hoehe% - i% ' Linie für Hintergrund
+    Next i%
+    Put px%(klick%), py%(klick%) - 4 * fy, hintergrund$
+  Case 17, 18, 19 ' unten Mitte
+    Get px%(klick%), py%(klick%) + hoehe%, px%(klick%) + breite%, py%(klick%) + hoehe% + 4 * fy, hintergrund$
+    For i% = 1 To hoehe% + 4 * fy
+      Put px%(klick%), py%(klick%) + i%, teilbild$(klick%)
+      Line px%(klick%), py%(klick%) + i%, px%(klick%) + breite%, py%(klick%) + i% ' Linie für Hintergrund
+    Next i%
+    Put px%(klick%), py%(klick%) + hoehe%, hintergrund$
+  Case 1, 6, 11, 16 ' links
+    Get px%(klick%) - 4 * fx, py%(klick%), px%(klick%) - 1, py%(klick%) + hoehe%, hintergrund$
+    For i% = 1 To breite% + 4 * fx
+      Put px%(klick%) - i%, py%(klick%), teilbild$(klick%)
+      Line px%(klick%) + breite% - i%, py%(klick%), px%(klick%) + breite% - i%, py%(klick%) + hoehe% ' Linie für Hintergrund
+    Next i%
+    Put px%(klick%) - 4 * fx, py%(klick%), hintergrund$
+  Case 5, 10, 15, 20  ' rechts
+    Get px%(klick%) + breite%, py%(klick%), px%(klick%) + breite% + 5 * fx, py%(klick%) + hoehe%, hintergrund$
+    For i% = 1 To breite% + 4 * fx
+      Put px%(klick%) + i%, py%(klick%), teilbild$(klick%)
+      Line px%(klick%) + i%, py%(klick%), px%(klick%) + i%, py%(klick%) + hoehe% ' Linie für Hintergrund
+    Next i%
+    Put px%(klick%) + breite%, py%(klick%), hintergrund$
+  Case 7, 8, 9, 12, 13, 14, 0  ' mittlere Teile, außerhalb
+    beginn| = 0
+  EndSelect
+  bildnummer%(klick%) = 0  ' ausgelagert
+  bildnummer%(0) = klick%    ' Leerfeld am angeklickten Platz
+  platz%(klick%) = 0
+  ausgelagert% = klick%
+Return
+>Procedure zuruecklagern              ' das ausgelagerte Puzzleteil zurückschieben
+  RGBColor RGB(100, 0, 0) ' dunkelbraun
+  aus% = ausgelagert%
+  Select aus%
+  Case 2, 3, 4 ' oben Mitte
+    For i% = 1 To hoehe% + 4 * fy
+      Put px%(aus%), py%(aus%) - hoehe% - 4 * fy + i%, teilbild$(aus%)
+      Line px%(aus%), py%(aus%) - hoehe% - 5 * fy + i%, px%(aus%) + breite%, py%(aus%) - hoehe% - 5 * fy + i% ' Linie für Hintergrund
+      zeit# = oTimer
+      Repeat
+        PeekEvent
+        zeitneu# = oTimer
+      Until zeitneu# > zeit# + 10
+    Next i%
+    Put px%(aus%), py%(aus%) - 4 * fy, hintergrund$
+  Case 17, 18, 19 ' unten Mitte
+    For i% = 1 To hoehe% + 4 * fy
+      Put px%(aus%), py%(aus%) + hoehe% + 4 * fy - i%, teilbild$(aus%)
+      Line px%(aus%), py%(aus%) + hoehe% * 2 + 5 * fy - i%, px%(aus%) + breite%, py%(aus%) + hoehe% * 2 + 5 * fy - i% ' Linie für Hintergrund
+      zeit# = oTimer
+      Repeat
+        PeekEvent
+        zeitneu# = oTimer
+      Until zeitneu# > zeit# + 10
+    Next i%
+    Put px%(aus%), py%(aus%) + hoehe%, hintergrund$
+  Case 1, 6, 11, 16 ' links
+    For i% = 1 To breite% + 4 * fx
+      Put px%(aus%) - breite% - 4 * fx + i%, py%(aus%), teilbild$(aus%)
+      Line px%(aus%) - breite% - 5 * fx + i%, py%(aus%), px%(aus%) - breite% - 5 * fx + i%, py%(aus%) + hoehe% ' Linie für Hintergrund
+      zeit# = oTimer
+      Repeat
+        PeekEvent
+        zeitneu# = oTimer
+      Until zeitneu# > zeit# + 10
+    Next i%
+    Put px%(klick%) - 4 * fx, py%(klick%), hintergrund$
+  Case 5, 10, 15, 20  ' rechts
+    For i% = 1 To breite% + 4 * fx
+      Put px%(aus%) + breite% + 4 * fx - i%, py%(aus%), teilbild$(aus%)
+      Line px%(aus%) + breite% * 2 + 5 * fx - i%, py%(aus%), px%(aus%) + breite% * 2 + 5 * fx - i%, py%(aus%) + hoehe% ' Linie für Hintergrund
+      zeit# = oTimer
+      Repeat
+        PeekEvent
+        zeitneu# = oTimer
+      Until zeitneu# > zeit# + 10
+    Next i%
+    Put px%(klick%) + breite%, py%(klick%), hintergrund$
+  EndSelect
+Return
+>Procedure koordinaten                ' Koordinaten der 20 Teilbilder
+  px%(1) = xx%
+  py%(1) = yy%
+  px%(2) = xx% + breite%
+  py%(2) = yy%
+  px%(3) = xx% + breite% * 2
+  py%(3) = yy%
+  px%(4) = xx% + breite% * 3
+  py%(4) = yy%
+  px%(5) = xx% + breite% * 4
+  py%(5) = yy%
+  px%(6) = xx%
+  py%(6) = yy% + hoehe%
+  px%(7) = xx% + breite%
+  py%(7) = yy% + hoehe%
+  px%(8) = xx% + breite% * 2
+  py%(8) = yy% + hoehe%
+  px%(9) = xx% + breite% * 3
+  py%(9) = yy% + hoehe%
+  px%(10) = xx% + breite% * 4
+  py%(10) = yy% + hoehe%
+  px%(11) = xx%
+  py%(11) = yy% + hoehe% * 2
+  px%(12) = xx% + breite%
+  py%(12) = yy% + hoehe% * 2
+  px%(13) = xx% + breite% * 2
+  py%(13) = yy% + hoehe% * 2
+  px%(14) = xx% + breite% * 3
+  py%(14) = yy% + hoehe% * 2
+  px%(15) = xx% + breite% * 4
+  py%(15) = yy% + hoehe% * 2
+  px%(16) = xx%
+  py%(16) = yy% + hoehe% * 3
+  px%(17) = xx% + breite%
+  py%(17) = yy% + hoehe% * 3
+  px%(18) = xx% + breite% * 2
+  py%(18) = yy% + hoehe% * 3
+  px%(19) = xx% + breite% * 3
+  py%(19) = yy% + hoehe% * 3
+  px%(20) = xx% + breite% * 4
+  py%(20) = yy% + hoehe% * 3
+Return
+>Procedure teilbilder                  ' Auslesen der Teilbilder
+  For i% = 1 To 20
+    Get px%(i%), py%(i%), px%(i%) + breite% - 1, py%(i%) + hoehe% - 1, teilbild$(i%)
+  Next i%
+Return
+>Procedure alert2(al$, al1$, al2$)   ' Alertfenster
+  GraphMode R2_COPYPEN, TRANSPARENT
+  DefLine 0, fx
+  RGBColor RGB(100, 0, 0) ' dunkelbraun
+  PBox 75 * fx, 175 * fy, 563 * fx, 303 * fy
+  RGBColor RGB(255, 0, 0) ' rot
+  Box 78 * fx, 178 * fy, 560 * fx, 300 * fy
+  RGBColor RGB(255, 255, 198) ' creme
+  PBox 87 * fx, 187 * fy, 551 * fx, 291 * fy
+  RGBColor RGB(0, 0, 0) ' schwarz
+  SetFont schrift1%
+  Text 99 * fx, 215 * fy, al$
+  DefLine 0, 2 * fx
+  RGBColor RGB(190, 225, 255) ' hellblau
+  PBox 179 * fx, 258 * fy, 299 * fx, 280 * fy
+  PBox 339 * fx, 258 * fy, 459 * fx, 280 * fy
+  RGBColor RGB(100, 0, 0) ' dunkelbraun
+  Box 179 * fx, 258 * fy, 299 * fx, 280 * fy
+  Box 339 * fx, 258 * fy, 459 * fx, 280 * fy
+  DefLine 0, fx
+  PaintPicture grins, 489 * fx, 195 * fy, 50 * fx, 56 * fy
+  SetFont schrift1%
+  Text 189 * fx, 258 * fy, al1$
+  Text 349 * fx, 258 * fy, al2$
+  Repeat
+    PeekEvent
+  Until MouseK = 0
+  Repeat
+    PeekEvent
+    Mouse x%, y%, k%
+  Until k% = 1 And ((x% > (319 - 140) * fx And x% < (319 - 20) * fx) Or (x > (319 + 20) * fx And x% < (319 + 140) * fx)) And y% > (239 + 20) * fy And y% < (239 + 40) * fy
+  If x% < 319 * fx
+    alert| = 1
+  Else
+    alert| = 2
+  EndIf
+Return
+>Procedure hilfetext                  ' Hilfe
+  RGBColor RGB(255, 255, 198)  ' creme
+  PBox 0, 0, _X, _Y
+  GraphMode R2_COPYPEN, TRANSPARENT
+  RGBColor RGB(0, 0, 120) 'dunkelblau
+  SetFont schrift1
+  Text 20 * fx, 20 * fy, "1. Klicke als Erstes auf ein Plättchen am Rand des Puzzle. Es wird aus"
+  Text 20 * fx + TxtLen("1. "), 45 * fy, "dem Spielfeld geschoben. An seine Stelle tritt ein Leerfeld."
+  Text 20 * fx + TxtLen("1. "), 70 * fy, "Die Puzzleplättchen werden vermischt."
+  Text 20 * fx, 100 * fy, "2. Klicke jetzt immer wieder auf ein Plättchen neben dem leeren Feld."
+  Text 20 * fx + TxtLen("1. "), 125 * fy, "Es rutscht auf den Platz des Leerfelds."
+  Text 20 * fx, 155 * fy, "3. Schaffe auf diese Art Platz vor dem Plättchen, das du bewegen willst."
+  Text 20 * fx + TxtLen("1. "), 180 * fy, "Beginne mit dem Ordnen in der oberen oder in der unteren Reihe, am"
+  Text 20 * fx + TxtLen("1. "), 205 * fy, "besten in der, die weiter vom ausgelagerten Plättchen entfernt ist."
+  Text 20 * fx, 235 * fy, "4. Plättchen, die zusammengehören, lassen sich gut in einer Schlange"
+  Text 20 * fx + TxtLen("1. "), 260 * fy, "bewegen, vor der du immer wieder Platz schaffen musst."
+  Text 20 * fx, 290 * fy, "5. Wenn eine der ersten beiden Reihen fertig ist, kehre nicht mehr in sie"
+  Text 20 * fx + TxtLen("1. "), 315 * fy, "zurück!"
+  Text 20 * fx, 345 * fy, "6. Zum Ordnen der beiden letzten Reihen bewege alle Plättchen in einer"
+  Text 20 * fx + TxtLen("1. "), 370 * fy, "Schlange rundherum und versuche, an geeigneten Stellen Plättchen von"
+  Text 20 * fx + TxtLen("1. "), 395 * fy, "unten in den oberen Teil der Schlange zu schieben oder umgekehrt."
+  Text 20 * fx, 425 * fy, "7. Wenn alle Plättchen am richtigen Platz sind, kehrt das ausgelagerte"
+  Text 20 * fx + TxtLen("1. "), 450 * fy, "Plättchen automatisch ins Spielfeld zurück. Du hast gewonnen."
+Return
+>Procedure menueabfrage             ' Menü und Abfrage nach Beendigung des ersten Spiels
+  RGBColor RGB(255, 255, 255) ' creme        ' Aufbau des Menüs
+  Text 506 * fx, 60 * fy, "Und jetzt?"
+  Clr a%
+  For i = 0 To 6
+    If i = 6
+      a = 10
+    EndIf
+    RGBColor RGB(255, 255, 198)  'weiß
+    PRBox 503 * fx, 89 * fy + i * 40 * fy, 608 * fx, 109 * fy + i * 40 * fy
+    RGBColor RGB(255, 0, 0)  'rot
+    RBox 503 * fx, 89 * fy + i * 40 * fy, 608 * fx, 109 * fy + i * 40 * fy
+  Next i
+  RGBColor RGB(0, 0, 0)  ' schwarz
+  Text 510 * fx, 91 * fy, "Zahlen bis 20"
+  Text 510 * fx, 91 * fy + 40 * fy, "gerade Zahlen"
+  Text 510 * fx, 91 * fy + 2 * 40 * fy, "ungerade Zahlen"
+  Text 510 * fx, 91 * fy + 3 * 40 * fy, "Moro froh"
+  Text 510 * fx, 91 * fy + 4 * 40 * fy, "Moro traurig"
+  Text 510 * fx, 91 * fy + 5 * 40 * fy, "Pinguine"
+  Text 510 * fx, 91 * fy + 6 * 40 * fy, "???"
+  klickaußerhalb:
+  Repeat                                                        ' Abfrage
+    PeekEvent
+  Until MouseK = 0 And _Mess = 0
+  Clr t$
+  Repeat
+    Sleep
+    Mouse x%, y%, k%
+    t$ = InKey$
+  Until k% = 1  Or (Len(t$) > 1 And (Asc(Right$(t$)) = 119 Or Asc(Right$(t$)) = 112)) ' F8 oder F1
+  Repeat
+    PeekEvent
+  Until MouseK = 0 And _Mess = 0
+  If Len(t$) > 1 And Asc(Right$(t$)) = 112                ' F1, Hilfe
+    Get 0, 0, _X, _Y, fenster$
+    hilfetext
+    Repeat
+      Sleep
+      t$ = InKey$
+    Until t$ <> ""
+    Put 0, 0, fenster$
+    Clr fenster$
+  EndIf
+  If Len(t$) > 1 And Asc(Right$(t$)) = 119                 ' F8, Ende
+    schluss:
+    RGBColor RGB(0, 0, 0) ' schwarz
+    DefMouse 0
+    Repeat
+      PeekEvent
+    Until MouseK = 0
+    alert2("Willst du wirklich aufhören?", "neu", "Ende")
+    If alert| = 2
+      ende
+    Else
+      hauptmenue
+    EndIf
+    Repeat
+      PeekEvent
+    Until MouseK = 0
+  EndIf
+  If k% = 1
+    If x > 503 * fx And x < 608 * fy
+      y = y / fy
+      Select y
+      Case 89 To 109
+        Set puzzlebild = Nothing
+        Set puzzlebild =  LoadPicture("bild\puzzle\zahlen_bis_20.jpg")
+      Case 129 To 149
+        Set puzzlebild = Nothing
+        Set puzzlebild =  LoadPicture("bild\puzzle\zahlen_gerade.jpg")
+      Case 169 To 189
+        Set puzzlebild = Nothing
+        Set puzzlebild =  LoadPicture("bild\puzzle\zahlen_ungerade.jpg")
+      Case 209 To 229
+        Set puzzlebild = Nothing
+        Set puzzlebild =  LoadPicture("bild\puzzle\moro_froh.jpg")
+      Case 249 To 269
+        Set puzzlebild = Nothing
+        Set puzzlebild =  LoadPicture("bild\puzzle\moro_traurig.jpg")
+      Case 289 To 309
+        Set puzzlebild = Nothing
+        Set puzzlebild =  LoadPicture("bild\puzzle\pinguine.jpg")
+      Case 329 To 349
+        Set puzzlebild = Nothing
+        Set puzzlebild =  LoadPicture("bild\puzzle\puzzle.jpg")
+      Default
+        GoTo klickaußerhalb
+      EndSelect
+    Else
+      GoTo klickaußerhalb
+    EndIf
+  EndIf
+Return
+>Procedure ende
+  RGBColor RGB(75, 0, 0)
+  PBox 0, 0, _X, _Y
+  Set puzzlebild = Nothing
+  Set grins = Nothing
+  Set grins2 = Nothing
+  FreeFont schrift0%
+  FreeFont schrift1%
+  FreeFont schrift2%
+  FreeFont schrift3%
+  FreeFont schrift5%
+  FreeFont schriftw3%
+  CloseW # 2
+  CloseW # 1
+  End
+Return
+$DatFile
+$FormVersion = 2
+:{frm1 66
+EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE00UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
+AAQAAcAAACAA
+$ExeName = D:\GB32\Programme\Lesen.Exe
+$FileDescription = Beschreibung
+$Comments = Autor: Rudolf Rosenkränzer
+$CompanyName = Rudolf Rosenkränzer
+$LegalCopyright = © 2000 Rudolf Rosenkränzer
+$LanguageId = 0407
+$FileFlags# = 3
+$FileVersion = %d.%d.%d.%d
+$ProductVersion = %d.%d.%d.%d
+$DatFile

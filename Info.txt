@@ -1,0 +1,827 @@
+******************************************************************************
+   Rosenkränzers Kombipaket "Grundschule", Version 8.0
+  
+   im Vertrieb bei co.Tec GmbH, Traberhofstraße 12, 83026 Rosenheim  
+******************************************************************************
+
+Rosenkränzers Kombipaket "Grundschule"
+
+Die acht Programme des Kombipakets - Version 8.0 - bieten Kindern ohne große 
+Spielerei direkte und differenzierte Übungen im Unterricht der Grundschule 
+und zu Hause an; in vielen Bereichen ist selbstständige Weiterarbeit möglich,
+ebenso die Hilfe bei schwierigen Hausaufgaben (Mathematik, Üben von Diktattexten):
+
+*  Rechnen für Grundschulkinder: ein Übungsprogramm zur Steigerung 
+   der Rechenfertigkeit und zum Einüben der schriftlichen Rechenarten
+
+*  Schreiben für Grundschulkinder: ein Übungsprogramm zur Sicherung der Recht-
+   schreibung, zur Erweiterung des Wortschatzes und zum Kennenlernen der 
+   Computertastatur
+
+*  Lesen für Grundschulkinder: Kinder können die Buchstaben/Laute an 38 Merk-
+   wörtern einüben und weitere 43 Wörter selbstständig lesen und gründlich  
+   kennen lernen
+
+*  Frisches Wasser: Kinder ab dem Ende des 3. Schuljahrs können am Bildschirm 
+   selbstständig viel über die Eigenschaften des Wassers erfahren, sie bauen eine
+   Pumpe und eine Wasserversorgung für mehrere Häuser
+
+*  ein Schiebepuzzle für Zahlen, Bilder und eigene Fotos 
+
+*  ein Programm zum Ansehen und Ausdrucken von Blättern mit einem Monatskalender
+   zum Selbstgestalten
+
+*  ein Geburtstagsrechner
+
+Zusätzlich gehört zum Kombipaket ein Eurorechner 
+
+Hinweise zu allen Programmen:
+
+1. Hardware: Mindestvoraussetzungen: PC ab Pentium, Farbmonitor, CD-Laufwerk, 
+   Maus, MS WINDOWS ab Windows 95 mit den zugehörigen Schriften "Arial", "Times
+   New Roman" und "Wingdings", 32 MB Arbeitsspeicher.
+   Ein Drucker (auch für mehrere Computer gemeinsam) ist von Vorteil: 
+   Das Kind erhält auf Wunsch einen Ausdruck seines Arbeitsergebnisses, 
+   geübte Texte und Wörter werden ausgedruckt.
+
+2. Installation auf die Festplatte: Legen Sie die CD in Ihr CD-Laufwerk
+   und starten Sie das Programm "Install.exe". Platzbedarf auf der Festplatte: 
+   etwa 9 MB.
+
+3. Bewährt hat sich im Unterricht der Einsatz in der Freiarbeit, beim Stationen-
+   lernen und in Förderstunden. Falls genügend Computer zur Verfügung stehen, 
+   ist auch die Arbeit mit der ganzen Klasse sehr erfolgreich (etwa zweimal 20 
+   bis 30 Minuten wöchentlich). Neben der Einzelarbeit zeigt die Partnerarbeit 
+   zweier Kinder die besten Ergebnisse; sie können beim Programmstart beide Na-
+   men eingeben, verbunden mit "und" oder "+". Das Programm spricht dann beide 
+   Kinder an.
+
+   Besonders bewährt hat es sich, dem Kind zum Ende der Übungszeit die Wahl der 
+   zu bearbeitenden Aufgaben völlig freizustellen. Es hat sich gezeigt, dass 
+   einige Kinder gern zu Wiederholungsaufgaben greifen und so Lücken füllen, 
+   andere sich dagegen immer wieder an schwerere Aufgaben heranwagen und sich 
+   sehr vieles - insbesondere die schriftlichen Rechenarten - selbst erarbeiten. 
+   Zwei Tipps für diese Kinder: Selbsteingabe von Zahlen ermöglicht schwere Auf-
+   gaben! Bei unbekannten Aufgabentypen zunächst mit eingeschalteter Hilfe-Funk-
+   tion arbeiten!
+
+   Um das Kind konzentriert arbeiten zu lassen, erlauben die Programme keine 
+   Veränderung des Fensters und kommunizieren nicht mit anderen Programmen. 
+   Schwierigkeiten können deshalb auftreten, wenn andere Programme im Hintergrund
+   laufen. Bitte schließen Sie alle anderen Anwendungen, ehe das Kind mit der 
+   Arbeit beginnt.
+
+   Alle Programme wurden der neuen Rechtschreibung angepasst.
+
+4. Start der Programme: Bitte über das Startmenü starten, nicht über Symbole
+   auf dem Desktop, die leicht zu Mehrfachstarts führen.
+
+5. Auswahl der Übungen: Nach der Eingabe des Namens erscheint das Hauptmenü,
+   ausgewählt wird mit der linken Maustaste, weiter zum nächsten Menü geht es
+   durch Klicken mit der rechten Maustaste. Im folgenden Menü werden auf die
+   gleiche Art die einzelnen Übungen ausgesucht.
+
+6. Jede Eingabe muss mit der "Fertig-Taste" ("Return" oder "Enter") abgeschlos-
+   sen werden. Dann kontrolliert das Programm die Eingabe. "Moro", der lacht
+   oder weint, zeigt an, ob die Lösung richtig oder falsch war; der Arbeits-
+   fortschritt wird durch anwachsende Säulen dargestellt.
+
+7. Während der Arbeit muss das Kind darauf achten, dass es die Tasten - beson-
+   ders die "Return"- oder "Enter"-Taste - nur kurz anschlägt, da sonst die
+   Zeichen gleich mehrmals eingegeben werden, eventuell deshalb auch Fehler
+   angezeigt werden.
+
+8. Ein Verlassen der gewählten Aufgabenart ist jederzeit möglich mit der 
+   Taste "F8".  
+
+9. Nach Abschluss oder Abbruch der Arbeit wird die Zahl der richtigen und 
+   falschen Lösungen angezeigt, dazu die Zeit für die Bearbeitung. Diese An-
+   gaben können auf  Wunsch automatisch unter dem Namen des Kindes gespeichert
+   werden. Wird die Speicherung gewünscht, drücken Sie während der Anzeige
+   des Hauptmenüs die Taste "S" für "Speicherung".  Wünschen Sie die lau-
+   fende Speicherung in der gleichen Datei, muss das Kind seinen Namen immer
+   in der gleichen Form eingeben.
+
+   Zum Ansehen der Übersicht über die Leistungen des Kindes öffnen Sie den 
+   Explorer, dann den Ordner "Grundschule". Suchen Sie in den Unterordnern
+   "Rechnen", "Schreiben" oder "Lesen" nach der Datei mit dem Namen 
+   des Kindes. (Bitte diese Ordner nicht löschen! Sie sind zu Beginn leer und 
+   enthalten später - nur bei Bedarf - die Arbeitsergebnisse.)
+
+   Nach einem Doppelklick auf die Datei startet der vorgewählte Texteditor und
+   zeigt Ihnen die Ergebnistabelle an. Sollten die Tabellenzeilen nicht ganz
+   ins geöffnete Fenster passen, führen die den Mauszeiger über einen seit-
+   lichen Rand des Fensters, drücken Sie die linke Maustaste, halten Sie sie
+   gedrückt und ziehen Sie das Fenster in die Breite.
+   Die Ergebnistabelle kann auch ausgedruckt werden.
+
+Übersicht: Auswahlmöglichkeiten im Hauptmenü:
+
+  *  Auswahl durch Anklicken mit der linken Maustaste:
+	5 oder 6 Aufgabengruppen
+				Voreinstellung: "Gruppe 1"
+
+	Rechnen und Schreiben: "Hilfe: ja" oder "Hilfe: nein" 
+		(späteres Zu- oder Abschalten der Hilfefunktion - auch im 
+		Programm "Lesen" mit der Taste "F1")
+      				Voreinstellung: "Hilfe: nein"
+
+	Rechnen: automatische Aufgabenwahl (Computersymbol) oder Selbstein-
+		gabe von Zahlen (Tastatursymbol)
+      				Voreinstellung: automatische Aufgabenwahl
+
+	Schreiben: "normal" oder "groß": Vorgabe des zu übenden Textes in
+		Groß- und Kleinbuchstaben oder Vorgabe nur in Großbuchstaben
+		(Schreiben aber in Normalschrift)
+				Voreinstellung: "normal" 
+
+	Lesen: Arbeit nur mit Merkwörtern oder mit allen Wörtern
+				Voreinstellung: "mit allen Wörtern"
+
+  *  Weiter zum nächsten Menü: Klicken mit der rechten Maustaste
+
+  *  Taste "F8": Verlassen des Programms
+
+  *  Taste "S": Ergebnis speichern (Datei mit dem Namen des Kindes im Ordner 
+	        "Rechnen", "Schreiben" oder "Lesen" in Tabellenform)
+
+  *  Schreiben: Taste "T": Texteingabe (Eingabe oder Änderung eines Diktattextes)
+
+Übersicht: Auswahl in den weiteren Menüs:
+
+  *  Auswahl durch Anklicken mit der linken Maustaste:
+	13 verschiedene Aufgabenarten
+				Voreinstellung: Zeile 1
+
+	Rechnen: "Stufe 1", "Stufe 2" oder "Stufe 3"
+ 				Voreinstellung: "Stufe 1"
+   
+  *  Weiter zur Arbeit: Klicken mit der rechten Maustaste
+
+  *  Zurück zum Hauptmenü: Taste "F8"
+
+Telefonische Hilfe erhalten Sie - auch abends - bei Rudolf Rosenkränzer, 
+Auf der Hard 3, 54456 Tawern, Tel. 06501/180202. 
+
+Die Programme des Kombipakets wurden mit der Programmiersprache "GFA-Basic"
+erstellt.
+
+
+Hinweis zum Programm "Rechnen" und zum Eurorechner
+Auch nach der Umstellung der Währung auf den Euro bleibt im Kombipaket die 
+Möglichkeit erhalten, mit der Deutschen Mark (DM) zu arbeiten. Kinder können 
+so Erfahrung mit einer anderen Währung sammeln. Außerdem ist die DM-Währung
+interessant beim Thema "Wie es früher war".
+
+Hinweis zum Programm "Kalender zum Selbstgestalten"
+Kopieren Sie die Seiten am Ende dieses Textes für die Hand der Kinder; nach 
+kurzer Einarbeitung können Kinder des 3./4. Schuljahrs selbstständig mit dem
+Programm arbeiten. Achtung: Die volle Funktion des Kalenders ist erst ab Win-
+dows 98 gegeben; bei Windows 95 wird er vereinfacht dargestellt, aber richtig
+ausgedruckt.
+
+Hinweis zum Programm "Schiebepuzzle"
+Auch für das Schiebepuzzle gibt es Hinweise für die Hand der Kinder am Ende
+dieses Hilfetextes.
+
+Hinweis zum Programm "Geburtstagsrechner"
+Sinn des Programms ist es, Kindern ab dem 4. Schuljahr in einem interessanten
+Zusammenhang Arbeit im hohen Zahlenraum anzubieten. Es lassen sich ganz
+besondere Geburtstage finden: siehe Hilfen für die Hand der Kinder am Ende 
+dieses Textes. Wenn alle Kinder z. B. 'Jubiläen' für ein einziges suchen,
+kommen interessante Ergebnisse zu Tage. Dabei wird die Orientierung im hohen
+Zahlenraum stark gefördert.
+
+
+Rechnen für Grundschulkinder
+
+1. Die Auswahlmenüs "Rechnen 1" bis "Rechnen 4" und "Geld und Zeit" enthalten
+   Aufgaben, die in etwa den Lehrplänen für die vier Schuljahre der Grund-
+   schule entsprechen. Es stehen jeweils 13 Aufgabenarten in drei Stufen zur
+   Verfügung (nur die Stufe 1 wird auf dem Bildschirm angezeigt, Stufe 2 und
+   3 sind meist Steigerungen der Schwierigkeit, Einzelheiten im Handbuch,
+   das dem Programm beiliegt.
+   Wichtige Ausnahmen: 
+   Die meisten Aufgaben im Zahlenbereich "bis 100" in "Rechnen 1" gehören
+   zum Stoff des 2. Schuljahrs.
+   Die Arbeit mit Kommazahlen wird unter "Rechnen 4", Zeile 6, geübt.
+   Die Arbeit mit Geld und mit der Zeit (Uhr, Zeitrechnungen) ist für alle 
+   Schuljahre in einem besonderen Menü zusammengefasst.
+   Die Aufgaben zum schriftlichen Rechnen mit Kommazahlen gehören zum Teil 
+   ins 5. Schuljahr, wollen aber bereits leistungsstarke Grundschulkinder 
+   ansprechen. Sie finden diese Aufgaben unter "Rechnen 4", Zeile 7. Wählen 
+   Sie im folgenden Untermenü die Maßeinheit und Stufe 3. Einzelheiten finden 
+   Sie im Handbuch!
+
+2. Beim Arbeiten mit Geld kann das Kind zwischen Euro und DM wählen.
+   Da auf vielen Computern das Eurozeichen nicht verfügbar ist, kann statt-
+   dessen ein "E" eingegeben werden. Auf neuen Tastaturen kann das Zeichen
+   auch mit einer eigenen Taste geschrieben werden. 
+   Wenn Sie bereits einen neuen Zeichensatz der Schrift "Arial" installiert
+   haben, gibt es eine weitere Möglichkeit:
+   Halten Sie die linke "Alternate"-Taste gedrückt und geben Sie nacheinander
+   folgende Ziffern ein: 0,1,2,8.
+
+3. Für jede Aufgabenart kann zwischen automatischer Aufgabenstellung durch 
+   das Programm und der Selbsteingabe von Zahlen (Partnerarbeit, Hilfe bei 
+   den Hausaufgaben, Steigerung der Schwierigkeit) gewählt werden. Bei mehreren
+   Aufgabenarten können auch negative Zahlen eingegeben werden (vereinfachte 
+   Schreibweise ohne Klammern, z. B. "30 + -2 =" oder "-16 : 5 =").
+
+4. Bei automatischer Aufgabenstellung erhöht sich der Schwierigkeitsgrad nach
+   richtigen Antworten; bei Fehlern werden die Aufgaben leichter. Nach einem
+   Fehler folgt eine Aufgabe ähnlicher Schwierigkeit.
+
+5. Bei den meisten Rechenarten kann das Kind vor der Eingabe von Zahlen durch
+   Druck auf die Tasten "T", "H", "Z", "E" und "Backspace" als Hilfe ein 
+   einfarbiges Zahlenbild im Hunderter- bzw. Tausenderfeld nach eigenen
+   Vorstellungen aufbauen.
+
+6. Außer bei den schriftlichen Rechenarten wird die nächste Aufgabe erst nach
+   richtiger Lösung der vorhergehenden gestellt. Beim ersten oder zweiten 
+   fehlerhaften Lösungsversuch (je nach Aufgabentyp) stellt das Programm dem 
+   Kind Hilfen zur Verfügung. Diese Hilfen können auch von vornherein im 
+   Hauptmenü angewählt oder während der Arbeit jederzeit mit der Taste "F1"
+   ein- oder ausgeschaltet werden. Reichen die Hilfen nicht aus, sollten 
+   Lehrer oder Eltern eingreifen.
+   Die Hilfen zu Kopfrechenaufgaben erfolgen als mehrfarbige Darstellungen
+   im Hunderterfeld (Rechnen 1 und 2) oder im Tausenderfeld (Rechnen 3 und 4);
+   Voraussetzung für das Verstehen dieser Hilfsangebote ist die ausführliche
+   Arbeit mit diesen Feldern (Rechnen 1 und 3 jeweils zunächst Zeile 2, 
+   dann Zeile 1).
+   Bei den schriftlichen Rechenarten wird jeder einzelne Rechenschritt über-
+   prüft; bei einem Fehler wird auf die Art des Fehlers hingewiesen, dann 
+   beginnt der nächste Lösungsversuch von vorn. Nach einem Abbruch mit
+   "Return" oder "Enter" (nicht beim Rechnen mit Kommazahlen!) wird eine 
+   leichtere Aufgabe gestellt.
+
+7. Das Programm arbeitet mit "Integerzahlen". Die Angabe "unbeschränkt" bei 
+   der Selbsteingabe von Zahlen bedeutet: Weder eine einzelne Zahl, noch das
+   Ergebnis dürfen 2.147.483.647 überschreiten. Daher sind Beschränkungen für
+   die Eingabe von Zahlen bei etwa 1 Milliarde vorgesehen. 
+
+8. Einige Aufgabentypen eignen sich hervorragend für Wettspiele zwischen Kin-
+   dergruppen: Wiederholung des Einmaleins, Anhalten der Uhr bei mittlerem 
+   Tempo, Darstellen von Zahlen im Hunderter- oder Tausenderbereich (Zeile 2
+   in "Rechnen 1" und "Rechnen 3"): nur auf die Taste "E", "Z" oder "H" 
+   drücken, Taste festhalten - Tastenwiederhol-Funktion! -, möglichst punkt-
+   genau loslassen. Die Aufgaben lassen sich auch rückwärts ausführen: zu-
+   nächst Aufbau eines Hunderters bzw. Tausenders, dann Löschen mit fest-
+   gehaltener Backspace-Taste bis zur vorgegebenen Zahl.
+
+9. Kennenlernen der Uhr: Die Uhr läuft in drei verschiedenen Geschwindig-
+   keiten: schnell (Taste "s"), mittel (Taste "m") und langsam (Taste "l").
+   Mit der Taste "F1" kann eine zusätzliche Digitaluhr eingeschaltet werden.
+   Durch Vergleich der beiden Uhren kann das Verständnis weitgehend selbst-
+   ständig erarbeitet werden. Aufgabenstellung ist es jeweils, die Uhr mit
+   "Return" oder "Enter" zu einem vorgegebenen Zeitpunkt zu stoppen.
+
+Im Handbuch finden Sie eine Übersicht aller Aufgabenarten. Auf dem Bild-
+schirm werden in der Regel nur die Aufgaben der Stufe 1 dargestellt.
+
+
+Schreiben für Grundschulkinder
+
+1. Das Kennenlernen der Tastatur steht am Beginn. Übungen zur Rechtschreibung
+   und Wortfelder bieten die Möglichkeit, mit ihr vertraut zu werden. Ein 
+   Schreiben mit zehn Fingern ist für das Grundschulkind nicht vorgesehen.		
+   Unter den Menüs "Schreiben 1" bis "Schreiben 4" können Lehrer oder Eltern
+   in jedes mit "Text" gekennzeichnete Feld einen Text (Diktat) eingeben, der
+   vom Kind zeilenweise geschrieben wird. Das Programm kontrolliert jedes 
+   Wort auf korrekte Schreibweise.
+   Auf vielfältige Art ist in den Menüs "Wortschatz 1" und "Wortschatz 2" die
+   Arbeit mit einem Grundwortschatz von rund 1200 Wörtern möglich. 26 kind-
+   gemäße Themen umfassen durchschnittlich 45 Wörter des Grundwortschatzes.
+   Die Wörter können in immer neuen Zusammenstellungen geschrieben oder 
+   alphabetisch oder nach Wortarten geordnet werden.
+
+2. Es gibt folgende Möglichkeiten zur Voreinstellung:
+     "Hilfe: ja": Bei den vorgegebenen Aufgaben in "Schreiben 1" bis
+ 	"Schreiben 4" werden die erforderlichen Tasten farbig angezeigt 
+	(Training für das schnelle Auffinden); abzuschreibende Texte bleiben
+	während des Schreibens sichtbar. Die Hilfe-Funktion kann während der
+  	Arbeit mit der Taste "F1" zu- oder abgeschaltet werden.
+     "Hilfe: nein": Beim Schreiben des ersten Buchstabens verschwindet die
+	abzuschreibende Zeile. Weitere Hilfen fehlen oder werden nur nach 
+	Fehlern gegeben. (Weiß ein Kind nicht mehr weiter, sollte es sich
+        die Zeile mit "F1" noch einmal anzeigen lassen, sie genau ansehen,
+        die Hilfe mit "F1" wieder abschalten und dann erst weiterschreiben!)
+
+3. Beim Schreiben des Leerzeichens nach einem Wort wird das Wort auf Richtig-
+   keit überprüft. (Deshalb sollte das Kind das Wort vor Eingabe des Leer-
+   zeichens kontrollieren!) Bei einem Fehler muss die ganze Zeile noch einmal
+   geschrieben werden, - diesmal mit Hilfe.
+   Am Ende der Zeile soll kein Leerzeichen eingegeben werden. 
+   Abschluss jeder Zeile durch "Return" oder "Enter".
+
+4. Ein Verlassen der gewählten Aufgabenart ist jederzeit möglich durch Druck
+   auf die Taste "F8".
+
+5. Selbsteingabe von Übungstexten durch Lehrer oder Eltern:
+	* Wählen Sie im Hauptmenü aus zwischen "Schreiben 1" bis "Schreiben 4"
+          und drücken Sie dann die Taste "T" für "Texteingabe", wählen Sie
+          anschließend die gewünschte Zeile: "Text 1", "Text 2" ...
+	* Geben Sie den Text in sinnvollen Diktier-Abschnitten ein. Es können
+          bis zu 44 Zeilen beschrieben werden. (Die auf der CD vorhandenen
+	  Texte entstanden im Lauf der Zeit, dienen nur als Beispiele und
+	  können bei der Eingabe eigener Texte gelöscht werden. Die gleichen
+	  Texte befinden sich im Ordner "Originaltexte" und können bei Bedarf
+	  in den Ordner "Texte" zurück kopiert werden.)
+		Löschen von Zeichen: Taste "Backspace"
+		Bewegen im Text: Pfeil nach oben, nach unten, nach rechts und
+		links
+	* Fertig: Taste "F8". Der Text wird im Ordner "Texte" gespeichert.
+
+6. Normale Anführungszeichen werden ersetzt durch Anführungszeichen unten 
+   und oben. Eingetippt wird jeweils ein normales Anführungszeichen. 
+   Die Umwandlung erfolgt automatisch durch das Programm während des Schrei-
+   bens oder während des Einlesens.
+
+Hinweis für Schulen:
+   In "Schreiben 1", Zeilen 8 und 9, wird eine Reihe von "Merkwörtern
+   A bis Z" aus einer Fibel eingeübt.
+   Ihre eigenen Merkwörter können Sie in ähnlicher Form z.B. als "Text1" und
+   "Text2" eingegeben.
+ 
+Menü-Übersicht:
+
+"Schreiben 1"
+  1. 	Tasten finden
+  2. 	Zahlen finden
+  3. 	Kleinbuchstaben
+  4. 	Großbuchstaben
+  5. 	alle Buchstaben
+  6. 	übrige Zeichen
+  7. 	alle Zeichen
+  8. 	Merkwörter 1 * A bis Z (1 Wort je Zeile)
+  9. 	Merkwörter 2 * A bis Z (wie Zeile 8, aber 3 Wörter je Zeile)
+  10. 	Merkwörter 3 * A bis Z (1 Wort je Zeile)
+  11. 	Merkwörter 4 * A bis Z (wie Zeile 10, aber 3 Wörter je Zeile)
+  12./13. eigene Texte (Eingabe durch Lehrer oder Eltern)
+
+"Schreiben 2"
+  1. 	Farben
+  2. 	a und ä
+  3. 	au und äu
+  4. 	d oder t am Ende
+  5.	b, g oder k am Ende
+  6./13. eigene Texte (Eingabe durch Lehrer oder Eltern)
+
+"Schreiben 3"
+  1. 	groß oder klein
+  2. 	froh oder traurig
+  3. 	schnell oder langsam, laut oder leise
+  4. 	gut oder schlecht
+  5. 	wann?
+  6./13. eigene Texte (Eingabe durch Lehrer oder Eltern)
+
+"Schreiben 4"
+  1. 	Zahlen
+  2. 	tun, machen
+  3. 	sehen, hören, merken
+  4. 	sagen
+  5. 	sich bewegen
+  6./13. eigene Texte (Eingabe durch Lehrer oder Eltern)
+
+"Wortschatz 1" 
+  1. 	Arbeit
+  2. 	Einkaufen
+  3. 	Essen und Trinken
+  4. 	Die Familie
+  5. 	Freizeit
+  6. 	Gefühle
+  7. 	Gesundheit und Krankheit
+  8. 	Das Jahr
+  9. 	Kleidung
+ 10. 	Der Körper
+ 11. 	Malen und Basteln
+ 12. 	Mengen und Richtungen
+ 13. 	In der Pause
+
+"Wortschatz 2" 
+  1. 	Pflanzen
+  2. 	In der Schule
+  3. 	Sport und Spiel
+  4. 	Die Sprache
+  5. 	Tiere
+  6. 	Unglück
+  7. 	Verkehr
+  8. 	Verreisen
+  9. 	Das Wetter
+ 10. 	Wohnen
+ 11. 	Die Zeit
+ 12. 	Schwierige Zeitwörter 1
+ 13. 	Schwierige Zeitwörter 2
+
+Im Handbuch finden Sie eine Liste aller Wörter des Grundwortschatzes.
+
+
+Lesen für Grundschulkinder
+
+Das Programm bietet Kindern des 1. und 2. Schuljahrs im Hauptmenü in sechs 
+Gruppen 38 Merkwörter mit zugehörigen Bildern zum Erlernen der Buchstaben/Lau-
+te an. Die Abbildungen auf der Rückseite des Beihefts sollten dem Kind immer
+zugänglich sein. Hinzu kommen 43 Wörter mit zugehörigen Bildern, die selbst-
+ständig erlesen werden können.
+ 
+Die 8 Wörter der ersten Gruppe ("Mama" bis "Igel") - siehe Übersicht - werden
+ganzheitlich gelesen, alle folgenden Merkwörter lassen sich selbstständig er-
+lesen, wenn dem Kind der neue Buchstabe/Laut bekannt ist.
+
+Das Programm kann parallel zu jeder Fibel eingesetzt werden, sobald dem Kind
+die ersten acht Buchstaben bekannt sind: M, O, A, S, L, T, N, I. Nach einer 
+kurzen Einübungsphase ist auch dem Kind des 1. Schuljahrs ein selbstständiges 
+Arbeiten mit dem Programm möglich. 
+
+Im Hauptmenü kann das Kind wählen, ob es nur mit den Merkwörtern oder auch 
+mit den zusätzlichen Wörtern arbeiten will. Mit der Taste "F1" wird während 
+der Arbeit die Hilfefunktion zu- und abgeschaltet. Das Kind sollte dazu ermun-
+tert werden, sich die Hilfen genau anzusehen, sie wieder abzuschalten und dann
+erst die Aufgabe zu lösen.
+
+Im zweiten Menü werden folgende Arbeitsaufgaben angeboten:
+
+1. Zeilen 1 und 2: Arbeit mit ganzen Wörtern: Wortkärtchen werden dem ent-
+   sprechenden Bild zugeordnet. Ein Memory erfordert höhere Konzentration.  
+   Die Wortkärtchen werden mit der linken Maustaste angeklickt, zum passenden
+   Bild geschoben und durch Klicken mit der rechten Maustaste abgelegt. 
+   Weiter - wenn alle Aufgaben einer Bildschirmseite erledigt sind - mit 
+   "Return" oder "Enter". Eine zusätzliche Übungsmöglichkeit mit dem Memory: 
+   Das Kind - besser: sein Partner - klickt ein Wortkärtchen an, ohne sich die
+   Bilder der Seite anzusehen. Nach dem Abdecken der Bilder wird die Hilfe 
+   aufgerufen (Taste "F1"). In roter Schrift erscheinen die Wörter unter den 
+   abgedeckten Bildern. Ehe das Kind sein Kärtchen ablegt, muss es - seinem 
+   Partner - den Namen nennen.
+
+2. Zeilen 3 bis 5: Buchstabenkärtchen mit den Merkbuchstaben/-lauten werden 
+   dem passenden Bild zugeordnet. Achtung: Der Merkbuchstabe/-laut ist nicht
+   immer der Anfangsbuchstabe! In diesen Zeilen ist keine Arbeit mit den 
+   zusätzlich angebotenen Wörtern möglich, da sie keinem Merkbuchstaben 
+   zugeordnet sind. 
+   Bei Memory 2 können  mit einem Buchstabenkärtchen Teile des Bilds frei-
+   gerubbelt werden; interessant besonders für die Partnerarbeit. Eine 
+   weitere gute Übungsmöglichkeit mit Memory 2 oder 3: Das Kind - besser: 
+   sein Partner - klickt ein Buchstabenkärtchen an, ohne sich die Bilder der
+   Seite anzusehen. Nach dem Abdecken der Bilder wird die Hilfe aufgerufen 
+   (Taste "F1"). In roter Schrift erscheinen die Merkbuchstaben unter den 
+   abgedeckten Bildern. Ehe das Kind sein Kärtchen ablegt, muss es - seinem 
+   Partner - den Merklaut und das zugehörige Merkwort nennen.
+
+3. Zeilen 6 bis 9: Die Durchgliederung der Wortbilder wird gefördert durch
+   das Suchen des Buchstabenkärtchens zum Wortanfang, eines beliebigen Kärt-
+   chens aus der Wortmitte oder des Kärtchens zum Wortende. Schließlich wird
+   das ganze Wort aus Buchstabenkärtchen aufgebaut. Die Kärtchen werden mit
+   der linken Maustaste angeklickt und "laufen" dann zum zugehörigen Bild.
+   Weiter zur nächsten Aufgabe mit "Return" oder "Enter".
+
+4. Zeilen 10 bis 13: Ähnlich wie unter Nr. 3 wird die Durchgliederung der 
+   Merkwörter weitergeführt. Die Buchstabenkärtchen (mit Groß- und Kleinbuch-
+   staben) dienen nur noch als Hilfe, geschrieben wird mit der Computer-
+   tastatur. Auf Groß- und Kleinschreibung braucht nicht geachtet zu werden.
+   Der Computer wählt automatisch Groß- oder Kleinbuchstaben. (Weiterführung
+   der Arbeit mit dem Programm "Schreiben für Grundschulkinder": In Zeile 10
+   und 11 - Menü "Schreiben 1" - lassen sich die gleichen Merkwörter auf neue 
+   Art üben!)
+
+Wörterliste zum Programm "Lesen für Grundschulkinder" (81 Wörter)
+
+		Merkwörter	Wörter, die selbstständig gelesen werden können
+
+Gruppe 1, 8 Merkwörter
+	M,m	Mama	
+	O,o	Oma	
+	A,a	Ampel	
+	S,s	Sonne	
+	L,l	Lampe	
+	T,t	Tomate	
+	N,n	Nest	
+	I,i	Igel	
+
+Gruppe 2, 4 Merkwörter, 8 zusätzliche Wörter
+	E,e	Esel		Salami, Tassse
+	R,r	Rose	
+	P ,p	Pinsel	
+	F,f	Fenster		Affe, Apfel, Elefant, Familie, Tafel, Telefon
+
+Gruppe 3, 4 Merkwörter, 10 zusätzliche Wörter
+	K,k	Kamel		Rakete
+	H,h	Hamster		Hammer, Hase, Nashorn, Ohr
+	U,u	Uhr		Kaktus, Kuh, Uhu
+	Au,au	Auto		Haus, Maus
+
+Gruppe 4, 4 Merkwörter, 10 zusätzliche Wörter
+	Ei,ei	Eis		Leiter
+	G,g	Geige		Gans, Giraffe, Regen, Tiger
+	B,b	Ball		Bananen, Baum, Boot, Gabel
+	ie	Biene		Tiere
+
+Gruppe 5, 4 Merkwörter, 12 zusätzliche Wörter
+	ch	Buch		Kuchen
+	D,d	Dach		Daumen, Hund, Indianer, Mond, Radio
+	Z,z	Zebra		Pilz, Zahn, Zitrone
+	Sch,sch	Schere		Fisch, Frosch, Schloss
+
+Gruppe 6, 14 Merkwörter, 3 zusätzliche Wörter
+	W,w	Wolke		Wolf
+	V,v	Vogel	
+	ng	Zange	
+	J,j	Junge	
+	X,x	Hexe	
+	Ä,ä	Käse	
+	Ö,ö	Löwe	
+	Ü,ü	Küken		Würfel
+	äu	Häuser	
+	ß	Straße	
+	Eu,eu	Feuer	
+	Qu,qu	Qualm	
+	Y,y	Baby		Teddy
+	C,c	Computer
+
+
+Frisches Wasser
+
+Sehr wichtig: Dieses Programm erfordert die Einstellung des Computers auf eine
+   Farbtiefe von 24 oder 32 Bit. (Bei geringerer Farbenzahl werden die Farb- 
+   verläufe als breite Streifen dargestellt.)
+   So können Sie die Einstellung ändern: 
+   Nach dem Start von Windows Klick mit der rechten Maustaste auf die Desktop-
+   Oberfläche / im erscheinenden Fenster Klick auf Eigenschaften / Klick auf den 
+   Kartenreiter "Einstellungen" / Ändern: Farbqualität. 
+
+An der gleichen Stelle können Sie die Bildauflösung ändern. Das Programm arbeitet
+   nur mit folgenden Bildauflösungen: 800 x 600, 1024 x 768, 1152 x 864 oder 
+   1600 x 1200 Bildpunkte (Pixel); die beste Darstellung erreichen Sie mit der 
+   Einstellung auf 1152 x 864 Pixel.
+
+Kinder ab dem Ende des 3. Schuljahrs können ohne weitere Hilfen selbstständig mit
+   dem Programm arbeiten. Am besten bewährt hat sich die Arbeit in Zweiergruppen.
+   Ein Hinweis vor Beginn der Arbeit ist sehr wichtig:
+   Wer genau Bescheid wissen will, sollte vor dem ersten Klick die ganze Aufgabe
+   lesen, sich außerdem ein Blatt Papier bereitlegen (oder die Möglichkeit zum
+   Ausdruck von wenigstens 2 Seiten haben).
+   Zeitbedarf mit anschließenden Gespräch: 2 Unterrichtsstunden
+   Das Gespräch wird erleichtert, wenn die angebotene Möglichkeit zum Ausdruck
+   von Seiten genutzt wird.
+
+Das Programm will zum Transfer in die Wirklichkeit anregen und ermöglicht es
+   Kindern, weitgehend selbstständig in Gruppen arbeiten zu können, wenn Ihnen
+   im Anschluss an die Arbeit das Versuchsmaterial zum Aufbau einer Wasser-
+   versorgung bereitgestellt wird (ähnlich wie Pumpe 1 im Programm, Weiter-
+   führung: Leitung vom Hochbehälter zu einem Hausanschluss).
+   
+
+
+Ausdrucken von Kalenderblättern zum Selbstgestalten
+
+Mit dem Programm "Kalender" kannst du Kalenderblätter für alle Monate vom 
+Oktober 1752 bis zum Dezember 9999 ansehen und ausdrucken. Nach dem Start 
+siehst du einen Monatskalender des laufenden Monats, daneben ein Fenster 
+"Kalender ändern", das dir beim Ändern der Schrift und der Farben für das 
+Kalenderblatt hilft. Der Kalender wird auf den unteren Teil eines Papierblatts
+gedruckt. Darüber kannst du ein Bild malen. Wenn du willst, macht der Computer 
+einen Rahmen dafür.
+
+Mit dem kleinen Schalter "Neu" brichst du die laufende Arbeit ab; die Schrift 
+und alle ausgewählten Farben werden auf die Anfangswerte zurückgesetzt. 
+Mit "Ende" wird das Programm geschlossen.
+
+Das kannst du zum Beispiel herstellen:
+
+  *  einen Familienkalender mit allen interessanten Daten eurer 
+     Familie und einem selbst gemalten Bild für jeden Monat des 
+     Jahres,
+
+  *  einen Kalender des Schuljahrs mit allen wichtigen Daten für 
+     eure Klasse mit passenden Bildern und Stichwörtern zu besonderen 
+     Terminen,
+
+  *  ein Monatsblatt zum Geburtstag der Oma mit einem Bild "Meine 
+     liebe Oma",
+
+  *  ein Monatsblatt der Ferien im kommenden Jahr mit einem gemalten Vorschlag, 
+     was ihr unternehmen könntet,
+
+  *  einen Kalender für die Freundin: Geburtsmonat mit dem Bild "Freundin als 
+     Baby", Geburtsmonat ein Jahr später: "Freundin mit einem Jahr", wieder ein 
+     Jahr später: "Freundin mit zwei Jahren" usw.,
+
+  *  ein Tagebuch: für jeden Monat hältst du deine wichtigsten Erlebnisse mit 
+     kleinen Skizzen und Stichwörtern im Rahmen über dem Kalender fest.
+
+Wie finde ich einen bestimmten Monat?
+
+Klicke mit der linken Maustaste auf die Jahreszahl in der Überschrift des 
+Kalenders. Mit den zwei Pfeilen neben der Jahreszahl kannst du das Jahr 
+verändern. Die beiden seitlichen Pfeile neben der Überschrift dienen zur Auswahl
+des Monats. Willst du weit nach vorn, halte die Maustaste gedrückt! Suche z. B. 
+dein Geburtsjahr und deinen Geburtsmonat; hier kannst du feststellen, an welchem
+Wochentag du geboren bist. Zurück zum heutigen Datum kommst du, wenn du mit der 
+rechten Maustaste auf den Kalender klickst. Sollte der Monatskalender einmal 
+automatisch immer weiterlaufen, stoppe ihn durch Klicken auf einen der seitlichen 
+Pfeile neben der Monatsüberschrift.
+
+Wie kann ich das Aussehen des Kalenders verändern?
+
+Wenn du nichts änderst, wird der Kalender ungefähr so gedruckt, wie du ihn auf 
+dem Bildschirm siehst. Mit den acht großen Schaltern kannst du vieles daran 
+verändern. Klicke dazu den gewünschten Schalter mit der linken Maustaste an. 
+Wenn du alle Einstellungen ändern willst, beginne links oben mit dem Schalter 
+"Schriftart und Schriftgröße". Der nächste Schalter wird dir durch eine dickere 
+Umrandung angezeigt.
+
+1. Schriftart und Schriftgröße
+   a) Klicke im linken Feld ("Schriftart") eine Schrift an. Einige Buchstaben 
+      dieser Schrift werden im Feld "Beispiel" angezeigt. Auch mit den 
+      Pfeiltasten "nach oben" oder "nach unten" kannst du die Schriftarten 
+      wechseln.
+   b) Wenn du eine passende Schrift gefunden hast, kannst du im Feld 
+      "Schriftschnitt" verschiedene Eigenschaften wählen: z. B. Standard (nor-
+      mal), bold (fett), kursiv (schräg gestellt), bold kursiv (fett schräg 
+      gestellt). Auch diese Änderungen werden im Feld "Beispiel" angezeigt.
+   c) Im Feld "Grad" kannst du die Größe der Schrift verändern. Das Maß dafür 
+      heißt "Punkt". Eine normale Schrift in Briefen oder Büchern ist 10 bis 
+      12 Punkt groß. Im Kalenderbeispiel siehst du die Schrift "Times New Roman", 
+      fett, mit einer Größe von 20 Punkt.
+   d) Bestätige deine Auswahl - auch bei den übrigen Schaltern - mit der Taste 
+      "OK".
+
+2. Farbe für die Tage des Monats
+   Tage des Monats sind die Daten vom 1. bis zum 28./30./31. Im linken Feld 
+   "Grundfarben" kannst du eine Farbe auswählen. Sie wird im großen Feld 
+   "Farbe|Basis" angezeigt. Wähle zum Ausdrucken ziemlich dunkle Farben, helle 
+   Farben lassen sich auf dem Papier oft nicht gut erkennen.
+
+   Die ausgewählte Farbe wird auch im rechten, großen Feld durch ein Kreuz 
+   angezeigt. Wenn du die Farbe verändern willst, klicke in dieses große Feld 
+   oder verschiebe das Kreuz mit der Maus:
+    *  je weiter nach oben, desto klarer wird die Farbe (wenig Grau oder Schwarz),
+    *  je weiter nach unten, desto mehr Grau oder Schwarz wird unter die Farbe
+       gemischt.
+
+   Das schmale Feld ganz rechts zeigt ebenfalls deine Farbe an, zusätzlich 
+   hellere Töne bis Weiß und dunklere Töne bis Schwarz. Klicke zum Auswählen in 
+   dieses Feld oder verschiebe den Schieber rechts außen. Von dir ausgewählte 
+   Farben werden später im Feld "Benutzerdefinierte Farben" angezeigt.
+
+   Die Felder "Rot", "Grün" und "Blau" zeigen, wie viel Rot, Grün und Blau 
+   in deiner Farbe enthalten ist. Es sind Werte von 0 (z. B. kein Rot) bis 255 
+   (sehr viel Rot). Du kannst in diese Felder selbst passende Zahlen eingeben. 
+   Wenn dir das Experimentieren mit diesen Werten Spaß macht, merkst du, dass 
+   beim Mischen von Licht andere Farben entstehen als beim Mischen von Wasser-
+   farben. (Genauso mischt ein Monitor die Farbe für jeden winzigen Punkt des 
+   Bildschirms aus drei Lichtstrahlen: einem mit Rot, einem mit Grün und einem 
+   mit Blau.) Welche Farbe entsteht z. B. bei sehr viel Rot, sehr viel Grün und 
+   sehr viel Blau?
+
+3. Farbe für die Namen der Tage
+   Namen der Tage sind die Abkürzungen für "Montag", "Dienstag" usw. über dem 
+   Kalender.
+
+4. Farbe für zusätzliche Tage
+   Zusätzliche Tage sind Tage des vorhergehenden Monats vor dem 1. des gewählten
+   Monats und Tage nach dem Ende des gewählten Monats. Wähle für diese Tage eine
+   helle, unscheinbare Farbe, damit man gleich erkennt, dass sie nicht zum 
+   laufenden Monat gehören.
+
+5. Auswahl besonderer Tage
+   Hier kannst du Tage anklicken, die für deinen Kalender wichtig sind. Diese 
+   Tage erhalten später eine besondere Farbe (vielleicht Rot): z. B. alle Sonn- 
+   und Feiertage, erster und letzter Ferientag, Geburtstag der Mutter, eine 
+   Einladung, ein Tag, auf den du dich besonders freust usw.
+   Wenn du willst, kannst du von Hand winzig klein unter den Tag oder rechts 
+   oder links neben die Woche schreiben, um welchen Tag es sich handelt 
+   (vielleicht eine Abkürzung, z. B. "G Pa" für Geburtstag Papa). 
+   Die angeklickten Tage werden in einer Liste angezeigt. Wenn du dich vertan 
+   hast, klicke noch einmal auf den Schalter! Wenn alle Tage ausgewählt sind, 
+   klicke auf den Schalter "Farbe für besondere Tage"!
+ 
+6. Farbe für besondere Tage
+   Hier wählst du die Farbe für die besonderen Tage; sie gilt auch für die 
+   Überschrift (Monat und Jahr).
+
+7. Rahmen für ein Bild
+   Über der Monatsüberschrift kann ein Rahmen für ein Bild oder für Text 
+   ausgedruckt werden. Das Programm wählt für den Druck einen möglichst kleinen 
+   Abstand des Rahmens vom Rand des Papierblatts. 
+
+   a) Wenn du beim Druck merkst, dass der Rahmen deinen Wünschen nicht ent-
+      spricht, 	kannst du die Ränder "links", "oben", "rechts" und "unten" 
+      vergrößern. Schreibe in die Felder des Fensters "Seite einrichten", um wie
+      viele Millimeter ein Rand vergrößert werden soll (0 bis 25 mm bei DIN A4 
+      hoch).
+	
+   b) Im Fenster "Farbe" wähle die Farbe für deinen Rahmen.
+
+   c) Wähle bei der Frage "Wie dick soll die Linie sein?" die Dicke für die 
+      Linie des Rahmens. Wenn du nichts auswählst, wird kein Rahmen gedruckt.
+
+8. Monatskalender drucken
+   Jetzt kannst du dein Kalenderblatt ausdrucken. Normalerweise brauchst du beim
+   Ausdruck nur anzugeben, wievielmal das Blatt ausgedruckt werden soll. (Drucke 
+   eine große Anzahl - z. B. für eure ganze Klasse - erst nach einem Probedruck 
+   aus!) Vielleicht kannst du bei deinem Drucker auch verschiedene Papierformate
+   oder Hoch- und Querformat einstellen. Bei einem Schwarz-Weiß-Drucker kannst
+   du oft den Ausdruck in Graustufen wählen.
+
+   Nach dem Drucken bleiben alle deine Einstellungen außer der Wahl der 
+   besonderen Tage erhalten. Der Kalender springt automatisch einen Monat weiter.
+   Wenn du das nächste Blatt mit den gleichen Einstellungen drucken willst, 
+   brauchst du nur die besonderen Tage im neuen Monat einzugeben.
+
+
+Schiebepuzzle
+
+So kommst du mit dem Schiebepuzzle zurecht:
+
+1. Klicke als Erstes auf ein Plättchen am Rand des Puzzle. Es wird aus dem Spielfeld
+   geschoben. An seine Stelle tritt ein Leerfeld. Die Puzzleplättchen werden vermischt.
+
+2. Klicke jetzt immer wieder auf ein Plättchen neben dem leeren Feld. Es rutscht auf 
+   den Platz des Leerfelds.
+
+3. Schaffe auf diese Art Platz vor dem Plättchen, das du bewegen willst. Beginne mit 
+   dem Ordnen in der oberen oder in der unteren Reihe, am besten in der, die 
+   weiter vom ausgelagerten Plättchen entfernt ist.
+
+4. Plättchen, die zusammengehören, lassen sich gut in einer Schlange bewegen, 
+   vor der du immer wieder Platz schaffen musst.
+
+5. Wenn eine der ersten beiden Reihen fertig ist, kehre nicht mehr in sie zurück!
+
+6. Zum Ordnen der beiden letzten Reihen bewege alle Plättchen in einer Schlange
+   rundherum und versuche, an geeigneten Stellen Plättchen von unten in den 
+   oberen Teil der Schlange zu schieben oder umgekehrt.
+
+7. Wenn alle Plättchen am richtigen Platz sind, kehrt das ausgelagerte Plättchen
+   automatisch ins Spielfeld zurück. Du hast gewonnen.
+
+8. Mit Hilfe deines Lehrers kannst du auch mit einem eigenen Bild puzzeln. Suche,
+   fotografiere (Digitalkamera) oder male dir dafür selbst ein Bild. Du musst auf 
+   Folgendes achten:
+     a) Das Bild muss im Querformat gemalt oder fotografiert sein.
+     b) Es soll etwa 640 x 480 Pixel groß sein und muss im JPG-Format gespeichert 
+        sein.
+     c) Ändere den Namen deines Bilds in "Puzzle.jpg"
+     d) Kopiere das Bild in folgenden Ordner: "Grundschule\Bild\Puzzle"
+     e) Der Computer fragt, ob das bereits vorhandene Bild überschrieben werden 
+        soll. Antworte mit "Ja"! Dein Bild tritt an die Stelle des Fisches, den du 
+        mit "???" auswählen konntest. 
+     f) Willst du später wieder mit dem Fisch puzzeln, findest du sein Bild im 
+        Ordner "Grundschule\ Originale". Es heißt ebenfalls "Puzzle.jpg". Kopiere 
+        es in den Ordner "Grundschule\Bild\Puzzle" und überschreibe dein Bild.
+
+
+Geburtstagsrechner
+
+Auf welchen Wochentag fällt mein Geburtstag oder ein beliebiger Termin zwischen 
+     5000 v. Chr. und 2201 n. Chr.?
+
+     1. Klick auf 'Neu'
+     2. Eingabe des Geburtsjahres (Jahres) – Return – Eingabe des Monats (nur Zahl 
+        ohne Punkt!) – Return – Eingabe des Tages (nur Zahl!) – Return
+
+Wie alt bin ich an einem bestimmten Tag? – Wie lange dauert eine Zeitspanne?
+
+     1. Eingabe des Geburtsdatums (des Beginns) wie oben. Die zusätzliche Eingabe der 
+        genauen Uhrzeit ist möglich. Bitte jedes Feld mit 'Return' verlassen, auch
+        die Felder der Uhrzeit, wenn sie ohne Veränderung übernommen werden sollen.
+     2. Eingabe des Enddatums in gleicher Weise. Die Uhrzeit des Geburtsdatums wird 
+        automatisch übernommen und kann zunächst nicht verändert werden.
+     3. Nach dem Abschluss mit 'Return' berechnet das Programm das Alter in Jahren, 
+        Monaten, Wochen, Tagen, Stunden, Minuten und Sekunden.
+
+Wie kann ich jetzt besondere Geburtstage finden?
+
+     Nach diesen Eingaben werden die Tasten '+' und '–' in der rechten Spalte aktiv. 
+     Mit ihnen kann das Enddatum so lange verändert werden, bis in einer Spalte
+     eine runde Zahl erscheint. Nach einigen Versuchen wird schnell deutlich, 
+     welcher Wert sich bald zu einer interessanten Zahl verändern lässt.
+
+Wie kann ich das Ergebnis ausdrucken?
+
+     Klick auf die Taste 'Drucken', dann  Auswahl von 'Text' für eine Urkunde oder 
+     Wahl von 'Bild' für den Ausdruck des Programmfensters.
+
+Beispiele:
+
+     Für jedes Lebensjahr gibt es interessante 'Geburtstage', mit 6 Jahren z. B. 
+     60.000 Stunden, mit 7 Jahren 4.000.000 Minuten, mit 9 Jahren 500 Wochen, mit
+     18 Jahren 6666 Tage, mit 19 Jahren 10.000.000 Minuten, mit 39 Jahren 
+     1.234.567.890 Sekunden, mit 54 Jahren 20.000 Tage, mit 83 Jahren 1000 Monate.
+
+Wichtiger Hinweis:
+
+     Jeder Mensch ist ein Jahr lang z. B. 40 Jahre alt, er ist eine Woche lang 1000 
+     Wochen alt. Gefeiert wird nur am ersten Tag – vielleicht auch in der ersten
+     Sekunde – dieses 'Jubläums'. Deshalb muss das Alter durch Minus-Tasten so weit 
+     verringert werden, bis man durch '+ 1 Sekunde' das Jubiläum wieder erreicht.
+
+Schaltsekunden:
+     
+     Seit 1972 wurde zu Jahresbeginn oder in der Jahresmitte 22-mal eine Schaltsekunde 
+     eingefügt, um unsere Zeit mit der Erdumdrehung in Einklang zu halten.
+     Diese Sekunden berücksichtigt das Programm nicht, weil sie zwischen die normalen 
+     Sekunden als 61-ste Sekunde einer Stunde eingefügt werden. Wer einen dieser 
+     Termine erlebt, ist also eigentlich eine Sekunde älter als berechnet.
+     Die Jahre, in denen Schaltsekunden eingefügt wurden: alle von 1972 bis 1983, 1985, 
+     1988, alle von 1990 bis 1994, 1996, 1997, 1999 (Stand Mitte 2005)

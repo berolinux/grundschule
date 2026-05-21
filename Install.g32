@@ -1,0 +1,422 @@
+' ************** Installationsprogramm Kombipaket Grundschule Version 8.0  **************
+Global ver%, version%, a%, MkDir%, kernel%, m%, pfad$, server%, beginn%, AppAtom%
+Global TopicAtom%, ServerWindow%
+Global Execute!, Ack!
+Global AppAtom As Int16
+
+Declare Function LZStart Lib "lz32" ()
+Declare Function LZDone Lib "lz32" ()
+Declare Function CopyLZFile Lib "lz32" (ByVal Source As Integer, ByVal Dest As Integer) As Integer
+
+Dialog # 1, _X / 2 - 155, _Y / 2 - 50, 310, 130, "Bero Installationsprogramm"
+  Dlg Fill 1, RGB(192, 192, 192)
+  LText "In welchen Ordner installieren?", 0, 10, 10, 280, 25
+  EditText "C:\Grundschule", 103, 10, 40, 280, 25, ES_LEFT | ES_AUTOHSCROLL | WS_TABSTOP | WS_BORDER
+  DefPushButton "&OK", 104, 10, 70, 135, 25, BS_DEFPUSHBUTTON | WS_TABSTOP
+  PushButton "&Abbruch", 105, 160, 70, 135, 25, BS_PUSHBUTTON | WS_TABSTOP
+EndDialog
+ShowDialog # 1
+~SetFocus(DlgItem(1, 103))
+SendMessage Dlg(1, 103), EM_SETSEL, 0, MakeLong(0, 20)
+Do
+  PeekEvent
+  m% = MENU(0)
+Loop Until m% = 104 Or m% = 105
+If m% = 105
+  CloseDialog # 1
+  End
+EndIf
+pfad$ = _Win$(Dlg(1, 103))
+CloseDialog # 1
+If Right$(pfad$) = "\" Then pfad$ = Left$(pfad$, Len(pfad$) - 1)
+If (GetAttr(pfad$ + "\Rechnen") And 16) And (Exist(pfad$ + "\Rechnen.exe") = -1) ' Ordner und Datei vorhanden"
+  Alert 2, "Soll die vorhandene Installation überschrieben werden?", 1, "ja|nein", a%
+EndIf
+If a% = 2
+  End
+EndIf
+Copy "GfaWin23.Ocx", SysDir + "\GfaWin23.Ocx"  ' Kopieren/Überschreiben in Windows\System
+TitleW # 1, "Bero Install"
+OpenW # 1, _X / 2 - 150, _Y / 2 - 100, 300, 200, -1
+VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Bild\ABCD")
+VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Bild\Puzzle")
+VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Bild\Wasserleitung")
+VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Texte")
+VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Originale")
+VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Rechnen")
+VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Schreiben")
+VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Lesen")
+Print "Programme werden kopiert..."
+~LZStart()
+Copy "Schreiben.exe", pfad$ + "\Schreiben.exe"
+Copy "Rechnen.exe", pfad$ + "\Rechnen.exe"
+Copy "Lesen.exe", pfad$ + "\Lesen.exe"
+Copy "Waehrung.exe", pfad$ + "\Waehrung.exe"
+Copy "Kalender.exe", pfad$ + "\Kalender.exe"
+Copy "Schiebepuzzle.exe", pfad$ + "\Schiebepuzzle.exe"
+Copy "Frisches_Wasser.exe", pfad$ + "\Frisches_Wasser.exe"
+Copy "Geburtstagsrechner.exe", pfad$ + "\Geburtstagsrechner.exe"
+Copy "Info.txt", pfad$ + "\Info.txt"
+Copy "Bild\DM_1000.bmp", pfad$ + "\Bild\DM_1000.bmp"
+Copy "Bild\DM_500.bmp", pfad$ + "\Bild\DM_500.bmp"
+Copy "Bild\DM_200.bmp", pfad$ + "\Bild\DM_200.bmp"
+Copy "Bild\DM_100.bmp", pfad$ + "\Bild\DM_100.bmp"
+Copy "Bild\DM_50.bmp", pfad$ + "\Bild\DM_50.bmp"
+Copy "Bild\DM_20.bmp", pfad$ + "\Bild\DM_20.bmp"
+Copy "Bild\DM_10.bmp", pfad$ + "\Bild\DM_10.bmp"
+Copy "Bild\DM_5.bmp", pfad$ + "\Bild\DM_5.bmp"
+Copy "Bild\DM_5RUND.bmp", pfad$ + "\Bild\DM_5RUND.bmp"
+Copy "Bild\DM_5Rx.bmp", pfad$ + "\Bild\DM_5Rx.bmp"
+Copy "Bild\DM_2.bmp", pfad$ + "\Bild\DM_2.bmp"
+Copy "Bild\DM_2x.bmp", pfad$ + "\Bild\DM_2x.bmp"
+Copy "Bild\DM_1.bmp", pfad$ + "\Bild\DM_1.bmp"
+Copy "Bild\DM_1x.bmp", pfad$ + "\Bild\DM_1x.bmp"
+Copy "Bild\Pf_50.bmp", pfad$ + "\Bild\Pf_50.bmp"
+Copy "Bild\Pf_50x.bmp", pfad$ + "\Bild\Pf_50x.bmp"
+Copy "Bild\Pf_10.bmp", pfad$ + "\Bild\Pf_10.bmp"
+Copy "Bild\Pf_10x.bmp", pfad$ + "\Bild\Pf_10x.bmp"
+Copy "Bild\Pf_5.bmp", pfad$ + "\Bild\Pf_5.bmp"
+Copy "Bild\Pf_5x.bmp", pfad$ + "\Bild\Pf_5x.bmp"
+Copy "Bild\Pf_2.bmp", pfad$ + "\Bild\Pf_2.bmp"
+Copy "Bild\Pf_2x.bmp", pfad$ + "\Bild\Pf_2x.bmp"
+Copy "Bild\Pf_1.bmp", pfad$ + "\Bild\Pf_1.bmp"
+Copy "Bild\Pf_1x.bmp", pfad$ + "\Bild\Pf_1x.bmp"
+Copy "Bild\Euro_500.jpg", pfad$ + "\Bild\Euro_500.jpg"
+Copy "Bild\Euro_200.jpg", pfad$ + "\Bild\Euro_200.jpg"
+Copy "Bild\Euro_100.jpg", pfad$ + "\Bild\Euro_100.jpg"
+Copy "Bild\Euro_50.jpg", pfad$ + "\Bild\Euro_50.jpg"
+Copy "Bild\Euro_20.jpg", pfad$ + "\Bild\Euro_20.jpg"
+Copy "Bild\Euro_10.jpg", pfad$ + "\Bild\Euro_10.jpg"
+Copy "Bild\Euro_5.jpg", pfad$ + "\Bild\Euro_5.jpg"
+Copy "Bild\Euro_2.jpg", pfad$ + "\Bild\Euro_2.jpg"
+Copy "Bild\Euro_2x.jpg", pfad$ + "\Bild\Euro_2x.jpg"
+Copy "Bild\Euro_1.jpg", pfad$ + "\Bild\Euro_1.jpg"
+Copy "Bild\Euro_1x.jpg", pfad$ + "\Bild\Euro_1x.jpg"
+Copy "Bild\Cent_50.jpg", pfad$ + "\Bild\Cent_50.jpg"
+Copy "Bild\Cent_50x.jpg", pfad$ + "\Bild\Cent_50x.jpg"
+Copy "Bild\Cent_20.jpg", pfad$ + "\Bild\Cent_20.jpg"
+Copy "Bild\Cent_20x.jpg", pfad$ + "\Bild\Cent_20x.jpg"
+Copy "Bild\Cent_10.jpg", pfad$ + "\Bild\Cent_10.jpg"
+Copy "Bild\Cent_10x.jpg", pfad$ + "\Bild\Cent_10x.jpg"
+Copy "Bild\Cent_5.jpg", pfad$ + "\Bild\Cent_5.jpg"
+Copy "Bild\Cent_5x.jpg", pfad$ + "\Bild\Cent_5x.jpg"
+Copy "Bild\Cent_2.jpg", pfad$ + "\Bild\Cent_2.jpg"
+Copy "Bild\Cent_2x.jpg", pfad$ + "\Bild\Cent_2x.jpg"
+Copy "Bild\Cent_1.jpg", pfad$ + "\Bild\Cent_1.jpg"
+Copy "Bild\Cent_1x.jpg", pfad$ + "\Bild\Cent_1x.jpg"
+Copy "Bild\Euro14.bmp", pfad$ + "\Bild\Euro14.bmp"           ' Eurozeichen
+Copy "Bild\Euro14ar.bmp", pfad$ + "\Bild\Euro14ar.bmp"       ' Arial
+Copy "Bild\Euro14bl.bmp", pfad$ + "\Bild\Euro14bl.bmp"       ' blau
+Copy "Bild\Euro14cr.bmp", pfad$ + "\Bild\Euro14cr.bmp"       ' creme
+Copy "Bild\Euro17.bmp", pfad$ + "\Bild\Euro17.bmp"
+Copy "Bild\Euro17ar.bmp", pfad$ + "\Bild\Euro17ar.bmp"
+Copy "Bild\Euro17bl.bmp", pfad$ + "\Bild\Euro17bl.bmp"
+Copy "Bild\Euro17cr.bmp", pfad$ + "\Bild\Euro17cr.bmp"
+Copy "Bild\Euro23.bmp", pfad$ + "\Bild\Euro23.bmp"
+Copy "Bild\Euro23ar.bmp", pfad$ + "\Bild\Euro23ar.bmp"
+Copy "Bild\Euro23bl.bmp", pfad$ + "\Bild\Euro23bl.bmp"
+Copy "Bild\Euro23cr.bmp", pfad$ + "\Bild\Euro23cr.bmp"
+Copy "Bild\Euro26.bmp", pfad$ + "\Bild\Euro26.bmp"
+Copy "Bild\Euro26ar.bmp", pfad$ + "\Bild\Euro26ar.bmp"
+Copy "Bild\Euro26bl.bmp", pfad$ + "\Bild\Euro26bl.bmp"
+Copy "Bild\Euro26cr.bmp", pfad$ + "\Bild\Euro26cr.bmp"
+Copy "Bild\Euro29.bmp", pfad$ + "\Bild\Euro29.bmp"
+Copy "Bild\Euro29ar.bmp", pfad$ + "\Bild\Euro29ar.bmp"
+Copy "Bild\Euro29bl.bmp", pfad$ + "\Bild\Euro29bl.bmp"
+Copy "Bild\Euro29cr.bmp", pfad$ + "\Bild\Euro29cr.bmp"
+Copy "Bild\Grins.bmp", pfad$ + "\Bild\Grins.bmp"
+Copy "Bild\Heul.bmp", pfad$ + "\Bild\Heul.bmp"
+Copy "Bild\Baum.jpg", pfad$ + "\Bild\Baum.jpg"
+Copy "Bild\Blume.jpg", pfad$ + "\Bild\Blume.jpg"
+Copy "Bild\Eis.jpg", pfad$ + "\Bild\Eis.jpg"
+Copy "Bild\Elefant.jpg", pfad$ + "\Bild\Elefant.jpg"
+Copy "Bild\Hase.jpg", pfad$ + "\Bild\Hase.jpg"
+Copy "Bild\Katze.jpg", pfad$ + "\Bild\Katze.jpg"
+Copy "Bild\Kirche.jpg", pfad$ + "\Bild\Kirche.jpg"
+Copy "Bild\Kueken.jpg", pfad$ + "\Bild\Kueken.jpg"
+Copy "Bild\Ski.jpg", pfad$ + "\Bild\Ski.jpg"
+Copy "Bild\Sonne.jpg", pfad$ + "\Bild\Sonne.jpg"
+Copy "Bild\Tastatur1.bmp", pfad$ + "\Bild\Tastatur1.bmp"
+Copy "Bild\Tastatur2.bmp", pfad$ + "\Bild\Tastatur2.bmp"
+Copy "Bild\Tastatur3.bmp", pfad$ + "\Bild\Tastatur3.bmp"
+Copy "Bild\Tastatur4.bmp", pfad$ + "\Bild\Tastatur4.bmp"
+Copy "Bild\Tastatur5.bmp", pfad$ + "\Bild\Tastatur5.bmp"
+Copy "Bild\Waehrung.bmp", pfad$ + "\Bild\Waehrung.bmp"
+Copy "Bild\Puzzle\Grins.jpg", pfad$ + "\Bild\Puzzle\Grins.jpg"
+Copy "Bild\Puzzle\Moro_froh.jpg", pfad$ + "\Bild\Puzzle\Moro_froh.jpg"
+Copy "Bild\Puzzle\Moro_traurig.jpg", pfad$ + "\Bild\Puzzle\Moro_traurig.jpg"
+Copy "Bild\Puzzle\Pinguine.jpg", pfad$ + "\Bild\Puzzle\Pinguine.jpg"
+Copy "Bild\Puzzle\Puzzle.jpg", pfad$ + "\Bild\Puzzle\Puzzle.jpg"
+Copy "Bild\Puzzle\Zahlen_bis_20.jpg", pfad$ + "\Bild\Puzzle\Zahlen_bis_20.jpg"
+Copy "Bild\Puzzle\Zahlen_gerade.jpg", pfad$ + "\Bild\Puzzle\Zahlen_gerade.jpg"
+Copy "Bild\Puzzle\Zahlen_ungerade.jpg", pfad$ + "\Bild\Puzzle\Zahlen_ungerade.jpg"
+Copy "Bild\Puzzle\Puzzle.jpg", pfad$ + "\Originale\Puzzle.jpg"
+Copy "Bild\Wasserleitung\hintergrund1.jpg", pfad$ + "\Bild\Wasserleitung\hintergrund1.jpg"
+Copy "Bild\Wasserleitung\hintergrund800.jpg", pfad$ + "\Bild\Wasserleitung\hintergrund800.jpg"
+Copy "Bild\Wasserleitung\hintergrund1024.jpg", pfad$ + "\Bild\Wasserleitung\hintergrund1024.jpg"
+Copy "Bild\Wasserleitung\hintergrund1152.jpg", pfad$ + "\Bild\Wasserleitung\hintergrund1152.jpg"
+Copy "Bild\Wasserleitung\hintergrund1600.jpg", pfad$ + "\Bild\Wasserleitung\hintergrund1600.jpg"
+Copy "Bild\Wasserleitung\ventil1o.jpg", pfad$ + "\Bild\Wasserleitung\ventil1o.jpg"
+Copy "Bild\Wasserleitung\ventil1u.jpg", pfad$ + "\Bild\Wasserleitung\ventil1u.jpg"
+Copy "Bild\Wasserleitung\ventil1a.jpg", pfad$ + "\Bild\Wasserleitung\ventil1a.jpg"
+Copy "Bild\Wasserleitung\ventil1b.jpg", pfad$ + "\Bild\Wasserleitung\ventil1b.jpg"
+Copy "Bild\Wasserleitung\ventil1c.jpg", pfad$ + "\Bild\Wasserleitung\ventil1c.jpg"
+Copy "Bild\Wasserleitung\ventil1vo.jpg", pfad$ + "\Bild\Wasserleitung\ventil1vo.jpg"
+Copy "Bild\Wasserleitung\ventil1vu.jpg", pfad$ + "\Bild\Wasserleitung\ventil1vu.jpg"
+Copy "Bild\Wasserleitung\ventil2o.jpg", pfad$ + "\Bild\Wasserleitung\ventil2o.jpg"
+Copy "Bild\Wasserleitung\ventil2u.jpg", pfad$ + "\Bild\Wasserleitung\ventil2u.jpg"
+Copy "Bild\Wasserleitung\ventil2a.jpg", pfad$ + "\Bild\Wasserleitung\ventil2a.jpg"
+Copy "Bild\Wasserleitung\ventil2b.jpg", pfad$ + "\Bild\Wasserleitung\ventil2b.jpg"
+Copy "Bild\Wasserleitung\ventil2c.jpg", pfad$ + "\Bild\Wasserleitung\ventil2c.jpg"
+Copy "Bild\Wasserleitung\ventil2vo.jpg", pfad$ + "\Bild\Wasserleitung\ventil2vo.jpg"
+Copy "Bild\Wasserleitung\ventil2vu.jpg", pfad$ + "\Bild\Wasserleitung\ventil2vu.jpg"
+Copy "Texte\Text1_12.txt", pfad$ + "\Texte\Text1_12.txt"
+Copy "Texte\Text1_13.txt", pfad$ + "\Texte\Text1_13.txt"
+Copy "Texte\Text2_6.txt", pfad$ + "\Texte\Text2_6.txt"
+Copy "Texte\Text2_7.txt", pfad$ + "\Texte\Text2_7.txt"
+Copy "Texte\Text2_8.txt", pfad$ + "\Texte\Text2_8.txt"
+Copy "Texte\Text2_9.txt", pfad$ + "\Texte\Text2_9.txt"
+Copy "Texte\Text2_10.txt", pfad$ + "\Texte\Text2_10.txt"
+Copy "Texte\Text2_11.txt", pfad$ + "\Texte\Text2_11.txt"
+Copy "Texte\Text2_12.txt", pfad$ + "\Texte\Text2_12.txt"
+Copy "Texte\Text2_13.txt", pfad$ + "\Texte\Text2_13.txt"
+Copy "Texte\Text3_6.txt", pfad$ + "\Texte\Text3_6.txt"
+Copy "Texte\Text3_7.txt", pfad$ + "\Texte\Text3_7.txt"
+Copy "Texte\Text3_8.txt", pfad$ + "\Texte\Text3_8.txt"
+Copy "Texte\Text3_9.txt", pfad$ + "\Texte\Text3_9.txt"
+Copy "Texte\Text3_10.txt", pfad$ + "\Texte\Text3_10.txt"
+Copy "Texte\Text3_11.txt", pfad$ + "\Texte\Text3_11.txt"
+Copy "Texte\Text3_12.txt", pfad$ + "\Texte\Text3_12.txt"
+Copy "Texte\Text3_13.txt", pfad$ + "\Texte\Text3_13.txt"
+Copy "Texte\Text4_6.txt", pfad$ + "\Texte\Text4_6.txt"
+Copy "Texte\Text4_7.txt", pfad$ + "\Texte\Text4_7.txt"
+Copy "Texte\Text4_8.txt", pfad$ + "\Texte\Text4_8.txt"
+Copy "Texte\Text4_9.txt", pfad$ + "\Texte\Text4_9.txt"
+Copy "Texte\Text4_10.txt", pfad$ + "\Texte\Text4_10.txt"
+Copy "Texte\Text4_11.txt", pfad$ + "\Texte\Text4_11.txt"
+Copy "Texte\Text4_12.txt", pfad$ + "\Texte\Text4_12.txt"
+Copy "Texte\Text4_13.txt", pfad$ + "\Texte\Text4_13.txt"
+Copy "Texte\Text1_12.txt", pfad$ + "\Originale\Text1_12.txt"
+Copy "Texte\Text1_13.txt", pfad$ + "\Originale\Text1_13.txt"
+Copy "Texte\Text2_6.txt", pfad$ + "\Originale\Text2_6.txt"
+Copy "Texte\Text2_7.txt", pfad$ + "\Originale\Text2_7.txt"
+Copy "Texte\Text2_8.txt", pfad$ + "\Originale\Text2_8.txt"
+Copy "Texte\Text2_9.txt", pfad$ + "\Originale\Text2_9.txt"
+Copy "Texte\Text2_10.txt", pfad$ + "\Originale\Text2_10.txt"
+Copy "Texte\Text2_11.txt", pfad$ + "\Originale\Text2_11.txt"
+Copy "Texte\Text2_12.txt", pfad$ + "\Originale\Text2_12.txt"
+Copy "Texte\Text2_13.txt", pfad$ + "\Originale\Text2_13.txt"
+Copy "Texte\Text3_6.txt", pfad$ + "\Originale\Text3_6.txt"
+Copy "Texte\Text3_7.txt", pfad$ + "\Originale\Text3_7.txt"
+Copy "Texte\Text3_8.txt", pfad$ + "\Originale\Text3_8.txt"
+Copy "Texte\Text3_9.txt", pfad$ + "\Originale\Text3_9.txt"
+Copy "Texte\Text3_10.txt", pfad$ + "\Originale\Text3_10.txt"
+Copy "Texte\Text3_11.txt", pfad$ + "\Originale\Text3_11.txt"
+Copy "Texte\Text3_12.txt", pfad$ + "\Originale\Text3_12.txt"
+Copy "Texte\Text3_13.txt", pfad$ + "\Originale\Text3_13.txt"
+Copy "Texte\Text4_6.txt", pfad$ + "\Originale\Text4_6.txt"
+Copy "Texte\Text4_7.txt", pfad$ + "\Originale\Text4_7.txt"
+Copy "Texte\Text4_8.txt", pfad$ + "\Originale\Text4_8.txt"
+Copy "Texte\Text4_9.txt", pfad$ + "\Originale\Text4_9.txt"
+Copy "Texte\Text4_10.txt", pfad$ + "\Originale\Text4_10.txt"
+Copy "Texte\Text4_11.txt", pfad$ + "\Originale\Text4_11.txt"
+Copy "Texte\Text4_12.txt", pfad$ + "\Originale\Text4_12.txt"
+Copy "Texte\Text4_13.txt", pfad$ + "\Originale\Text4_13.txt"
+Copy "Bild\ABCD\Affe.jpg", pfad$ + "\Bild\ABCD\Affe.jpg"
+Copy "Bild\ABCD\Ampel.jpg", pfad$ + "\Bild\ABCD\Ampel.jpg"
+Copy "Bild\ABCD\Apfel.jpg", pfad$ + "\Bild\ABCD\Apfel.jpg"
+Copy "Bild\ABCD\Auto.jpg", pfad$ + "\Bild\ABCD\Auto.jpg"
+Copy "Bild\ABCD\Baby.jpg", pfad$ + "\Bild\ABCD\Baby.jpg"
+Copy "Bild\ABCD\Ball.jpg", pfad$ + "\Bild\ABCD\Ball.jpg"
+Copy "Bild\ABCD\Bananen.jpg", pfad$ + "\Bild\ABCD\Bananen.jpg"
+Copy "Bild\ABCD\Baum.jpg", pfad$ + "\Bild\ABCD\Baum.jpg"
+Copy "Bild\ABCD\Biene.jpg", pfad$ + "\Bild\ABCD\Biene.jpg"
+Copy "Bild\ABCD\Boot.jpg", pfad$ + "\Bild\ABCD\Boot.jpg"
+Copy "Bild\ABCD\Buch.jpg", pfad$ + "\Bild\ABCD\Buch.jpg"
+Copy "Bild\ABCD\Computer.jpg", pfad$ + "\Bild\ABCD\Computer.jpg"
+Copy "Bild\ABCD\Dach.jpg", pfad$ + "\Bild\ABCD\Dach.jpg"
+Copy "Bild\ABCD\Daumen.jpg", pfad$ + "\Bild\ABCD\Daumen.jpg"
+Copy "Bild\ABCD\Eis.jpg", pfad$ + "\Bild\ABCD\Eis.jpg"
+Copy "Bild\ABCD\Elefant.jpg", pfad$ + "\Bild\ABCD\Elefant.jpg"
+Copy "Bild\ABCD\Esel.jpg", pfad$ + "\Bild\ABCD\Esel.jpg"
+Copy "Bild\ABCD\Familie.jpg", pfad$ + "\Bild\ABCD\Familie.jpg"
+Copy "Bild\ABCD\Fenster.jpg", pfad$ + "\Bild\ABCD\Fenster.jpg"
+Copy "Bild\ABCD\Feuer.jpg", pfad$ + "\Bild\ABCD\Feuer.jpg"
+Copy "Bild\ABCD\Fisch.jpg", pfad$ + "\Bild\ABCD\Fisch.jpg"
+Copy "Bild\ABCD\Frosch.jpg", pfad$ + "\Bild\ABCD\Frosch.jpg"
+Copy "Bild\ABCD\Gabel.jpg", pfad$ + "\Bild\ABCD\Gabel.jpg"
+Copy "Bild\ABCD\Gans.jpg", pfad$ + "\Bild\ABCD\Gans.jpg"
+Copy "Bild\ABCD\Geige.jpg", pfad$ + "\Bild\ABCD\Geige.jpg"
+Copy "Bild\ABCD\Giraffe.jpg", pfad$ + "\Bild\ABCD\Giraffe.jpg"
+Copy "Bild\ABCD\Haeuser.jpg", pfad$ + "\Bild\ABCD\Haeuser.jpg"
+Copy "Bild\ABCD\Hammer.jpg", pfad$ + "\Bild\ABCD\Hammer.jpg"
+Copy "Bild\ABCD\Hamster.jpg", pfad$ + "\Bild\ABCD\Hamster.jpg"
+Copy "Bild\ABCD\Hase.jpg", pfad$ + "\Bild\ABCD\Hase.jpg"
+Copy "Bild\ABCD\Haus.jpg", pfad$ + "\Bild\ABCD\Haus.jpg"
+Copy "Bild\ABCD\Hexe.jpg", pfad$ + "\Bild\ABCD\Hexe.jpg"
+Copy "Bild\ABCD\Hund.jpg", pfad$ + "\Bild\ABCD\Hund.jpg"
+Copy "Bild\ABCD\Igel.jpg", pfad$ + "\Bild\ABCD\Igel.jpg"
+Copy "Bild\ABCD\Indianer.jpg", pfad$ + "\Bild\ABCD\Indianer.jpg"
+Copy "Bild\ABCD\Junge.jpg", pfad$ + "\Bild\ABCD\Junge.jpg"
+Copy "Bild\ABCD\Kaese.jpg", pfad$ + "\Bild\ABCD\Kaese.jpg"
+Copy "Bild\ABCD\Kaktus.jpg", pfad$ + "\Bild\ABCD\Kaktus.jpg"
+Copy "Bild\ABCD\Kamel.jpg", pfad$ + "\Bild\ABCD\Kamel.jpg"
+Copy "Bild\ABCD\Kuchen.jpg", pfad$ + "\Bild\ABCD\Kuchen.jpg"
+Copy "Bild\ABCD\Kueken.jpg", pfad$ + "\Bild\ABCD\Kueken.jpg"
+Copy "Bild\ABCD\Kuh.jpg", pfad$ + "\Bild\ABCD\Kuh.jpg"
+Copy "Bild\ABCD\Lampe.jpg", pfad$ + "\\Bild\ABCD\Lampe.jpg"
+Copy "Bild\ABCD\Leiter.jpg", pfad$ + "\Bild\ABCD\Leiter.jpg"
+Copy "Bild\ABCD\Loewe.jpg", pfad$ + "\Bild\ABCD\Loewe.jpg"
+Copy "Bild\ABCD\Mama.jpg", pfad$ + "\Bild\ABCD\Mama.jpg"
+Copy "Bild\ABCD\Maus.jpg", pfad$ + "\Bild\ABCD\Maus.jpg"
+Copy "Bild\ABCD\Mond.jpg", pfad$ + "\Bild\ABCD\Mond.jpg"
+Copy "Bild\ABCD\Nashorn.jpg", pfad$ + "\Bild\ABCD\Nashorn.jpg"
+Copy "Bild\ABCD\Nest.jpg", pfad$ + "\Bild\ABCD\Nest.jpg"
+Copy "Bild\ABCD\Ohr.jpg", pfad$ + "\Bild\ABCD\Ohr.jpg"
+Copy "Bild\ABCD\Oma.jpg", pfad$ + "\Bild\ABCD\Oma.jpg"
+Copy "Bild\ABCD\Pilz.jpg", pfad$ + "\Bild\ABCD\Pilz.jpg"
+Copy "Bild\ABCD\Pinsel.jpg", pfad$ + "\Bild\ABCD\Pinsel.jpg"
+Copy "Bild\ABCD\Qualm.jpg", pfad$ + "\Bild\ABCD\Qualm.jpg"
+Copy "Bild\ABCD\Radio.jpg", pfad$ + "\Bild\ABCD\Radio.jpg"
+Copy "Bild\ABCD\Rakete.jpg", pfad$ + "\Bild\ABCD\Rakete.jpg"
+Copy "Bild\ABCD\Regen.jpg", pfad$ + "\Bild\ABCD\Regen.jpg"
+Copy "Bild\ABCD\Rose.jpg", pfad$ + "\Bild\ABCD\Rose.jpg"
+Copy "Bild\ABCD\Salami.jpg", pfad$ + "\Bild\ABCD\Salami.jpg"
+Copy "Bild\ABCD\Schere.jpg", pfad$ + "\Bild\ABCD\Schere.jpg"
+Copy "Bild\ABCD\Schloss.jpg", pfad$ + "\Bild\ABCD\Schloss.jpg"
+Copy "Bild\ABCD\Sonne.jpg", pfad$ + "\Bild\ABCD\Sonne.jpg"
+Copy "Bild\ABCD\Strasse.jpg", pfad$ + "\Bild\ABCD\Strasse.jpg"
+Copy "Bild\ABCD\Tafel.jpg", pfad$ + "\Bild\ABCD\Tafel.jpg"
+Copy "Bild\ABCD\Tasse.jpg", pfad$ + "\Bild\ABCD\Tasse.jpg"
+Copy "Bild\ABCD\Teddy.jpg", pfad$ + "\Bild\ABCD\Teddy.jpg"
+Copy "Bild\ABCD\Telefon.jpg", pfad$ + "\Bild\ABCD\Telefon.jpg"
+Copy "Bild\ABCD\Tiere.jpg", pfad$ + "\Bild\ABCD\Tiere.jpg"
+Copy "Bild\ABCD\Tiger.jpg", pfad$ + "\Bild\ABCD\Tiger.jpg"
+Copy "Bild\ABCD\Tomate.jpg", pfad$ + "\Bild\ABCD\Tomate.jpg"
+Copy "Bild\ABCD\Uhr.jpg", pfad$ + "\Bild\ABCD\Uhr.jpg"
+Copy "Bild\ABCD\Uhu.jpg", pfad$ + "\Bild\ABCD\Uhu.jpg"
+Copy "Bild\ABCD\Vogel.jpg", pfad$ + "\Bild\ABCD\Vogel.jpg"
+Copy "Bild\ABCD\Wolf.jpg", pfad$ + "\Bild\ABCD\Wolf.jpg"
+Copy "Bild\ABCD\Wolke.jpg", pfad$ + "\Bild\ABCD\Wolke.jpg"
+Copy "Bild\ABCD\Wuerfel.jpg", pfad$ + "\Bild\ABCD\Wuerfel.jpg"
+Copy "Bild\ABCD\Zahn.jpg", pfad$ + "\Bild\ABCD\Zahn.jpg"
+Copy "Bild\ABCD\Zange.jpg", pfad$ + "\Bild\ABCD\Zange.jpg"
+Copy "Bild\ABCD\Zebra.jpg", pfad$ + "\Bild\ABCD\Zebra.jpg"
+Copy "Bild\ABCD\Zitrone.jpg", pfad$ + "\Bild\ABCD\Zitrone.jpg"
+~LZDone()
+Alert 2, "Sollen Startsymbole installiert werden?", 1, "ja|nein", a%
+If a% = 1
+  server% = @InitiateDDE("PROGMAN")
+  SendDDE(server%, "[CreateGroup(""Grundschule"")]")
+  SendDDE(server%, "[AddItem(" + pfad$ + "\Rechnen.exe,Rechnen)]")
+  SendDDE(server%, "[AddItem(" + pfad$ + "\Schreiben.exe,Schreiben)]")
+  SendDDE(server%, "[AddItem(" + pfad$ + "\Lesen.exe,Lesen)]")
+  SendDDE(server%, "[AddItem(" + pfad$ + "\Frisches_Wasser.exe,Frisches Wasser)]")
+  SendDDE(server%, "[AddItem(" + pfad$ + "\Schiebepuzzle.exe,Schiebepuzzle)]")
+  SendDDE(server%, "[AddItem(" + pfad$ + "\Kalender.exe,Kalender)]")
+  SendDDE(server%, "[AddItem(" + pfad$ + "\Waehrung.exe,Eurorechner)]")
+  SendDDE(server%, "[AddItem(" + pfad$ + "\Geburtstagsrechner.exe,Geburtagsrechner)]")
+  TerminateDDE(server%)
+EndIf
+CloseW # 1
+>Procedure Copy(a$, b$)
+  Local a%, Source%, Destination%, q$, z$
+  PeekEvent
+  If Exist(b$) = 0
+    Copy:
+    a$ = a$ + Chr$(0), b$ = b$ + Chr$(0)
+    Source% = _lopen(V:a$, OF_READ)
+    Destination% = _lcreat(V:b$, 0)
+    If Source% > 0 && Destination% > 0
+      ~CopyLZFile(Source%, Destination%)
+    EndIf
+    If Source% > 0 Then  ~_lclose(Source%)
+    If Destination% > 0 Then ~_lclose(Destination%)
+  Else
+    If beginn% = 0
+      beginn% = 1
+      Message b$ + " überschreiben mit Neuinstallation?", "Kombipaket Grundschule", MB_YESNO, a%
+      If a% = IDYES
+        GoTo Copy
+      EndIf
+    Else
+      GoTo Copy
+    EndIf
+  EndIf
+Return
+>Procedure VerzeichnisMitUnterverzeichnissenErstellen(Verz$)
+  // Erstellt ein Verzeichnis mit Unterverzeichnissen,
+  // z.B. C:\BERO\BERODRAW\BDRMMPL
+  Local a$ = Verz$, b$ = ""
+  While InStr(a$, "\")
+    b$ = Left$(a$, InStr(a$, "\"))
+    Mid$(a$, InStr(a$, "\"), 1) = "¤"
+    While InStr(b$, "¤")
+      Mid$(b$, InStr(b$, "¤"), 1) = "\"
+    Wend
+    b$ = Left$(b$, Len(b$) - 1)
+    If Len(b$) > 2
+      VerzeichnisErstellen(b$)
+    EndIf
+  Wend
+  VerzeichnisErstellen(Verz$)
+Return
+>Procedure VerzeichnisErstellen(Verzeichnis$)
+  // Erstellt ein Verzeichnis, falls es noch nicht vorhanden ist.
+  Try
+    MkDir Verzeichnis$
+  Catch
+  EndCatch
+Return
+>Function InitiateDDE(Application$)
+  Execute! = False
+  AppAtom = GlobalAddAtom(Application$)
+  Clr ServerWindow%
+  SendMessage HWND_BROADCAST, WM_DDE_INITIATE, Win_1.hWnd, MakeLong(AppAtom, AppAtom)
+  Repeat
+    GetEvent
+  Until ServerWindow% <> 0
+  ~GlobalDeleteAtom(AppAtom)
+  Return ServerWindow%
+EndFunc
+>Procedure SendDDE(server%, Command$)
+  Local h%, p%
+  Execute! = True, Ack! = False
+  Command$ = Command$ + Chr$(0)
+  h% = GlobalAlloc(GMEM_DDESHARE, Len(Command$))
+  p% = GlobalLock(h%)
+  BMove V:Command$, p%, Len(Command$)
+  ~GlobalUnlock(h%)
+  PostMessage server%, WM_DDE_EXECUTE, Me.hWnd, h% //MakeLong(h%, 0)
+  Repeat
+    GetEvent
+  Until Ack!
+  ~GlobalFree(h%)
+Return
+>Procedure TerminateDDE(server%)
+  PostMessage ServerWindow%, WM_DDE_TERMINATE, Win(1), 0
+Return
+>Procedure Win_1_DDEWndProc(ByRef hw%, ByRef m%, ByRef w%, ByRef l%, ByRef retval%, ByRef valid?)
+  If m% = WM_DDE_ACK
+    If(LoWord(l%) == AppAtom && HiWord(l%) == AppAtom)
+      ServerWindow% = w%
+    EndIf
+    If Execute!
+      ~GlobalFree(l%)
+      ~SetFocus(Win(1))
+      Ack! = True
+    EndIf
+  EndIf
+Return
+$DatFile
+$FormVersion = 2
+$ExeName = Install_7_0.Exe
+$FileDescription = Beschreibung
+$Comments = Autor: Rudolf Rosenkränzer
+$CompanyName = Rudolf Rosenkränzer
+$LegalCopyright = © 2000 Rudolf Rosenkränzer
+$LanguageId = 0407
+$FileFlags# = 3
+$FileVersion = %d.%d.%d.%d
+$ProductVersion = %d.%d.%d.%d
+$DatFile

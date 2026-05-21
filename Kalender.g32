@@ -1,0 +1,454 @@
+Global monat%, jahr%, mon$, i%, j%, fertig%, linienfarbe%, linienbreite%
+Global farbe_tage%, farbe_namen%, farbe_zus_tage%, farbe_bes_tage%
+Global heute As Date, rand%, seitenbreite%, links%, oben%, rechts%, unten%, drucken%, faktor#
+Global Dim farbe%(15)
+LoadForm frm1 Full
+LoadForm frm2, 0, 0
+farbe_tage% = $000040
+farbe_namen% = $004000
+'##E#
+farbe_zus_tage% = $a0a0a0
+farbe_bes_tage% = $0000e0
+linienfarbe% = $000040
+cmd3.SetFocus
+heute = mv1.Value
+Do
+  Sleep
+Until Me Is Nothing
+>Sub cmd3_Click   ' Schriftart und Schriftgröße
+  Ocx CommDlg cd
+  cd.Flags = 8003   'Anzeige von Bildschirmfonts, die auch für den Drucker verfügbar sind
+  cd.ShowFont
+  Set mv1.Font = cd.Font   'Aktivieren des ausgewählten Fonts
+  cmd4.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd4_Click   ' Farbe für Tage des Monats
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  farbe_tage% = cd.Color
+  mv1.ForeColor = farbe_tage%
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = farbe_tage%
+      farbe%(i%) = farbe_tage%
+      i% = 15
+    EndIf
+  Next i%
+  cmd1.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd1_Click   ' Farbe für Namen der Tage
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  farbe_namen% = cd.Color
+  mv1.TitleBackColor = farbe_namen%
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = farbe_namen%
+      farbe%(i%) = farbe_namen%
+      i% = 15
+    EndIf
+  Next i%
+  cmd2.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd2_Click   ' Farbe für zusätzliche Tage
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  farbe_zus_tage% = cd.Color
+  mv1.TrailingForeColor = farbe_zus_tage%
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = farbe_zus_tage%
+      farbe%(i%) = farbe_zus_tage%
+      i% = 15
+    EndIf
+  Next i%
+  cmd5.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd5_Click   ' Auswahl besonderer Tage
+  Clr fertig%
+  lb1.Clear  ' ListBox leeren
+  jahr% = mv1.Year
+  monat% = mv1.Month
+  Select mv1.Month
+  Case 1
+    mon$ = "Januar"
+  Case 2
+    mon$ = "Februar"
+  Case 3
+    mon$ = "März"
+  Case 4
+    mon$ = "April"
+  Case 5
+    mon$ = "Mai"
+  Case 6
+    mon$ = "Juni"
+  Case 7
+    mon$ = "Juli"
+  Case 8
+    mon$ = "August"
+  Case 9
+    mon$ = "September"
+  Case 10
+    mon$ = "Oktober"
+  Case 11
+    mon$ = "November"
+  Case 12
+    mon$ = "Dezember"
+  EndSelect
+  lb1.Visible = True
+  lb1.AddItem "Klicke jetzt die besonderen"
+  lb1.AddItem "Tage im " + mon$ + #32 + Str$(mv1.Year) + " an:"
+  lb1.AddItem "Wähle danach die Farbe für diese Tage!"
+  cmd7.SetFocus
+>Sub mv1_SelChange(startDate As Date, EndDate As Date) ' Änderung der Auswahl von Tag, Monat oder Jahr
+  If lb1.Visible = True And mv1.Month = monat% And mv1.Year = jahr%  And lb1.FindExact(mv1.Value) = True
+    lb1.AddItem Str$(mv1.Value)
+    mv1.DayBold(mv1.Value) = True
+    cmd7.SetFocus
+  Else If lb1.Visible = True And lb1.FindExact(mv1.Value) = True And fertig% = 0
+    lb1.Clear ' Listbox leeren
+    lb1.Visible = False
+    Alert 129, "Du kannst nur Tage im ausgewählten Monat|anklicken!|Wähle jetzt wieder den Monat, dann die besonderen Tage!", 1, "     OK     "
+    Clr fertig%, mon$
+    lb1.Clear  ' ListBox leeren
+    lb1.Visible = False
+    mv1.Value = heute
+    jahr% = mv1.Year
+    monat% = mv1.Month
+    cmd5.SetFocus
+  EndIf
+>Sub cmd7_Click   ' Farbe für besondere Tage und die Monatsüberschrift
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  farbe_bes_tage% = cd.Color
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = farbe_bes_tage%
+      farbe%(i%) = farbe_bes_tage%
+      i% = 15
+    EndIf
+  Next i%
+  cmd8.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub cmd8_Click   ' Rahmen für ein Bild
+  Ocx CommDlg cd
+  cd.Flags = $322     ' Ränder als Vorgabe (2), keine Auswahl von Drucker (20), Seitenorientierung (100), Papierformat (200)
+  cd.ShowPageSetup
+  links% = cd.pgLeft  ' Erweitern des linken Randes
+  oben% = cd.pgTop  ' oberer Rand
+  rechts% = cd.pgRight
+  unten% = cd.pgBottom
+  Ocx CommDlg cd
+  cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
+  For i% = 0 To 15
+    cd.Colors(i%) = farbe%(i%)
+  Next i%
+  cd.ShowColor
+  linienfarbe% = cd.Color
+  For i% = 0 To 15
+    If cd.Colors(i%) = 0
+      cd.Colors(i%) = linienfarbe%
+      farbe%(i%) = linienfarbe%
+      i% = 15
+    EndIf
+  Next i%
+  Set Me = frm1
+  Ocx Frame fra = , 146 , 200, 188, 220
+  fra.BorderStyle = 1
+  fra.Transparent = 0
+  fra.Caption = "Wie dick soll die Linie sein?"
+  OcxOcx fra Option opt1 = "  sehr dünn" , 20, 30, 80, 20
+  OcxOcx fra Option opt2 = "  dünn", 20, 60, 80, 20
+  OcxOcx fra Option opt3 = "  mittel", 20, 90, 80, 20
+  OcxOcx fra Option opt4 = "  dick", 20, 120, 80, 20
+  OcxOcx fra Option opt5 = "  doppelt", 20, 150, 80, 20
+  OcxOcx fra Command com = , 50, 180, 100, 30
+  com.Caption = "Weiter"
+  cmd6.SetFocus
+  Repeat
+    Sleep
+  Until Me Is Nothing
+>Sub com_Click     ' Auswahl der Liniendicke fertig
+  If opt1.Value = 1
+    linienbreite% = 1
+  Else If opt2.Value = 1
+    linienbreite% = 4
+  Else If opt3.Value = 1
+    linienbreite% = 9
+  Else If opt4.Value = 1
+    linienbreite% = 15
+  Else If opt5.Value = 1
+    linienbreite% = 3
+  Else
+    linienbreite% = 0
+  EndIf
+  cmd6.SetFocus
+  fra.Visible = False
+>Sub cmd6_Click   ' Monatskalender drucken
+  Local breite%, hoehe%, posx%, x%, posy%
+  Local startdatum As Date
+  If drucken% = 0  ' erstes Drucken
+    Alert 130, "Ist der Drucker eingeschaltet?", 1, "     Ja     |     Nein     ", i%
+  EndIf
+  If i% = 1 Or drucken% = 1
+    drucken% = 1
+    Try
+      Ocx CommDlg cd
+      cd.ShowPrint                           ' Druckerdialog anzeigen
+      Set Printer = cd                       ' Drucker auswählen und anschließend aktivieren
+      seitenbreite% = Printer.PaperWidth   ' Papierbreite in Pixeln
+      If InStr(Printer.dmPaperSize, "A5") > 0            ' Papier A5
+        If Printer.Orientation = 1                          ' Hochformat
+          faktor# = seitenbreite% / 148 / 100
+        Else                                                  ' Querformat
+          faktor# = seitenbreite% / 210 / 100
+        EndIf
+      Else If InStr(Printer.dmPaperSize, "A4") > 0       ' Papier A4
+        If Printer.Orientation = 1                          ' Hochformat
+          faktor# = seitenbreite% / 210 / 100
+        Else                                                  ' Querformat
+          faktor# = seitenbreite% / 297 / 100
+        EndIf
+      Else
+        faktor# = 0
+      EndIf
+      links% = links% * faktor#
+      oben% = oben% * faktor#
+      rechts% = rechts% * faktor#
+      unten% = unten% * faktor#
+      If links% > seitenbreite% / 8.4   ' etwa 25 mm bei A4 Hochformat
+        links% = seitenbreite% / 8.4
+      EndIf
+      If oben% > seitenbreite% / 8.4
+        oben% = seitenbreite% / 8.4
+      EndIf
+      If rechts% > seitenbreite% / 8.4
+        rechts% = seitenbreite% / 8.4
+      EndIf
+      If unten% > seitenbreite% / 8.4
+        unten% = seitenbreite% / 8.4
+      EndIf
+      rand% = Max(Printer.DefLeft, Printer.DefTop, seitenbreite% - Printer.DefWidth - Printer.DefLeft) ' kleinstmöglicher linker/oberer/rechter Rand
+      Printer.Left = rand% + linienbreite%  ' linker Rand
+      Printer.Top = rand% + linienbreite%   ' oberer Rand
+      Printer.Width = Printer.PaperWidth - rand% * 2 - linienbreite% * 2   ' bedruckbare Breite
+      Printer.Height = Printer.PaperHeight - rand% * 2 - linienbreite% * 2  ' bedruckbare Höhe
+      With Printer
+        .StartDoc "Text"               ' Druckbeginn
+        .StartPage                      ' Seite beginnen
+        Set Printer.Font = mv1.Font   ' Font setzen
+        Output = Printer                ' Ausgabe Drucker
+        breite% = TxtLen("Mo") * 1.3
+        hoehe% = TextHeight("M") * 1.2
+        posx% = Printer.Width / 2 - breite% * 3.5
+        If posx% < 0
+          posx% = 0
+        EndIf
+        posy% = Printer.Height - hoehe% * 7.5 - unten% / 2 ' Aufteilen des unteren Randes: unten / zwischen Rahmen und Kalender
+        If posy% < 0
+          posy% = 0
+        EndIf
+        If linienbreite% > 0
+          '   Print mv1.Font
+          '   Print Printer.dmPaperSize ` seitenbreite%
+          '   Print .DefLeft`.DefTop`.DefWidth` .DefHeight
+          '   Print .Left` .Top` .Width` .Height
+          '   Print .PaperWidth` .PaperHeight
+          '   Print links%` oben%` rechts%` unten%
+          RGBColor linienfarbe%
+          If linienbreite% = 3        ' doppelte Linie
+            DefLine 0, 1
+            If .Orientation = 1       ' Hochformat
+              Box linienbreite% - 2 + links%, linienbreite% - 2 + oben%, .Width - linienbreite% * 2 - rand% + 2 - rechts%, posy% - hoehe% * 2 + 2 - unten% / 2
+              Box linienbreite% + 18 + links%, linienbreite% + 18 + oben%, .Width - linienbreite% * 2 - rand% - 18 - rechts%, posy% - hoehe% * 2 - 18 - unten% / 2
+            Else                        ' Querformat
+              Box linienbreite% - 2 + .PaperWidth - rand% - .Width + links%, linienbreite% - 2 + oben%, .Width - linienbreite% * 2 - rand% + 2 - rechts%, posy% - hoehe% * 2 + 2 - unten% / 2
+              Box linienbreite% + 18 + .PaperWidth - rand% - .Width + links%, linienbreite% + 18 + oben%, .Width - linienbreite% * 2 - rand% - 18 - rechts%, posy% - hoehe% * 2 - 18 - unten% / 2
+            EndIf
+          Else                          ' einfache Linie
+            DefLine 0, linienbreite%
+            If .Orientation = 1       ' Hochformat
+              Box linienbreite% + links%, linienbreite% + oben%, .Width - linienbreite% * 2 - rand% - rechts%, posy% - hoehe% * 2 - unten% / 2
+            Else                        ' Querformat
+              Box linienbreite% + .PaperWidth - rand% - .Width + links%, linienbreite% + oben%, .Width - linienbreite% * 2 - rand% - rechts%, posy% - hoehe% * 2 - unten% / 2
+            EndIf
+          EndIf
+        EndIf
+        '   .ForeColor = farbe_zus_tage%
+        Select mv1.Month
+        Case 1
+          mon$ = "Januar"
+        Case 2
+          mon$ = "Februar"
+        Case 3
+          mon$ = "März"
+        Case 4
+          mon$ = "April"
+        Case 5
+          mon$ = "Mai"
+        Case 6
+          mon$ = "Juni"
+        Case 7
+          mon$ = "Juli"
+        Case 8
+          mon$ = "August"
+        Case 9
+          mon$ = "September"
+        Case 10
+          mon$ = "Oktober"
+        Case 11
+          mon$ = "November"
+        Case 12
+          mon$ = "Dezember"
+        EndSelect
+        mv1.Day = 1
+        monat% = mv1.Month
+        Select mv1.DayOfWeek
+        Case 1 ' So
+          startdatum = mv1.Value - 6
+        Case 2 ' Mo
+          startdatum = mv1.Value - 7
+        Case 3 ' Di
+          startdatum = mv1.Value - 1
+        Case 4 ' Mi
+          startdatum = mv1.Value - 2
+        Case 5 ' Do
+          startdatum = mv1.Value - 3
+        Case 6 ' Fr
+          startdatum = mv1.Value - 4
+        Case 7 ' Sa
+          startdatum = mv1.Value - 5
+        EndSelect
+        .ForeColor = farbe_bes_tage%
+        Text posx% + breite% * 3 - TxtLen(mon$ + " " + Str$(mv1.Year)) / 2, posy% - hoehe% * 1.1, mon$ + " " + Str$(mv1.Year)
+        .ForeColor = farbe_namen%
+        Text posx% - TxtLen("Mo") / 2, posy%, "Mo"
+        Text posx% + breite% - TxtLen("Di") / 2, posy%, "Di"
+        Text posx% + breite% * 2 - TxtLen("Mi") / 2, posy%, "Mi"
+        Text posx% + breite% * 3 - TxtLen("Do") / 2, posy%, "Do"
+        Text posx% + breite% * 4 - TxtLen("Fr") / 2, posy%, "Fr"
+        Text posx% + breite% * 5 - TxtLen("Sa") / 2, posy%, "Sa"
+        Text posx% + breite% * 6 - TxtLen("So") / 2, posy%, "So"
+        .ForeColor = farbe_zus_tage%
+        For j% = 1 To 6
+          x% = posx%
+          For i% = 1 To 7
+            mv1.Value = startdatum
+            If mv1.Day = 1 ' erster Tag des gewählten Monats
+              If .ForeColor = farbe_tage%
+                .ForeColor = farbe_zus_tage%
+              Else
+                .ForeColor = farbe_tage%
+              EndIf
+            EndIf
+            If  lb1.FindExact(mv1.Value) > -1 ' ausgewählter Tag
+              .ForeColor = farbe_bes_tage%
+            EndIf
+            Text x% - TxtLen(Str$(mv1.Day)) / 2, posy% + hoehe%, Str$(mv1.Day)
+            If  lb1.FindExact(mv1.Value) > -1
+              .ForeColor = farbe_tage%
+            EndIf
+            startdatum = startdatum + 1
+            x% = x% + breite%
+          Next i%
+          posy% = posy% + hoehe%
+        Next j%
+        .EndPage                        ' Ende der Seite
+        .EndDoc                         ' Ende der Ausgabe
+      EndWith
+      fertig% = 1
+      Output = frm1                    ' zurück ins Fenster
+      lb1.Clear ' Listbox leeren
+      lb1.Visible = False
+      cmd6.SetFocus
+    Catch
+    EndCatch
+  EndIf
+  Do
+    Sleep
+  Until Me Is Nothing
+>Sub cmd10_Click  ' Neu
+  Clr fertig%, mon$
+  lb1.Clear  ' ListBox leeren
+  lb1.Visible = False
+  mv1.Value = heute
+  jahr% = mv1.Year
+  monat% = mv1.Month
+  mv1.FontName = "Times New Roman"
+  mv1.FontBold = True
+  mv1.FontItalic = False
+  mv1.FontSize = 20
+  mv1.ForeColor = $000040
+  farbe_tage% = $000040
+  mv1.TitleBackColor = $004000
+  farbe_namen% = $004000
+  mv1.TrailingForeColor = $a0a0a0
+  farbe_zus_tage% = $a0a0a0
+  farbe_bes_tage% = $0000e0
+  linienfarbe% = $000040
+  For i% = 0 To 15
+    farbe%(i%) = 0
+    cd.Colors(i%) = 0
+  Next i%
+  cmd3.SetFocus
+>Sub cmd9_Click   ' Ende
+  Alert 130, "Willst du das Programm beenden?", 2, "     zurück     |     Ende     ", i%
+  If i% = 2
+    End
+  EndIf
+$DatFile
+$FormVersion = 2
+:{1} 377, 790
+1FAUDtWMtFgFDgWANGgBkBhQZY//iIUIyER8I87W8/eRjgSExERFRMTIkEXME937SM2vB+8rDNVQ
+SkiA+1u0BYgBBAIMQBoAoaISBQkAIERT0BIIOBG94qCHiBEFcjKMgDkEC/DhQIUClgLXx6zQg5Qj
+fLIJ4L4KEE/ZKc855LlThcKcEeDh36S4d8IuEnSh777IAq1UPE61lQf8IuEniHtheQx++++e18XL
+c/dMsfHOXL7KqThaVVUw3U0/HgGT50yptzUOtsKMVr1aWbRQV08Ml660RpOPPHTnXVHJOMYgmzrz
+JJTfXVjfblQJ6OuFocmKxyICqb1WIeiixU055560osR750ynjvjshQpWySPKxSWdagSMkhRySall
+Ea5nQmaJ3Kq+aaggFxhQ7XQ75djdJ04FwCJkBsOeo3rphuXsVTtze3vhe/t0/DB5QLEUxLEa3hQ6
+NSom0BlrPPVdVlVrVvV1NHd2b9OsgUvDKM1/BCtenL5OAAA=
+:{frm2 539, 930
+XIAUDtWMPIgoDogA5IgB5BRUfc5bBNRsxL3T1bUNCFRwpNREhcCdVERERIhFRkjEvJxExICOm/aN
+83y7Ev/z9mMQNoGXAGgMBxk8vEAIIQABFACCJAIQZ2AxBECBA6NE85N4EkbBuwczawBoyn91v+bl
++0SLuGcQNEOUbvaPvOXt3fHJEChACCBiGeOmwwzQrg0SwPpPdN0uEGC89WoaO02C8Ff1gwvd/UeH
+Jcnfvr7rfVJY4gxLYxaXi0Sp8AogPLODAWjymGVhfIlf13rEw7bFXZG96Xfuqm1a+eOaLFkJRZio
+rNLGDQJaLdgqMp+6Dec4NKLFsZRYAca8FwSUWqtwbfm+NvzR/U6RZHNfn6PlFEECAUcJw3bABM3C
+EBqYgF+hWmyZtPu2nrYKT5tPLtCqzR/c618Oh63YXijAvprwoEM2WGv7nn9x57uJRqBQJEe4Espp
+3OEHIycLEgqYYFzDoYKiv2ibC9xzeUrogOL6LyNro/wu1sH+R3e9iSf/ufpBdJSj3Kcf829T52D8
+WUn3nvzPYzBtHFq0GBnAP0aFhhhARYsdVTtCSC/a3npNxeQffm1kVRoUQwoEhi4WSAJ87AuBOqIn
++e3foGWjgJFUa58CZhLPDaIF/aBnWIdBswiowv8MFTynk65/o6d88L6KFgzkv2hrtCig4WIw28kv
+hnw/2j+LcOEQjJEWILOij0ihwPq67aqAAAA=
+:{frm1 172, 181
+oCAUDtWMgCQtAsJA1CQA4AxLwT1jwrwzw/PFz+T8E8lEORUIz7gEkQRYSQvweOXYOZzQh+ZFD/N8
+uJMRERERE4JhLW+HrgR4QPCBeelnose5ZiVlZERoER2dHREREROhLXpAV0wvJiI8BdhNmDWQmD6J
+QQU11UvAaCu0o6KKHRERMz8/HWREhVE+RE//xubMAgiUKgEhNtJYfRodRS5cCCKRkGRkREREjBAA
+AA==
+$ExeName = Kalender.Exe
+$LanguageId = 0407
+$FileFlags# = 3
+$DatFile
