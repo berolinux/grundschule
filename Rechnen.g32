@@ -1,3 +1,4 @@
+'##E#
 ' *****************************************************************************
 ' *****                Rechenprogramm für die Grundschule                    *****
 ' *****     von Rudolf Rosenkränzer, Auf der Hard 3, 54456 Tawern       *****
@@ -94,7 +95,6 @@ If Not GetAttr(pfad$ + "\Rechnen") And 16      'Abfrage ob Ordner vorhanden
 EndIf
 TopW # 1
 Output = Win_1
-'##E#
 DefMouse 0
 fx# = _X / 640
 fy# = _Y / 480
@@ -339,7 +339,7 @@ Get 0, 0, 510 * fx, 260 * fy, rechenblatt1$
 Win_1.Show
 SetFont schrift0%
 Color RGB(255, 255, 255) ' weiß
-za$ = "Kombipaket Version 8.3, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
+za$ = "Kombipaket Version 8.4, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
 GraphMode R2_COPYPEN, TRANSPARENT
 Text Int(_X / 2) - Int(TxtLen(za$) / 2), 465 * fy, za$
 Clr za$
@@ -10483,7 +10483,6 @@ Return
   EndIf
 Return
 >Procedure uhr                      ' art=53, wahl= 7 oder 8
-  neu13:
   While Len(InKey$)    ' Tastaturpuffer löschen
   Wend
   While GetAsyncKeyState(VK_RETURN) ' Tastaturpuffer löschen
@@ -10620,6 +10619,7 @@ Return
       Else If taste% = 5
         p% = 1200
       EndIf
+
       t% = oTimer
       SetCapture 1     ' Alle Tastatur- und Mausevents zum Fenster #1
       While Len(InKey$)    ' Tastaturpuffer löschen
@@ -10627,20 +10627,21 @@ Return
       Repeat
         PeekEvent
         taste% = 1
-        Exit If GetAsyncKeyState(VK_RETURN) < 0
+        Exit If GetAsyncKeyState(VK_RETURN)
         taste% = 2
-        Exit If GetAsyncKeyState(VK_F8) < 0
+        Exit If GetAsyncKeyState(VK_F8)
         taste% = 3
-        Exit If GetAsyncKeyState($53) < 0 ' s
+        Exit If GetAsyncKeyState($53) ' s
         taste% = 4
-        Exit If GetAsyncKeyState($4D) < 0 ' m
+        Exit If GetAsyncKeyState($4D) ' m
         taste% = 5
-        Exit If GetAsyncKeyState($4C) < 0 ' l
+        Exit If GetAsyncKeyState($4C) ' l
         taste% = 6
-        Exit If GetAsyncKeyState(VK_F1) < 0
+        Exit If GetAsyncKeyState(VK_F1)
         taste% = 0
       Until taste% > 0 Or oTimer - t% > p%
       ReleaseCapture
+
       While GetAsyncKeyState(VK_RETURN) | GetAsyncKeyState(VK_F8) | GetAsyncKeyState($53) | GetAsyncKeyState($4D) | GetAsyncKeyState($4c) | GetAsyncKeyState(VK_F1) ' Tastaturpuffer löschen
       Wend
       Exit If taste% = 1 Or taste% = 2
@@ -12255,7 +12256,7 @@ Return
 $DatFile
 $FormVersion = 2
 :{frm1 66
-EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE20UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
+EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE00UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
 AAQAAcAAACAA
 $ExeName = :E:\GB32\Programme\RechnenNeu1.Exe
 $FileDescription = Beschreibung
