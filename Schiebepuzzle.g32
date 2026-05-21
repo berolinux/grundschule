@@ -1,13 +1,14 @@
 ' ***************************************************************************
-' *****                 Schiebepuzzle für Grundschulkinder                     *****
-' *****     von Rudolf Rosenkränzer, Auf der Hard 3, 54456 Tawern         *****
-' *****                       Telefon 06501/180202                            *****
+' *****                                 Schiebepuzzle für Grundschulkinder                                   *****
+' *****             von Rudolf Rosenkränzer, Auf der Hard 3, 54456 Tawern                     *****
+' *****                                            Telefon 06501/180202                                                *****
 ' ***************************************************************************
 Global a%, alert|, alta%, alta1%, aus%, ausgelagert%, b%, beginn|, bild$, bild1$
 Global breite%, fenster$, fx#, fy#, grins1$, hintergrund$, hoehe%, i%, j%, k%
 Global klick%, min%, pfad$, richtig%, schrift0%, schrift1%
 Global schrift2%, schrift3%, schrift5%, schriftw3%, sek%, t$
 Global x%, xx%, xxx%, y%, yy%, yyy%, zeit#,  zeitneu#
+Global xxxxx%, yyyyy%, bbbbb%  ' Abstand des Fensters vom linken Rand / von oben / Fensterbreite
 Global Picture grins
 Global Picture grins2
 Global Picture puzzlebild            ' Puzzlevorlage
@@ -16,10 +17,34 @@ Global bildnummer%(21)            ' Nummer des richtig eingeordneten Bilds
 Global platz%(21)                   ' Nummer des Platzes
 Global px%(21)                     ' X-Koordinate des Platzes (oben links)
 Global py%(21)                     ' Y-Koordinate des Platzes (oben links)
-OpenW Full Hidden # 2, , , , , 0000000000      ' Vollbild
-Win_2.AutoRedraw = 1
-OpenW Full Hidden # 1, , , , , 0000000000
-Win_1.AutoRedraw = 1
+If _Y / _X = 0.75
+  OpenW Full Hidden # 2, , , , , 0000000000      ' Vollbild
+  Win_2.AutoRedraw = 1
+  OpenW Full Hidden # 1, , , , , 0000000000
+  Win_1.AutoRedraw = 1
+Else If _Y / _X < 0.75
+  xxxxx% = Int( _X / 2 - _Y / 3 * 2)
+  bbbbb% = Int(_Y / 3 * 4)
+  yyyyy% = _Y
+  OpenW # 3, 0, 0, _X , yyyyy%, 0000000000      '  Hintergrundfenster
+  Win_3.AutoRedraw = 1
+  Win_3.Disable
+  Output = Win_3
+  DefLine 0, 1
+  DefFill 0
+  RGBColor RGB(30, 0, 0) ' dunkelbraun
+  PBox 0, 0, _X, _Y
+  OpenW Hidden # 2, xxxxx%, 0, bbbbb%, yyyyy% , 0000000000      '  4 : 3, Spielen
+  Win_2.AutoRedraw = 1
+  OpenW Hidden # 1, xxxxx%, 0, bbbbb%, yyyyy% , 0000000000      '  4 : 3, Aufbaufenster
+  Win_1.AutoRedraw = 1
+Else
+  Alert 1 | 128, "Bildauflösung: Das Verhältnis von Höhe zu Breite|muss auf 3 : 4 oder breiter eingestellt werden!", 1, "OK"
+  ende
+EndIf
+Repeat
+  PeekEvent
+Until MouseK = 0 And _Mess = 0
 TopW # 1
 pfad$ = CurDir$
 If Right$(pfad$) = "\"
@@ -38,8 +63,8 @@ Font "arial", Weight 400, Width 0, Height Int(39 * fx), To schrift3%
 Font "Times New Roman", Weight 700, Width 0, Height Int(72 * fx), To schrift5%
 Font CharSet 1
 Font "Wingdings", Weight 400, Width 0, Height Int(90 * fx), To schriftw3%
+Set puzzlebild =  LoadPicture("bild\puzzle\Zahlen_bis_20.jpg")
 '##E#
-Set puzzlebild =  LoadPicture("bild\puzzle\zahlen_bis_20.jpg")
 Set grins = LoadPicture("bild\grins.bmp")
 Set grins2 = LoadPicture("bild\puzzle\grins.jpg")
 Output = Win_2
@@ -69,10 +94,10 @@ RGBColor RGB(100, 0, 0) ' dunkelbraun
 PBox 0, 0, _X, 280 * fy ' obere Bildhälfte
 RGBColor RGB(255, 0, 0) ' rot
 DefLine 0, Ceil(3 * fx)
-Line 6 * fx, 280 * fy, 632 * fx, 280 * fy ' Trennung oben/unten
+Line 6 * fx, 280 * fy, 634 * fx, 280 * fy ' Trennung oben/unten
 DefLine 0, 12 * fx
 DefFill 42
-PRBox 6 * fx, 7 * fy, 632 * fx, 473 * fy
+PRBox 6 * fx, 7 * fy, 634 * fx, 473 * fy
 DefLine 0, 3 * fx
 breite% = 64 * fx
 hoehe% = 60 * fy
@@ -95,7 +120,7 @@ Win_1.Show
 SetFont schrift2%
 GraphMode R2_COPYPEN, TRANSPARENT
 SetFont schrift0%
-t$ = "Kombipaket Version 8.0, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
+t$ = "Kombipaket Version 8.1, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
 RGBColor RGB(255, 255, 255) ' weiß
 Text _X / 2 - TxtLen(t$) / 2, 465 * fy, t$
 Clr t$
@@ -110,7 +135,7 @@ For i% = 1 To 14
   Repeat
     PeekEvent
     zeitneu# = oTimer
-  Until zeitneu# > zeit# + 20
+  Until zeitneu# > zeit# + 30
 Next i%
 SetFont schrift5%
 RGBColor RGB(0, 0, 235) ' blau
@@ -122,8 +147,9 @@ If _X > 640
   Get 90 * fx + TxtLen("Schiebe") + 80, 360 * fy, 90 * fx + TxtLen("Schiebepuzzle") + 80, 360 * fy + 75 * fy, bild1$
   zeit# = oTimer
   Repeat
+    Sleep
     zeitneu# = oTimer
-  Until zeitneu# > zeit# + 1000
+  Until zeitneu# > zeit# + 2000
   For i% = 1 To 80 Step 2
     Put 90 * fx - 80 + i%, 360 * fy, bild$
     Put 90 * fx + TxtLen("Schiebe") + 80 - i%, 360 * fy, bild1$
@@ -136,8 +162,9 @@ Else
   Get 90 * fx + TxtLen("Schiebe") + 70, 360 * fy, 90 * fx + TxtLen("Schiebepuzzle") + 70, 360 * fy + 75 * fy, bild1$
   zeit# = oTimer
   Repeat
+    Sleep
     zeitneu# = oTimer
-  Until zeitneu# > zeit# + 1000
+  Until zeitneu# > zeit# + 2000
   For i% = 1 To 70 Step 2
     Put 90 * fx - 70 + i%, 360 * fy, bild$
     Put 90 * fx + TxtLen("Schiebe") + 70 - i%, 360 * fy, bild1$
@@ -146,10 +173,11 @@ EndIf
 Clr bild$, bild1$
 zeit# = oTimer
 Repeat
+  Sleep
   zeitneu# = oTimer
 Until zeitneu# > zeit# + 2000 ' 2 Sekunden
 hauptmenue
-Procedure hauptmenue                ' m3it Kontrolle
+>Procedure hauptmenue                ' mit Kontrolle
   neu:
   Clr beginn|, a%, alta%, alta1%, ausgelagert%
   For i% = 0 To 20
@@ -160,6 +188,7 @@ Procedure hauptmenue                ' m3it Kontrolle
   GraphMode R2_COPYPEN, OPAQUE
   seitenaufbau
   Win_2.Show
+  TopW # 2
   spielen
   zeitneu# = oTimer
   sek% = (zeitneu# - zeit#) / 1000
@@ -193,7 +222,7 @@ Procedure hauptmenue                ' m3it Kontrolle
   menueabfrage
   GoTo neu
 Return
-Procedure seitenaufbau               ' Aufbau des Hauptmenüs
+>Procedure seitenaufbau               ' Aufbau des Hauptmenüs
   Output = Win_2
   Repeat
     PeekEvent
@@ -203,11 +232,11 @@ Procedure seitenaufbau               ' Aufbau des Hauptmenüs
   RGBColor RGB(75, 0, 0)
   PBox 0, 0, _X, _Y
   RGBColor RGB(100, 0, 0) ' dunkelbraun
-  PRBox 3 * fx, 3 * fy, 633 * fx, 475 * fy
+  PRBox 3 * fx, 3 * fy, 634 * fx, 475 * fy
   RGBColor RGB(255, 0, 0) ' rot
   DefLine 0, 12 * fx
   DefFill 42
-  PRBox 6 * fx, 7 * fy, 632 * fx, 473 * fy
+  PRBox 6 * fx, 7 * fy, 634 * fx, 473 * fy
   DefLine 0, 3 * fx
   Box xx% - 2 * fx, yy% - 2 * fy, xx% + breite% * 5 + 2 * fx, yy% + hoehe% * 4 + 2 * fy   ' Box für Puzzle
   DefFill 0
@@ -237,7 +266,7 @@ Procedure seitenaufbau               ' Aufbau des Hauptmenüs
     platz%(i%) = i%           ' Platznummer = Bildnummer
   Next i%
 Return
-Procedure spielen                     ' Puzzlespiel
+>Procedure spielen                     ' Puzzlespiel
   GraphMode R2_COPYPEN, OPAQUE
   zurueck:
   Do                            ' Beginn des Spiels
@@ -394,7 +423,7 @@ Procedure spielen                     ' Puzzlespiel
     Exit If richtig% = 19 And bildnummer%(0) = ausgelagert%
   Loop
 Return
-Procedure bewegen                   ' Puzzleteile bewegen
+>Procedure bewegen                   ' Puzzleteile bewegen
   RGBColor RGB(60, 90, 60)  'dunkelgrün
   If klick% <> bildnummer%(0)                ' falls nicht der Leerplatz
     If klick% = bildnummer%(0) + 5           ' Bewegung nach oben
@@ -436,7 +465,7 @@ Procedure bewegen                   ' Puzzleteile bewegen
     EndIf
   EndIf
 Return
-Procedure auslagern                  ' ein Puzzleteil auslagern
+>Procedure auslagern                  ' ein Puzzleteil auslagern
   PaintPicture puzzlebild, xx%, yy%, breite% * 5, hoehe% * 4 ' neu zeichnen, damit die Linien verschwinden
   beginn| = 1
   RGBColor RGB(60, 90, 60)  ' dunkelgrün
@@ -477,7 +506,7 @@ Procedure auslagern                  ' ein Puzzleteil auslagern
   platz%(klick%) = 0
   ausgelagert% = klick%
 Return
-Procedure zuruecklagern              ' das ausgelagerte Puzzleteil zurückschieben
+>Procedure zuruecklagern              ' das ausgelagerte Puzzleteil zurückschieben
   RGBColor RGB(100, 0, 0) ' dunkelbraun
   aus% = ausgelagert%
   Select aus%
@@ -527,7 +556,7 @@ Procedure zuruecklagern              ' das ausgelagerte Puzzleteil zurückschiebe
     Put px%(klick%) + breite%, py%(klick%), hintergrund$
   EndSelect
 Return
-Procedure koordinaten                ' Koordinaten der 20 Teilbilder
+>Procedure koordinaten                ' Koordinaten der 20 Teilbilder
   px%(1) = xx%
   py%(1) = yy%
   px%(2) = xx% + breite%
@@ -569,12 +598,12 @@ Procedure koordinaten                ' Koordinaten der 20 Teilbilder
   px%(20) = xx% + breite% * 4
   py%(20) = yy% + hoehe% * 3
 Return
-Procedure teilbilder                  ' Auslesen der Teilbilder
+>Procedure teilbilder                  ' Auslesen der Teilbilder
   For i% = 1 To 20
     Get px%(i%), py%(i%), px%(i%) + breite% - 1, py%(i%) + hoehe% - 1, teilbild$(i%)
   Next i%
 Return
-Procedure alert2(al$, al1$, al2$)   ' Alertfenster
+>Procedure alert2(al$, al1$, al2$)   ' Alertfenster
   GraphMode R2_COPYPEN, TRANSPARENT
   DefLine 0, fx
   RGBColor RGB(100, 0, 0) ' dunkelbraun
@@ -602,7 +631,7 @@ Procedure alert2(al$, al1$, al2$)   ' Alertfenster
     PeekEvent
   Until MouseK = 0
   Repeat
-    PeekEvent
+    Sleep
     Mouse x%, y%, k%
   Until k% = 1 And ((x% > (319 - 140) * fx And x% < (319 - 20) * fx) Or (x > (319 + 20) * fx And x% < (319 + 140) * fx)) And y% > (239 + 20) * fy And y% < (239 + 40) * fy
   If x% < 319 * fx
@@ -611,7 +640,7 @@ Procedure alert2(al$, al1$, al2$)   ' Alertfenster
     alert| = 2
   EndIf
 Return
-Procedure hilfetext                  ' Hilfe
+>Procedure hilfetext                  ' Hilfe
   RGBColor RGB(255, 255, 198)  ' creme
   PBox 0, 0, _X, _Y
   GraphMode R2_COPYPEN, TRANSPARENT
@@ -635,7 +664,7 @@ Procedure hilfetext                  ' Hilfe
   Text 20 * fx, 425 * fy, "7. Wenn alle Plättchen am richtigen Platz sind, kehrt das ausgelagerte"
   Text 20 * fx + TxtLen("1. "), 450 * fy, "Plättchen automatisch ins Spielfeld zurück. Du hast gewonnen."
 Return
-Procedure menueabfrage             ' Menü und Abfrage nach Beendigung des ersten Spiels
+>Procedure menueabfrage             ' Menü und Abfrage nach Beendigung des ersten Spiels
   RGBColor RGB(255, 255, 255) ' creme        ' Aufbau des Menüs
   Text 506 * fx, 60 * fy, "Und jetzt?"
   Clr a%
@@ -729,7 +758,7 @@ Procedure menueabfrage             ' Menü und Abfrage nach Beendigung des ersten
     EndIf
   EndIf
 Return
-Procedure ende
+>Procedure ende
   RGBColor RGB(75, 0, 0)
   PBox 0, 0, _X, _Y
   Set puzzlebild = Nothing
@@ -741,6 +770,7 @@ Procedure ende
   FreeFont schrift3%
   FreeFont schrift5%
   FreeFont schriftw3%
+  CloseW # 3
   CloseW # 2
   CloseW # 1
   End
@@ -750,7 +780,7 @@ $FormVersion = 2
 :{frm1 66
 EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE00UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
 AAQAAcAAACAA
-$ExeName = D:\GB32\Programme\Lesen.Exe
+$ExeName = C:\Users\Rudolf Rosenkränzer\Documents\GB32\Programme\SchiebepuzzleNeu1.Exe
 $FileDescription = Beschreibung
 $Comments = Autor: Rudolf Rosenkränzer
 $CompanyName = Rudolf Rosenkränzer

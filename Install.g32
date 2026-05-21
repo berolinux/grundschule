@@ -1,4 +1,5 @@
-' ************** Installationsprogramm Kombipaket Grundschule Version 8.0  **************
+'##E#
+' ************** Installationsprogramm Kombipaket Grundschule Version 8.2  **************
 Global ver%, version%, a%, MkDir%, kernel%, m%, pfad$, server%, beginn%, AppAtom%
 Global TopicAtom%, ServerWindow%
 Global Execute!, Ack!
@@ -35,7 +36,6 @@ EndIf
 If a% = 2
   End
 EndIf
-Copy "GfaWin23.Ocx", SysDir + "\GfaWin23.Ocx"  ' Kopieren/Überschreiben in Windows\System
 TitleW # 1, "Bero Install"
 OpenW # 1, _X / 2 - 150, _Y / 2 - 100, 300, 200, -1
 VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Bild\ABCD")
@@ -48,6 +48,7 @@ VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Schreiben")
 VerzeichnisMitUnterverzeichnissenErstellen(pfad$ + "\Lesen")
 Print "Programme werden kopiert..."
 ~LZStart()
+Copy "GfaWin23.Ocx", pfad$ + "\GfaWin23.Ocx"  ' Kopieren/Überschreiben in gewählten Ordner
 Copy "Schreiben.exe", pfad$ + "\Schreiben.exe"
 Copy "Rechnen.exe", pfad$ + "\Rechnen.exe"
 Copy "Lesen.exe", pfad$ + "\Lesen.exe"
@@ -56,7 +57,7 @@ Copy "Kalender.exe", pfad$ + "\Kalender.exe"
 Copy "Schiebepuzzle.exe", pfad$ + "\Schiebepuzzle.exe"
 Copy "Frisches_Wasser.exe", pfad$ + "\Frisches_Wasser.exe"
 Copy "Geburtstagsrechner.exe", pfad$ + "\Geburtstagsrechner.exe"
-Copy "Info.txt", pfad$ + "\Info.txt"
+Copy "Handbuch.pdf", pfad$ + "\Handbuch.pdf"
 Copy "Bild\DM_1000.bmp", pfad$ + "\Bild\DM_1000.bmp"
 Copy "Bild\DM_500.bmp", pfad$ + "\Bild\DM_500.bmp"
 Copy "Bild\DM_200.bmp", pfad$ + "\Bild\DM_200.bmp"
@@ -316,6 +317,7 @@ If a% = 1
   SendDDE(server%, "[AddItem(" + pfad$ + "\Kalender.exe,Kalender)]")
   SendDDE(server%, "[AddItem(" + pfad$ + "\Waehrung.exe,Eurorechner)]")
   SendDDE(server%, "[AddItem(" + pfad$ + "\Geburtstagsrechner.exe,Geburtagsrechner)]")
+  SendDDE(server%, "[AddItem(" + pfad$ + "\Handbuch.pdf,Handbuch)]")
   TerminateDDE(server%)
 EndIf
 CloseW # 1

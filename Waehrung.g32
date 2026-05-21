@@ -1,9 +1,9 @@
+'##E#
 ' ***************************************************************************
 ' *****                Umrechnung Euro-Landeswährungen                      *****
 ' *****      von Rudolf Rosenkränzer, Auf der Hard 3, 54456 Tawern       *****
 ' *****                      Telefon 06501/180202                            *****
 ' ***************************************************************************
-'##E#
 Global xx%, yy%, x%, y%, k%, antwx%, antwy%, schrift%, schrift1%, a%
 Global Double eur, fin, nie, bel, lux, fra, irl
 Global Double spa, por, ita, öst, deu
@@ -517,7 +517,7 @@ pnSwc/enSPzwOhwTBnNsBwvQnPEOgEN+KaGDHlAG1FhFLKrBECPXlGebCnGjCKB1su3/w9SALHxE
 LObo9U47SwZMtUCYFu1597/mzGyHw0Rs9DVUhmG2suGvIPw7mzHtB0FZra8VwbEvhZSOjpSJg104
 l7ikN8ivVVI6gqRFtYJdUCz5fe0sTwjwCWhq6KaaxBBlQ9vjbbo3yeNc51k8gpmvJJxLkLd2/tTJ
 vHOCENOHoTuGYDlmDBui/CMPbjOPKez5XccLOgYoft9K4sdqDAAA
-$ExeName = Waehrung.Exe
+$ExeName = C:\Users\Rudolf Rosenkränzer\Documents\GB32\Programme\WaehrungNeu1.Exe
 $FileDescription = -<({[]})>-
 $Comments = Autor: Rudolf Rosenkränzer
 $CompanyName = Rudolf Rosenkränzer

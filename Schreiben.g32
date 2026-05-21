@@ -1,3 +1,4 @@
+'##E#
 ' ***************************************************************************
 ' *****                  Schreiben für Grundschulkinder                        *****
 ' *****      von Rudolf Rosenkränzer, Auf der Hard 3, 54456 Tawern        *****
@@ -17,6 +18,7 @@ Global sekunden%, speichern|, start|, stelle%, strich%, t$, tt$, ttt$, text1$, t
 Global textbl%, textbl1$, texteing%, wahl%, wahl_$, wort_%, wort1%, wortzahl%, x_$, x%
 Global xxx%, xpunkt%, xx%, xxxx#, y%, yyy%, yy%, yyyy#, z%, z_$, zz_$, zeichenh%, zeile%
 Global zeile_$, zeilenh1%, zeilenh2%, zeit#, zeitm_$, zeitm%, zeitneu#, zeits_$, zeits%
+Global xxxxx%, yyyyy%
 Global Picture elefant, grins, heul, katze, hase, kirche, blume, tastatur
 If Not GetAttr(pfad$ + "\Schreiben") And 16      'Abfrage ob Ordner vorhanden
   MkDir pfad$ + "\Schreiben"                     'Ordner anlegen
@@ -29,6 +31,57 @@ Global b_|(256)
 Global m|(9)
 Global wort$(15)
 Global aaa%(65)
+If _Y / _X > 0.73 And _Y / _X < 0.77             ' Seitenverhältnis 3 : 4
+  OpenW Full Hidden # 2, , , , , 0000000000      ' Vollbild
+  Win_2.AutoRedraw = 1
+  OpenW Full Hidden # 1, , , , , 0000000000
+  Win_1.AutoRedraw = 1
+Else If _Y / _X < 0.74                                 ' Breitbild
+  xxxxx% = _X
+  yyyyy% = _Y
+  OpenW # 3, 0, 0, xxxxx% , yyyyy%, 0000000000      '  Hintergrundfenster
+  Win_3.AutoRedraw = 1
+  Win_3.Disable
+  Output = Win_3
+  DefLine 0, 1
+  DefFill 0
+  RGBColor RGB(30, 0, 0) ' dunkelbraun
+  PBox 0, 0, _X, _Y
+  If _Y < 600
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 320, Int(yyyyy% / 2) - 240, 640, 480, 0000000000      '  640x480, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 320, Int(yyyyy% / 2) - 240, 640, 480, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur1.bmp")
+  Else If _Y < 768
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 400, Int(yyyyy% / 2) - 300, 800, 600, 0000000000      '  800x600, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 400, Int(yyyyy% / 2) - 300, 800, 600, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur2.bmp")
+  Else If _Y < 864
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 512, Int(yyyyy% / 2) - 384, 1024, 768, 0000000000      ' 1024x768, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 512, Int(yyyyy% / 2) - 384, 1024, 768, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur3.bmp")
+  Else If _Y < 1024
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 576, Int(yyyyy% / 2) - 432, 1152, 864, 0000000000      '  1152x864, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 576, Int(yyyyy% / 2) - 432, 1152, 864, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur4.bmp")
+  Else If _Y > 1023
+    OpenW Hidden # 2, Int(xxxxx% / 2) - 640, Int(yyyyy% / 2) - 512, 1280, 1024, 0000000000      '  1280x1024, Schreiben
+    Win_2.AutoRedraw = 1
+    OpenW Hidden # 1, Int(xxxxx% / 2) - 640, Int(yyyyy% / 2) - 512, 1280, 1024, 0000000000
+    Win_1.AutoRedraw = 1
+    Set tastatur = LoadPicture("bild\tastatur5.bmp")
+  EndIf
+Else                                                          ' Hochformatbild
+  Alert 1 | 128, "Bildauflösung: Das Verhältnis von Höhe zu Breite|muss auf 3 : 4 oder breiter eingestellt werden!", 1, "OK"
+  ende
+EndIf
 For i% = 1 To 32
   aaa%(i%) = -1
 Next i%
@@ -46,10 +99,6 @@ b_|(246) = 79   ' ö
 b_|(220) = 85   ' Ü
 b_|(252) = 85   ' ü
 b_|(223) = 83   ' ß
-OpenW Full Hidden # 2, , , , , 0000000000      ' Vollbild
-Win_2.AutoRedraw = 1
-OpenW Full Hidden # 1, , , , , 0000000000     ' Vollbild
-Win_1.AutoRedraw = 1
 TopW # 1
 Output = Win_1
 pfad$ = CurDir$
@@ -79,37 +128,13 @@ Set katze = LoadPicture("bild\katze.jpg")
 Set elefant = LoadPicture("bild\elefant.jpg")
 Set hase = LoadPicture("bild\hase.jpg")
 Set blume = LoadPicture("bild\blume.jpg")
-i% = _X
-Select i%
-Case 640 To 799  ' 640 * 480
-  Set tastatur = LoadPicture("bild\tastatur1.bmp")
-Case 800 To 1023 ' 800 * 600
-  Set tastatur = LoadPicture("bild\tastatur2.bmp")
-Case 1024 To 1151 ' 1024 * 768
-  Set tastatur = LoadPicture("bild\tastatur3.bmp")
-Case 1152 To 1279 ' 1152 * 864
-  Set tastatur = LoadPicture("bild\tastatur4.bmp")
-Case 1280 To 1500 ' 1280 * 1024
-  Set tastatur = LoadPicture("bild\tastatur5.bmp")
-Default
-  Win_1.Show
-  DefMouse 0
-  ShowM
-  Get (319 - 245) * fx, (239 - 65) * fy, (319 + 245) * fx, (239 + 65) * fy, alertf$
-  alert1("Achtung!", "Bitte eine kleinere Bildauflösung einstellen!", "OK")
-  Put (319 - 245) * fx, (239 - 65) * fy, alertf$
-  Clr alertf$
-  ende| = 1
-  kontrolle
-'##E#
-EndSelect
 schreibblatt
 Get 0, 0, 511 * fx, 440 * fy, schreibblatt1$
 Win_1.Show
 GraphMode R2_COPYPEN, TRANSPARENT
 SetFont schrift0%
 Color RGB(255, 255, 255)   ' weiß
-a$ = "Kombipaket Version 8.0, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
+a$ = "Kombipaket Version 8.2, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
 Text _X / 2 - TxtLen(a$) / 2, 465 * fy, a$
 Clr a$
 SetFont schrift1%
@@ -3457,7 +3482,7 @@ Return
         weiter3:
         Clr jj%
         Color RGB(255, 255, 198) ' creme
-        PBox 68 * fx, 207 * fy + Int(zeichenh% * 1.25) * iii%, 400 * fx, Ceil(232 * fy) + Int(zeichenh% * 1.25) * iii%
+        PBox 68 * fx, 207 * fy + Int(zeichenh% * 1.25) * iii%, 400 * fx, Ceil(232 * fy) + Ceil(zeichenh% * 1.25) * iii%
         antw_$(iii%) = ""
         saeule
         Repeat
@@ -6156,11 +6181,13 @@ Return
   DefMouse 0
   Color RGB(255, 255, 255) ' weiß
   CloseW # 1
+  CloseW # 2
+  CloseW # 3
   End
 Return
 $DatFile
 $FormVersion = 2
-$ExeName = Schreiben.Exe
+$ExeName = C:\Program Files\GB32\SchreibenVista.Exe
 $FileDescription = Beschreibung
 $Comments = Autor: Rudolf Rosenkränzer
 $CompanyName = Rudolf Rosenkränzer
