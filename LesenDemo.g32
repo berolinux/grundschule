@@ -127,9 +127,8 @@ Text 393 * fx - TxtLen(text$(cc%)) / 2, 200 * fy, text$(cc%)
 Text 540 * fx - TxtLen(text$(dd%)) / 2, 200 * fy, text$(dd%)
 GraphMode R2_COPYPEN, TRANSPARENT
 SetFont schrift0%
-ink$ = "Kombipaket Version 8.0, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
+ink$ = "Kombipaket Version 8.1, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
 RGBColor RGB(255, 255, 255) ' weiß
-'##E#
 Text _X / 2 - TxtLen(ink$) / 2, 465 * fy, ink$
 Clr ink$
 SetFont schrift1%
@@ -622,30 +621,31 @@ Return
   RGBColor RGB(0, 0, 235) ' blau
   SetFont schrift2%
   Text 116 * fx, 78 * fy, "Wörter schieben"                     ' 1.
-  Text 116 * fx, 104 * fy, "Memory 1"                           ' 2.
+  Text 116 * fx, 104 * fy, "Memory 1"                                 ' 2.
   Text 116 * fx, 130 * fy, "Merkbuchstaben schieben"            ' 3.
-  Text 116 * fx, 156 * fy, "Memory 2 (rubbeln)"                 ' 4.
-  Text 116 * fx, 182 * fy, "Memory 3"                           ' 5.
-  Text 116 * fx, 208 * fy, "Buchstaben suchen:"                 ' 6.
+  Text 116 * fx, 156 * fy, "Memory 2 (rubbeln)"                          ' 4.
+  Text 116 * fx, 182 * fy, "Memory 3"                                                 ' 5.
+  Text 116 * fx, 208 * fy, "Buchstaben suchen:"                                   ' 6.
   Text 116 * fx + TxtLen("Buchstaben suchen: "), 208 * fy, "ama"  ' 6.
-  Text 116 * fx, 234 * fy, "Buchstaben suchen: M"               ' 7.
+  Text 116 * fx, 234 * fy, "Buchstaben suchen: M"                                 ' 7.
   Text 116 * fx + TxtLen("Buchstaben suchen: M"), 234 * fy, "ma"  ' 7.
-  Text 116 * fx, 260 * fy, "Buchstaben suchen: Mam"              ' 8.
-  Text 116 * fx, 286 * fy, "alle Buchstaben suchen"             ' 9.
-  Text 116 * fx, 312 * fy, "Buchstaben schreiben:"                 ' 10.
+  Text 116 * fx, 260 * fy, "Buchstaben suchen: Mam"                           ' 8.
+  Text 116 * fx, 286 * fy, "alle Buchstaben suchen"                              ' 9.
+  Text 116 * fx, 312 * fy, "Buchstaben schreiben:"                                   ' 10.
   Text 116 * fx + TxtLen("Buchstaben schreiben: "), 312 * fy, "ama"  ' 10.
-  Text 116 * fx, 338 * fy, "Buchstaben schreiben: M"               ' 11.
+  Text 116 * fx, 338 * fy, "Buchstaben schreiben: M"                                   ' 11.
   Text 116 * fx + TxtLen("Buchstaben schreiben: M"), 338 * fy, "ma"  ' 11.
-  Text 116 * fx, 364 * fy, "Buchstaben schreiben: Mam"              ' 12.
+  Text 116 * fx, 364 * fy, "Buchstaben schreiben: Mam"                   ' 12.
   Text 116 * fx, 390 * fy, "alle Buchstaben schreiben"             ' 13.
   RGBColor RGB(255, 0, 0) ' rot
-  Text 116 * fx + TxtLen("Buchstaben suchen: "), 208 * fy, ""       ' 6.
-  Text 116 * fx + TxtLen("Buchstaben suchen: M"), 234 * fy, ""      ' 7.
-  Text 116 * fx + TxtLen("Buchstaben suchen: Mam"), 260 * fy, ""     ' 8.
-  Text 116 * fx + TxtLen("Buchstaben schreiben: "), 312 * fy, ""    ' 10.
-  Text 116 * fx + TxtLen("Buchstaben schreiben: M"), 338 * fy, ""   ' 11.
-  Text 116 * fx + TxtLen("Buchstaben schreiben: Mam"), 364 * fy, ""  ' 12.
+  Box 117 * fx + TxtLen("Buchstaben suchen: "), 210 * fy, 131 * fx + TxtLen("Buchstaben suchen: "), 228 * fy      ' 6.
+  Box 117 * fx + TxtLen("Buchstaben suchen: M"), 236 * fy, 131 * fx + TxtLen("Buchstaben suchen: M"), 254 * fy      ' 7.
+  Box 117 * fx + TxtLen("Buchstaben suchen: Mam"), 262 * fy, 131 * fx + TxtLen("Buchstaben suchen: Mam"), 280 * fy      ' 8.
+  Box 117 * fx + TxtLen("Buchstaben schreiben: "), 314 * fy, 131 * fx + TxtLen("Buchstaben schreiben: "), 332 * fy               ' 10.
+  Box 117 * fx + TxtLen("Buchstaben schreiben: M"), 340 * fy, 131 * fx + TxtLen("Buchstaben schreiben: M"), 358 * fy            ' 11.
+  Box 117 * fx + TxtLen("Buchstaben schreiben: Mam"), 366 * fy, 131 * fx + TxtLen("Buchstaben schreiben: Mam"), 384 * fy      ' 12.
 Return
+'##E#
 >Procedure menueabfrage         ' Abfrage: zweites Menü
   Repeat
     PeekEvent
@@ -672,7 +672,7 @@ Return
     Exit If k% = 2
     Select yy%
     Case 77 To 415
-      DefLine 0, 1
+      DefLine 0, 1 * fy
       For i% = 51 To 408 Step 26
         If yy% > i% And yy% < i% + 26
           SetFont schrift2%
@@ -698,32 +698,32 @@ Return
               Text 116 * fx, 208 * fy, "Buchstaben suchen:"                                 ' 6.
               Text 116 * fx + TxtLen("Buchstaben suchen: "), 208 * fy, "ama"               ' 6.
               RGBColor RGB(255, 0, 0) ' rot
-              Text 116 * fx + TxtLen("Buchstaben suchen: "), 208 * fy, ""                  ' 6.
+              Box 117 * fx + TxtLen("Buchstaben suchen: "), 210 * fy, 131 * fx + TxtLen("Buchstaben suchen: "), 228 * fy      ' 6.
             Case 7
               Text 116 * fx, 234 * fy, "Buchstaben suchen: M"                               ' 7.
               Text 116 * fx + TxtLen("Buchstaben suchen: M"), 234 * fy, "ma"               ' 7.
               RGBColor RGB(255, 0, 0) ' rot
-              Text 116 * fx + TxtLen("Buchstaben suchen: M"), 234 * fy, ""                 ' 7.
+              Box 117 * fx + TxtLen("Buchstaben suchen: M"), 236 * fy, 131 * fx + TxtLen("Buchstaben suchen: M"), 254 * fy      ' 7.
             Case 8
               Text 116 * fx, 260 * fy, "Buchstaben suchen: Mam"                             ' 8.
               RGBColor RGB(255, 0, 0) ' rot
-              Text 116 * fx + TxtLen("Buchstaben suchen: Mam"), 260 * fy, ""               ' 8.
+              Box 117 * fx + TxtLen("Buchstaben suchen: Mam"), 262 * fy, 131 * fx + TxtLen("Buchstaben suchen: Mam"), 280 * fy ' 8.
             Case 9
               Text 116 * fx, 286 * fy, "alle Buchstaben suchen"                             ' 9.
             Case 10
               Text 116 * fx, 312 * fy, "Buchstaben schreiben:"                              ' 10.
               Text 116 * fx + TxtLen("Buchstaben schreiben: "), 312 * fy, "ama"            ' 10.
               RGBColor RGB(255, 0, 0) ' rot
-              Text 116 * fx + TxtLen("Buchstaben schreiben: "), 312 * fy, ""               ' 10.
+              Box 117 * fx + TxtLen("Buchstaben schreiben: "), 314 * fy, 131 * fx + TxtLen("Buchstaben schreiben: "), 332 * fy       ' 10.
             Case 11
               Text 116 * fx, 338 * fy, "Buchstaben schreiben: M"                            ' 11.
               Text 116 * fx + TxtLen("Buchstaben schreiben: M"), 338 * fy, "ma"            ' 11.
               RGBColor RGB(255, 0, 0) ' rot
-              Text 116 * fx + TxtLen("Buchstaben schreiben: M"), 338 * fy, ""              ' 11.
+              Box 117 * fx + TxtLen("Buchstaben schreiben: M"), 340 * fy, 131 * fx + TxtLen("Buchstaben schreiben: M"), 358 * fy    ' 11.
             Case 12
               Text 116 * fx, 364 * fy, "Buchstaben schreiben: Mam"                          ' 12.
               RGBColor RGB(255, 0, 0) ' rot
-              Text 116 * fx + TxtLen("Buchstaben schreiben: Mam"), 364 * fy, ""            ' 12.
+              Box 117 * fx + TxtLen("Buchstaben schreiben: Mam"), 366 * fy, 131 * fx + TxtLen("Buchstaben schreiben: Mam"), 384 * fy  ' 12.
             Case 13
               Text 116 * fx, 390 * fy, "alle Buchstaben schreiben"                          ' 13.
             EndSelect
@@ -746,27 +746,27 @@ Return
           Case 6
             Text 116 * fx, 208 * fy, "Buchstaben suchen:"                                   ' 6.
             Text 116 * fx + TxtLen("Buchstaben suchen: "), 208 * fy, "ama"                 ' 6.
-            Text 116 * fx + TxtLen("Buchstaben suchen: "), 208 * fy, ""                    ' 6.
+            Box 117 * fx + TxtLen("Buchstaben suchen: "), 210 * fy, 131 * fx + TxtLen("Buchstaben suchen: "), 228 * fy      ' 6.
           Case 7
             Text 116 * fx, 234 * fy, "Buchstaben suchen: M"                                 ' 7.
             Text 116 * fx + TxtLen("Buchstaben suchen: M"), 234 * fy, "ma"                 ' 7.
-            Text 116 * fx + TxtLen("Buchstaben suchen: M"), 234 * fy, ""                   ' 7.
+            Box 117 * fx + TxtLen("Buchstaben suchen: M"), 236 * fy, 131 * fx + TxtLen("Buchstaben suchen: M"), 254 * fy      ' 7.
           Case 8
             Text 116 * fx, 260 * fy, "Buchstaben suchen: Mam"                               ' 8.
-            Text 116 * fx + TxtLen("Buchstaben suchen: Mam"), 260 * fy, ""                 ' 8.
+            Box 117 * fx + TxtLen("Buchstaben suchen: Mam"), 262 * fy, 131 * fx + TxtLen("Buchstaben suchen: Mam"), 280 * fy      ' 8.
           Case 9
             Text 116 * fx, 286 * fy, "alle Buchstaben suchen"                               ' 9.
           Case 10
             Text 116 * fx, 312 * fy, "Buchstaben schreiben:"                                ' 10.
             Text 116 * fx + TxtLen("Buchstaben schreiben: "), 312 * fy, "ama"              ' 10.
-            Text 116 * fx + TxtLen("Buchstaben schreiben: "), 312 * fy, ""                 ' 10.
+            Box 117 * fx + TxtLen("Buchstaben schreiben: "), 314 * fy, 131 * fx + TxtLen("Buchstaben schreiben: "), 332 * fy        ' 10.
           Case 11
             Text 116 * fx, 338 * fy, "Buchstaben schreiben: M"                              ' 11.
             Text 116 * fx + TxtLen("Buchstaben schreiben: M"), 338 * fy, "ma"              ' 11.
-            Text 116 * fx + TxtLen("Buchstaben schreiben: M"), 338 * fy, ""                ' 11.
+            Box 117 * fx + TxtLen("Buchstaben schreiben: M"), 340 * fy, 131 * fx + TxtLen("Buchstaben schreiben: M"), 358 * fy       ' 11.
           Case 12
             Text 116 * fx, 364 * fy, "Buchstaben schreiben: Mam"                            ' 12.
-            Text 116 * fx + TxtLen("Buchstaben schreiben: Mam"), 364 * fy, ""              ' 12.
+            Box 117 * fx + TxtLen("Buchstaben schreiben: Mam"), 366 * fy, 131 * fx + TxtLen("Buchstaben schreiben: Mam"), 384 * fy  ' 12.
           Case 13
             Text 116 * fx, 390 * fy, "alle Buchstaben schreiben"                            ' 13.
           EndSelect
@@ -3303,7 +3303,7 @@ $FormVersion = 2
 :{frm1 66
 EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE00UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
 AAQAAcAAACAA
-$ExeName = ..\Programme\LesenDemo.Exe
+$ExeName = C:\Program Files\GB32\LesenDemo.Exe
 $FileDescription = Beschreibung
 $Comments = Autor: Rudolf Rosenkränzer
 $CompanyName = Rudolf Rosenkränzer

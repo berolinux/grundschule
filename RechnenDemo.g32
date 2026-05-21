@@ -299,13 +299,12 @@ Color RGB(255, 0, 0) ' rot
 DefLine 0, 12 * fx
 DefFill 42
 PRBox 6 * fx, 7 * fy, 632 * fx, 473 * fy
-'##E#
 DefFill 0
 Get 0, 0, 510 * fx, 260 * fy, rechenblatt1$
 Win_1.Show
 SetFont schrift0%
 Color RGB(255, 255, 255) ' weiß
-za$ = "Kombipaket Version 8.0, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
+za$ = "Kombipaket Version 8.1, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
 GraphMode R2_COPYPEN, TRANSPARENT
 Text Int(_X / 2) - Int(TxtLen(za$) / 2), 465 * fy, za$
 Clr za$
@@ -392,6 +391,7 @@ Clr ii$, jz#
 zeit# = oTimer
 Repeat
   PeekEvent
+'##E#
   zeitneu# = oTimer
 Until zeitneu# > zeit# + 1000
 hauptmenue
@@ -584,8 +584,8 @@ Return
   Color RGB(0, 255, 0) ' hellgrün
   Text 200 * fx, 410 * fy, "Demoversion"
   SetFont schrift0%
-  Text 200 * fx, 434 * fy, "Je nach Aufgabentyp sind"
-  Text 200 * fx, 449 * fy, "bis zu drei richtige Antworten möglich!"
+  Text 200 * fx, 434 * fy, "Je nach Aufgabentyp wird spätestens"
+  Text 200 * fx, 449 * fy, "nach drei richtigen Antworten abgebrochen!"
   ' ###################################################################
   Get 0, 0, _X, _Y, fenster$
   Output = Win_1
@@ -971,18 +971,21 @@ Return
   Text 116 * fx, 364 * fy, "2 · 4 =          das Doppelte" ' 12.
   Text 116 * fx, 390 * fy, "8 : 2 =          die Hälfte"   ' 13.
   Color RGB(255, 0, 0) ' rot
-  Text 116 * fx, 78 * fy, "                 "             ' 1.
-  Text 116 * fx, 130 * fy, "        "                     ' 3.
-  Text 116 * fx, 156 * fy, "        "                     ' 4.
-  Text 116 * fx, 182 * fy, "        "                     ' 5.
-  Text 116 * fx, 208 * fy, "        "                     ' 6.
-  Text 116 * fx, 234 * fy, "       10"                    ' 7.
-  Text 116 * fx - TxtLen("0"), 260 * fy, "10       "        ' 8.
-  Text 116 * fx, 286 * fy, "0       "                     ' 9.
-  Text 116 * fx, 312 * fy, "        "                     ' 10.
-  Text 116 * fx, 338 * fy, "        "                     ' 11.
-  Text 116 * fx, 364 * fy, "                            " ' 12.
-  Text 116 * fx, 390 * fy, "                          "   ' 13.
+  Box 117 * fx + TxtLen("4                "), 80 * fy, 131 * fx + TxtLen("4                "), 98 * fy     ' 1.
+  Box 117 * fx + TxtLen("4 + 1 = "), 132 * fy,  131 * fx + TxtLen("4 + 1 = "), 150 * fy          ' 3.
+  Box 117 * fx + TxtLen("4 + 1 = "), 158 * fy, 131 * fx + TxtLen("4 + 1 = "), 176 * fy           ' 4.
+  Box 117 * fx + TxtLen("4 + "), 184 * fy, 131 * fx + TxtLen("4 + "), 202 * fy                        ' 5.
+  Box 117 * fx + TxtLen("4 + "), 210 * fy, 131 * fx + TxtLen("4 + "), 228 * fy                        ' 6.
+  Text 116 * fx, 234 * fy, "        10"                              ' 7.
+  Text 116 * fx - TxtLen("0"), 260 * fy, "10       "         ' 8.
+  Text 116 * fx, 286 * fy, "0       "                                  ' 9.
+  Box 117 * fx + TxtLen("4 + "), 236 * fy, 131 * fx + TxtLen("4 + "), 254 * fy                       ' 7."
+  Box 117 * fx + TxtLen("4 + 1 = "), 262 * fy, 131 * fx + TxtLen("4 + 1 = "), 280 * fy          ' 8."
+  Box 117 * fx + TxtLen("4 + 1 = "), 288 * fy, 131 * fx + TxtLen("4 + 1 = "), 306 * fy          ' 9.
+  Box 117 * fx + TxtLen("4 + 1 = "), 314 * fy, 131 * fx + TxtLen("4 + 1 = "), 332 * fy        ' 10."
+  Box 117 * fx + TxtLen("4 + 1 = "), 340 * fy, 131 * fx + TxtLen("4 + 1 = "), 358 * fy        ' 11.
+  Box 117 * fx + TxtLen("4 + 1 = "), 366 * fy, 131 * fx + TxtLen("4 + 1 = "), 384 * fy        ' 12.
+  Box 117 * fx + TxtLen("4 + 1 = "), 392 * fy, 131 * fx + TxtLen("4 + 1 = "), 410 * fy        ' 13.
   Color RGB(0, 0, 235) ' blau
   For i% = 121 To 185 Step 16
     PCircle i% * fx, 91 * fy, 5 * fx
@@ -1020,24 +1023,28 @@ Return
   Text 96 * fx, 235 * fy, "16 =   · 2     16 : 2 =      ( 4 | 8)" ' 7.
   Text 96 * fx, 260 * fy, "18 =   · 3     18 : 3 =      ( 6 | 9)" ' 8.
   Text 96 * fx, 286 * fy, "20 =   · 5     20 : 5 =      (10 | 7)" ' 9.
-  Text 96 * fx, 312 * fy, " 3 · 7 =  "                            ' 10.
-  Text 96 * fx, 338 * fy, "18 =   · 6     18 : 6 =  "             ' 11.
+  Text 96 * fx, 312 * fy, " 3 · 7 =  "                                    ' 10.
+  Text 96 * fx, 338 * fy, "18 =   · 6     18 : 6 =  "                ' 11.
   Text 96 * fx, 364 * fy, " 2 · 4 =       das Doppelte"           ' 12.
   Text 96 * fx, 390 * fy, " 8 : 2 =       die Hälfte"             ' 13.
   Color RGB(255, 0, 0) ' rot
-  Text 96 * fx, 78 * fy, "         "                             ' 1.
-  Text 96 * fx, 104 * fy, "         "                            ' 2.
-  Text 96 * fx, 130 * fy, "          "                           ' 3.
-  Text 96 * fx, 156 * fy, "         "                            ' 4.
-  Text 96 * fx, 182 * fy, "         "                            ' 5.
-  Text 96 * fx, 208 * fy, "         "                            ' 6.
-  Text 96 * fx, 234 * fy, "                                   " ' 7.
-  Text 96 * fx, 260 * fy, "                                   " ' 8.
-  Text 96 * fx, 286 * fy, "                                   " ' 9.
-  Text 96 * fx, 312 * fy, "         "                            ' 10.
-  Text 96 * fx, 338 * fy, "                       "             ' 11.
-  Text 96 * fx, 364 * fy, "                                    " ' 12.
-  Text 96 * fx, 390 * fy, "                                    " ' 13.
+  Box 97 * fx + TxtLen("14 + 1 = "), 80 * fy, 111 * fx + TxtLen("14 + 1 = "), 98 * fy                  ' 1.
+  Box 97 * fx + TxtLen("14 + 1 = "), 106 * fy, 111 * fx + TxtLen("14 + 1 = "), 124 * fy              ' 2.
+  Box 97 * fx + TxtLen("14 + "), 132 * fy,  111 * fx + TxtLen("14 + "), 150 * fy                           ' 3.
+  Box 97 * fx + TxtLen("14 + 1 = "), 158 * fy, 111 * fx + TxtLen("14 + 1 = "), 176 * fy                 ' 4.
+  Box 97 * fx + TxtLen("14 + 1 = "), 184 * fy, 111 * fx + TxtLen("14 + 1 = "), 202 * fy                 ' 5.
+  Box 97 * fx + TxtLen("14 + 1 = "), 210 * fy, 111 * fx + TxtLen("14 + 1 = "), 228 * fy                  ' 6.
+  Box 97 * fx + TxtLen("14 = "), 236 * fy, 111 * fx + TxtLen("14 = "), 254 * fy                               ' 7.
+  Box 97 * fx + TxtLen("14 =   · 2     14 : 2 = "), 236 * fy, 111 * fx + TxtLen("14 =   · 2     14 : 2 = "), 254 * fy       ' 7.
+  Box 97 * fx + TxtLen("14 = "), 262 * fy, 111 * fx + TxtLen("14 = "), 280 * fy                                  ' 8.
+  Box 97 * fx + TxtLen("14 =   · 2     14 : 2 = "), 262 * fy, 111 * fx + TxtLen("14 =   · 2     14 : 2 = "), 280 * fy         ' 8.
+  Box 97 * fx + TxtLen("14 = "), 288 * fy, 111 * fx + TxtLen("14 = "), 306 * fy                                   ' 9.
+  Box 97 * fx + TxtLen("14 =   · 2     14 : 2 = "), 288 * fy, 111 * fx + TxtLen("14 =   · 2     14 : 2 = "), 306 * fy         ' 9.
+  Box 97 * fx + TxtLen("14 + 1 = "), 314 * fy,  111 * fx + TxtLen("14 + 1 = "), 332 * fy                 ' 10.
+  Box 97 * fx + TxtLen("14 = "), 340 * fy, 111 * fx + TxtLen("14 = "), 358 * fy                              ' 11.
+  Box 97 * fx + TxtLen("14 =   · 2     14 : 2 = "), 340 * fy, 111 * fx + TxtLen("14 =   · 2     14 : 2 = "), 358 * fy    ' 11.
+  Box 97 * fx + TxtLen("14 + 1 = "), 366 * fy, 111 * fx + TxtLen("14 + 1 = "), 384 * fy               ' 12.
+  Box 97 * fx + TxtLen("14 + 1 = "), 392 * fy, 111 * fx + TxtLen("14 + 1 = "), 410 * fy               ' 13.
   Color RGB(0, 0, 0) ' schwarz
   SetFont schrift0%
   Text 260 * fx, 240 * fy, "oder" ' 7.
@@ -1085,16 +1092,17 @@ Return
   Text 96 * fx, 364 * fy, "  2 · 450 =          das Doppelte"     ' 12.
   Text 96 * fx, 390 * fy, "800 :   2 =          die Hälfte"       ' 13.
   Color RGB(255, 0, 0) ' rot
-  Text 96 * fx, 78 * fy, "            "                          ' 1.
-  Text 96 * fx, 130 * fy, "            "                         ' 3.
-  Text 96 * fx, 156 * fy, "                                    " ' 4.
-  Text 96 * fx, 182 * fy, "                                    " ' 5.
-  Text 96 * fx, 208 * fy, "                                    " ' 6.
-  Text 96 * fx, 234 * fy, "                                    " ' 7.
-  Text 96 * fx, 260 * fy, "                                    " ' 8.
-  Text 96 * fx, 286 * fy, "                                   " ' 9.
-  Text 96 * fx, 364 * fy, "                                "     ' 12.
-  Text 96 * fx, 390 * fy, "                              "       ' 13.
+  Box 97 * fx + TxtLen("            "), 80 * fy, 111 * fx + TxtLen("            "), 98 * fy                              ' 1.
+  Box 97 * fx + TxtLen("144 + 144 = "), 132 * fy, 111 * fx + TxtLen("144 + 144 = "), 150 * fy          ' 3.
+  Box 97 * fx + TxtLen("144 + 144 = "), 158 * fy, 111 * fx + TxtLen("144 + 144 = "), 176 * fy         ' 4.
+  Box 97 * fx + TxtLen("144 + "), 184 * fy, 111 * fx + TxtLen("144 = "), 202 * fy                              ' 5.
+  Box 97 * fx + TxtLen("144 + 144 = "), 210 * fy, 111 * fx + TxtLen("144 + 144 = "), 228 * fy         ' 6.
+  Box 97 * fx + TxtLen("144 + 144 = "), 236 * fy, 111 * fx + TxtLen("144 + 144 = "), 254 * fy         ' 7.
+  Box 97 * fx + TxtLen("144 + 144 = "), 262 * fy, 111 * fx + TxtLen("144 + 144 = "), 280 * fy         ' 8.
+  Box 97 * fx + TxtLen("144 = "), 288 * fy, 111 * fx + TxtLen("144 = "), 306 * fy                              ' 9.
+  Box 97 * fx + TxtLen("144 =   · 70     280 : 70 = "), 288 * fy, 111 * fx + TxtLen("144 =   · 70     280 : 70 = "), 306 * fy   ' 9.
+  Box 97 * fx + TxtLen("144 + 144 = "), 366 * fy, 111 * fx + TxtLen("144 + 144 = "), 384 * fy         ' 12.
+  Box 97 * fx + TxtLen("144 + 144 = "), 392 * fy, 111 * fx + TxtLen("144 + 144 = "), 410 * fy         ' 13.
   Color RGB(0, 0, 0) ' schwarz
   SetFont schrift0%
   Text 282 * fx, 292 * fy, "oder"                                 ' 9.
@@ -1153,12 +1161,14 @@ Return
   Text 96 * fx, 364 * fy, "   2 · 4000 =       das Doppelte"        ' 12.
   Text 96 * fx, 390 * fy, "8000 :    2 =       die Hälfte  "        ' 13.
   Color RGB(255, 0, 0) ' rot
-  Text 96 * fx, 130 * fy, "              "                         ' 3.
-  Text 96 * fx, 156 * fy, "                                      " ' 4.
-  Text 96 * fx, 182 * fy, "             10000                    " ' 5.
-  Text 96 * fx, 208 * fy, "                                   "    ' 6.
-  Text 96 * fx, 364 * fy, "                                   "    ' 12.
-  Text 96 * fx, 390 * fy, "                                   "    ' 13.
+  Box 97 * fx + TxtLen("4000 + 3000 = "), 80 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 98 * fy         ' 1.
+  Box 97 * fx + TxtLen("4000 + 3000 = "), 132 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 150 * fy     ' 3.
+  Box 97 * fx + TxtLen("4000 + 3000 = "), 158 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 176 * fy     ' 4.
+  Text 96 * fx, 182 * fy, "              10000 "                                                                                               ' 5.
+  Box 97 * fx + TxtLen("4000 = "), 184 * fy, 111 * fx + TxtLen("4000 = "), 202 * fy                             ' 5."
+  Box 97 * fx + TxtLen("4000 + 3000 = "), 210 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 228 * fy     ' 6.
+  Box 97 * fx + TxtLen("4000 + 3000 = "), 366 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 384 * fy    ' 12.
+  Box 97 * fx + TxtLen("4000 + 3000 = "), 392 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 410 * fy    ' 13.
   SetFont schrift0%
   Color RGB(0, 170, 0) ' grün
   a% = 100 * fx
@@ -1235,8 +1245,8 @@ Return
   Text 96 * fx, 390 * fy, " l - ml      Liter      - Milliliter  "  ' 13.
   Color RGB(255, 0, 0) ' rot
   Text 96 * fx, 104 * fy, "          oder "  ' 2.
-  Color RGB(0, 0, 0) ' schwarz
-  Text 96 * fx, 104 * fy, "                   - ct  Euro - Cent  "  ' 2.
+  Color RGB(0, 0, 235) ' blau
+  Text 96 * fx, 104 * fy, "                   - ct   Euro - Cent  "  ' 2.
   Put 96 * fx + zeichenbr% * 17, Ceil(109 * fy), eurobl
   Get 0, 0, _X, _Y, fenster$
   Output = Win_1
@@ -1655,7 +1665,7 @@ Return
         invertstufe
       EndIf
     Case 77 To 415            ' Aufgabenart ermitteln (jeweils 13)
-      DefLine 0, 1
+      DefLine 0, 2
       For iii% = 51 To 408 Step 26
         If yy% > iii% And yy% < iii% + 26
           SetFont schrift3%
@@ -1787,7 +1797,7 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 78 * fy, "                 "             ' 1.
+    Box 117 * fx + TxtLen("4                "), 80 * fy, 131 * fx + TxtLen("4                "), 98 * fy     ' 1.
   Case 2
     If v| = 0
       Color RGB(255, 0, 0) ' rot
@@ -1805,67 +1815,70 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 130 * fy, "        "                     ' 3.
+    Box 117 * fx + TxtLen("4 + 1 = "), 132 * fy,  131 * fx + TxtLen("4 + 1 = "), 150 * fy          ' 3.
   Case 4
     Text 116 * fx, 156 * fy, "5 - 1 =  "                     ' 4.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 156 * fy, "        "                     ' 4.
+    Box 117 * fx + TxtLen("4 + 1 = "), 158 * fy, 131 * fx + TxtLen("4 + 1 = "), 176 * fy           ' 4.
   Case 5
     Text 116 * fx, 182 * fy, "3 +   = 4"                     ' 5.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 182 * fy, "        "                     ' 5.
+    Box 117 * fx + TxtLen("4 + "), 184 * fy, 131 * fx + TxtLen("4 + "), 202 * fy                        ' 5.
   Case 6
     Text 116 * fx, 208 * fy, "6 -   = 5"                     ' 6.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 208 * fy, "        "                     ' 6.
+    Box 117 * fx + TxtLen("4 + "), 210 * fy, 131 * fx + TxtLen("4 + "), 228 * fy                        ' 6.
   Case 7
     Text 116 * fx, 234 * fy, "6 +   ="                       ' 7.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 234 * fy, "       10"                    ' 7.
+    Text 116 * fx, 234 * fy, "        10"                              ' 7.
+    Box 117 * fx + TxtLen("4 + "), 236 * fy, 131 * fx + TxtLen("4 + "), 254 * fy                       ' 7."
   Case 8
     Text 116 * fx, 260 * fy, "  - 3 =  "                     ' 8.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx - TxtLen("0"), 260 * fy, "10       "        ' 8.
+    Text 116 * fx - TxtLen("0"), 260 * fy, "10       "         ' 8.
+    Box 117 * fx + TxtLen("4 + 1 = "), 262 * fy, 131 * fx + TxtLen("4 + 1 = "), 280 * fy          ' 8."
   Case 9
     Text 116 * fx, 286 * fy, "  + 3 =  "                     ' 9.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 286 * fy, "0       "                     ' 9.
+    Text 116 * fx, 286 * fy, "0       "                                  ' 9.
+    Box 117 * fx + TxtLen("4 + 1 = "), 288 * fy, 131 * fx + TxtLen("4 + 1 = "), 306 * fy          ' 9.
   Case 10
     Text 116 * fx, 312 * fy, "4 + 2 =  "                     ' 10.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 312 * fy, "        "                     ' 10.
+    Box 117 * fx + TxtLen("4 + 1 = "), 314 * fy, 131 * fx + TxtLen("4 + 1 = "), 332 * fy        ' 10."
   Case 11
     Text 116 * fx, 338 * fy, "7 - 4 =  "                     ' 11.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 338 * fy, "        "                     ' 11.
+    Box 117 * fx + TxtLen("4 + 1 = "), 340 * fy, 131 * fx + TxtLen("4 + 1 = "), 358 * fy        ' 11.
   Case 12
     Text 116 * fx, 364 * fy, "2 · 4 =          das Doppelte" ' 12.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 364 * fy, "                            " ' 12.
+    Box 117 * fx + TxtLen("4 + 1 = "), 366 * fy, 131 * fx + TxtLen("4 + 1 = "), 384 * fy        ' 12.
   Case 13
     Text 116 * fx, 390 * fy, "8 : 2 =          die Hälfte"   ' 13.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 116 * fx, 390 * fy, "                          "   ' 13.
+    Box 117 * fx + TxtLen("4 + 1 = "), 392 * fy, 131 * fx + TxtLen("4 + 1 = "), 410 * fy        ' 13.
   EndSelect
 Return
 >Procedure invert2
@@ -1875,43 +1888,44 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 78 * fy, "         "                             ' 1.
+    Box 97 * fx + TxtLen("14 + 1 = "), 80 * fy, 111 * fx + TxtLen("14 + 1 = "), 98 * fy                  ' 1.
   Case 2
     Text 96 * fx, 104 * fy, "32 - 4 =  "                            ' 2.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 104 * fy, "         "                            ' 2.
+    Box 97 * fx + TxtLen("14 + 1 = "), 106 * fy, 111 * fx + TxtLen("14 + 1 = "), 124 * fy              ' 2.
   Case 3
     Text 96 * fx, 130 * fy, "27 +   = 30"                           ' 3.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 130 * fy, "          "                           ' 3.
+    Box 97 * fx + TxtLen("14 + "), 132 * fy,  111 * fx + TxtLen("14 + "), 150 * fy                           ' 3.
   Case 4
     Text 96 * fx, 156 * fy, " 3 · 2 =                     ( 4 | 8)" ' 4.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 156 * fy, "         "                            ' 4.
+    Box 97 * fx + TxtLen("14 + 1 = "), 158 * fy, 111 * fx + TxtLen("14 + 1 = "), 176 * fy                 ' 4.
   Case 5
     Text 96 * fx, 182 * fy, " 4 · 3 =                     ( 6 | 9)" ' 5.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 182 * fy, "         "                            ' 5.
+    Box 97 * fx + TxtLen("14 + 1 = "), 184 * fy, 111 * fx + TxtLen("14 + 1 = "), 202 * fy                 ' 5.
   Case 6
     Text 96 * fx, 208 * fy, " 3 · 5 =                     (10 | 7)" ' 6.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 208 * fy, "         "                            ' 6.
+    Box 97 * fx + TxtLen("14 + 1 = "), 210 * fy, 111 * fx + TxtLen("14 + 1 = "), 228 * fy                  ' 6.
   Case 7
     Text 96 * fx, 235 * fy, "16 =   · 2     16 : 2 =      ( 4 | 8)" ' 7.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 234 * fy, "                                   " ' 7.
+    Box 97 * fx + TxtLen("14 = "), 236 * fy, 111 * fx + TxtLen("14 = "), 254 * fy                               ' 7.
+    Box 97 * fx + TxtLen("14 =   · 2     14 : 2 = "), 236 * fy, 111 * fx + TxtLen("14 =   · 2     14 : 2 = "), 254 * fy       ' 7.
     If v| = 0
       Color RGB(0, 0, 0) ' schwarz
     EndIf
@@ -1923,7 +1937,8 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 260 * fy, "                                   " ' 8.
+    Box 97 * fx + TxtLen("14 = "), 262 * fy, 111 * fx + TxtLen("14 = "), 280 * fy                                  ' 8.
+    Box 97 * fx + TxtLen("14 =   · 2     14 : 2 = "), 262 * fy, 111 * fx + TxtLen("14 =   · 2     14 : 2 = "), 280 * fy         ' 8.
     If v| = 0
       Color RGB(0, 0, 0) ' schwarz
     EndIf
@@ -1935,7 +1950,8 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 286 * fy, "                                   " ' 9.
+    Box 97 * fx + TxtLen("14 = "), 288 * fy, 111 * fx + TxtLen("14 = "), 306 * fy                                   ' 9.
+    Box 97 * fx + TxtLen("14 =   · 2     14 : 2 = "), 288 * fy, 111 * fx + TxtLen("14 =   · 2     14 : 2 = "), 306 * fy         ' 9.
     If v| = 0
       Color RGB(0, 0, 0) ' schwarz
     EndIf
@@ -1947,13 +1963,14 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 312 * fy, "         "                            ' 10.
+    Box 97 * fx + TxtLen("14 + 1 = "), 314 * fy,  111 * fx + TxtLen("14 + 1 = "), 332 * fy                 ' 10.
   Case 11
     Text 96 * fx, 338 * fy, "18 =   · 6     18 : 6 =  "             ' 11.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 338 * fy, "                       "             ' 11.
+    Box 97 * fx + TxtLen("14 = "), 340 * fy, 111 * fx + TxtLen("14 = "), 358 * fy                              ' 11.
+    Box 97 * fx + TxtLen("14 =   · 2     14 : 2 = "), 340 * fy, 111 * fx + TxtLen("14 =   · 2     14 : 2 = "), 358 * fy    ' 11.
     If v| = 0
       Color RGB(0, 0, 0) ' schwarz
     EndIf
@@ -1965,13 +1982,13 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 364 * fy, "                                    " ' 12.
+    Box 97 * fx + TxtLen("14 + 1 = "), 366 * fy, 111 * fx + TxtLen("14 + 1 = "), 384 * fy               ' 12.
   Case 13
     Text 96 * fx, 390 * fy, " 8 : 2 =       die Hälfte"             ' 13.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 390 * fy, "                                    " ' 13.
+    Box 97 * fx + TxtLen("14 + 1 = "), 392 * fy, 111 * fx + TxtLen("14 + 1 = "), 410 * fy               ' 13.
   EndSelect
 Return
 >Procedure invert3
@@ -1992,7 +2009,8 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 78 * fy, "            "                          ' 1.
+    '   Text 96 * fx, 78 * fy, "            "                          ' 1.
+    Box 97 * fx + TxtLen("            "), 80 * fy, 111 * fx + TxtLen("            "), 98 * fy                              ' 1.
   Case 2
     Text 96 * fx, 104 * fy, "700                   H,   Z,   E "    ' 2.
     If v| = 0
@@ -2008,43 +2026,51 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 130 * fy, "            "                         ' 3.
+    '   Text 96 * fx, 130 * fy, "            "                         ' 3.
+    Box 97 * fx + TxtLen("144 + 144 = "), 132 * fy, 111 * fx + TxtLen("144 + 144 = "), 150 * fy          ' 3.
   Case 4
     Text 96 * fx, 156 * fy, "800 - 300 =                          " ' 4.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 156 * fy, "                                    " ' 4.
+    Box 97 * fx + TxtLen("144 + 144 = "), 158 * fy, 111 * fx + TxtLen("144 + 144 = "), 176 * fy         ' 4.
+    '    Text 96 * fx, 156 * fy, "                                    " ' 4.
   Case 5
     Text 96 * fx, 182 * fy, "346 +     = 400                      " ' 5.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 182 * fy, "                                    " ' 5.
+    '  Text 96 * fx, 182 * fy, "                                    " ' 5.
+    Box 97 * fx + TxtLen("144 + "), 184 * fy, 111 * fx + TxtLen("144 = "), 202 * fy                              ' 5.
   Case 6
     Text 96 * fx, 208 * fy, "326 +   6 =                          " ' 6.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 208 * fy, "                                    " ' 6.
+    Box 97 * fx + TxtLen("144 + 144 = "), 210 * fy, 111 * fx + TxtLen("144 + 144 = "), 228 * fy         ' 6.
+    '    Text 96 * fx, 208 * fy, "                                    " ' 6.
   Case 7
     Text 96 * fx, 234 * fy, "326 -   8 =                          " ' 7.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 234 * fy, "                                    " ' 7.
+    Box 97 * fx + TxtLen("144 + 144 = "), 236 * fy, 111 * fx + TxtLen("144 + 144 = "), 254 * fy         ' 7.
+    '    Text 96 * fx, 234 * fy, "                                    " ' 7.
   Case 8
     Text 96 * fx, 260 * fy, "  7 ·  40 =                          " ' 8.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 260 * fy, "                                    " ' 8.
+    Box 97 * fx + TxtLen("144 + 144 = "), 262 * fy, 111 * fx + TxtLen("144 + 144 = "), 280 * fy         ' 8.
+    '    Text 96 * fx, 260 * fy, "                                    " ' 8.
   Case 9
     Text 96 * fx, 286 * fy, "280 =   · 70     280 : 70 =          " ' 9.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 286 * fy, "                                   " ' 9.
+    Box 97 * fx + TxtLen("144 = "), 288 * fy, 111 * fx + TxtLen("144 = "), 306 * fy                              ' 9.
+    Box 97 * fx + TxtLen("144 =   · 70     280 : 70 = "), 288 * fy, 111 * fx + TxtLen("144 =   · 70     280 : 70 = "), 306 * fy   ' 9.
+    '    Text 96 * fx, 286 * fy, "                                   " ' 9.
     If v| = 0
       Color RGB(0, 0, 0) ' schwarz
     EndIf
@@ -2060,13 +2086,15 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 364 * fy, "                                "     ' 12.
+    Box 97 * fx + TxtLen("144 + 144 = "), 366 * fy, 111 * fx + TxtLen("144 + 144 = "), 384 * fy         ' 12.
+    '    Text 96 * fx, 364 * fy, "                                "     ' 12.
   Case 13
     Text 96 * fx, 390 * fy, "800 :   2 =          die Hälfte"       ' 13.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 390 * fy, "                              "       ' 13.
+    Box 97 * fx + TxtLen("144 + 144 = "), 392 * fy, 111 * fx + TxtLen("144 + 144 = "), 410 * fy         ' 13.
+    '    Text 96 * fx, 390 * fy, "                              "       ' 13.
   EndSelect
 Return
 >Procedure invert4
@@ -2101,6 +2129,10 @@ Return
       Add b%, c%
     Next j%
     SetFont schrift3%
+    If v| = 0
+      Color RGB(255, 0, 0) ' rot
+    EndIf
+    Box 97 * fx + TxtLen("4000 + 3000 = "), 80 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 98 * fy         ' 1.
   Case 2
     Text 96 * fx, 104 * fy, "7000                 T,   H,   Z,   E "  ' 2.
     If v| = 0
@@ -2117,25 +2149,26 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 130 * fy, "              "                         ' 3.
+    Box 97 * fx + TxtLen("4000 + 3000 = "), 132 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 150 * fy     ' 3.
   Case 4
     Text 96 * fx, 156 * fy, "7000 - 3000 =                          " ' 4.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 156 * fy, "                                      " ' 4.
+    Box 97 * fx + TxtLen("4000 + 3000 = "), 158 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 176 * fy     ' 4.
   Case 5
     Text 96 * fx, 182 * fy, "4000 +      =                          " ' 5.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 182 * fy, "             10000                    " ' 5.
+    Text 96 * fx, 182 * fy, "              10000 "                                                                                               ' 5.
+    Box 97 * fx + TxtLen("4000 = "), 184 * fy, 111 * fx + TxtLen("4000 = "), 202 * fy                             ' 5."
   Case 6
     Text 96 * fx, 208 * fy, "   7 ·  400 =                          " ' 6.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 208 * fy, "                                   "    ' 6.
+    Box 97 * fx + TxtLen("4000 + 3000 = "), 210 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 228 * fy     ' 6.
   Case 7
     Text 96 * fx, 234 * fy, "Kommazahlen                            " ' 7.
   Case 8
@@ -2151,13 +2184,13 @@ Return
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 364 * fy, "                                   "    ' 12.
+    Box 97 * fx + TxtLen("4000 + 3000 = "), 366 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 384 * fy    ' 12.
   Case 13
     Text 96 * fx, 390 * fy, "8000 :    2 =       die Hälfte  "        ' 13.
     If v| = 0
       Color RGB(255, 0, 0) ' rot
     EndIf
-    Text 96 * fx, 390 * fy, "                                   "    ' 13.
+    Box 97 * fx + TxtLen("4000 + 3000 = "), 392 * fy, 111 * fx + TxtLen("4000 + 3000 = "), 410 * fy    ' 13.
   EndSelect
 Return
 >Procedure invert5
@@ -2210,7 +2243,7 @@ Return
   Case 1
     Text 96 * fx, 78 * fy, "Geld:                                  "  ' 1.
   Case 2
-    Text 96 * fx, 104 * fy, "DM - Pf   oder     - ct  Euro - Cent  "  ' 2.
+    Text 96 * fx, 104 * fy, "DM - Pf   oder     - ct   Euro - Cent  "  ' 2.
     If inv| = altwahl|
       Put 96 * fx + zeichenbr% * 17, Ceil(109 * fy), eurobl
     Else
@@ -12201,7 +12234,7 @@ $FormVersion = 2
 :{frm1 66
 EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE00UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
 AAQAAcAAACAA
-$ExeName = ..\Programme\RechnenDemo.Exe
+$ExeName = RechnenDemo.Exe
 $FileDescription = Beschreibung
 $Comments = Autor: Rudolf Rosenkränzer
 $CompanyName = Rudolf Rosenkränzer

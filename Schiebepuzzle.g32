@@ -38,6 +38,7 @@ Font "arial", Weight 400, Width 0, Height Int(39 * fx), To schrift3%
 Font "Times New Roman", Weight 700, Width 0, Height Int(72 * fx), To schrift5%
 Font CharSet 1
 Font "Wingdings", Weight 400, Width 0, Height Int(90 * fx), To schriftw3%
+'##E#
 Set puzzlebild =  LoadPicture("bild\puzzle\zahlen_bis_20.jpg")
 Set grins = LoadPicture("bild\grins.bmp")
 Set grins2 = LoadPicture("bild\puzzle\grins.jpg")
@@ -94,7 +95,6 @@ Win_1.Show
 SetFont schrift2%
 GraphMode R2_COPYPEN, TRANSPARENT
 SetFont schrift0%
-'##E#
 t$ = "Kombipaket Version 8.0, Rudolf Rosenkränzer, 54456 Tawern, Tel. 06501/180202"
 RGBColor RGB(255, 255, 255) ' weiß
 Text _X / 2 - TxtLen(t$) / 2, 465 * fy, t$
@@ -149,7 +149,7 @@ Repeat
   zeitneu# = oTimer
 Until zeitneu# > zeit# + 2000 ' 2 Sekunden
 hauptmenue
->Procedure hauptmenue                ' mit Kontrolle
+Procedure hauptmenue                ' m3it Kontrolle
   neu:
   Clr beginn|, a%, alta%, alta1%, ausgelagert%
   For i% = 0 To 20
@@ -193,7 +193,7 @@ hauptmenue
   menueabfrage
   GoTo neu
 Return
->Procedure seitenaufbau               ' Aufbau des Hauptmenüs
+Procedure seitenaufbau               ' Aufbau des Hauptmenüs
   Output = Win_2
   Repeat
     PeekEvent
@@ -237,7 +237,7 @@ Return
     platz%(i%) = i%           ' Platznummer = Bildnummer
   Next i%
 Return
->Procedure spielen                     ' Puzzlespiel
+Procedure spielen                     ' Puzzlespiel
   GraphMode R2_COPYPEN, OPAQUE
   zurueck:
   Do                            ' Beginn des Spiels
@@ -394,7 +394,7 @@ Return
     Exit If richtig% = 19 And bildnummer%(0) = ausgelagert%
   Loop
 Return
->Procedure bewegen                   ' Puzzleteile bewegen
+Procedure bewegen                   ' Puzzleteile bewegen
   RGBColor RGB(60, 90, 60)  'dunkelgrün
   If klick% <> bildnummer%(0)                ' falls nicht der Leerplatz
     If klick% = bildnummer%(0) + 5           ' Bewegung nach oben
@@ -436,7 +436,7 @@ Return
     EndIf
   EndIf
 Return
->Procedure auslagern                  ' ein Puzzleteil auslagern
+Procedure auslagern                  ' ein Puzzleteil auslagern
   PaintPicture puzzlebild, xx%, yy%, breite% * 5, hoehe% * 4 ' neu zeichnen, damit die Linien verschwinden
   beginn| = 1
   RGBColor RGB(60, 90, 60)  ' dunkelgrün
@@ -477,7 +477,7 @@ Return
   platz%(klick%) = 0
   ausgelagert% = klick%
 Return
->Procedure zuruecklagern              ' das ausgelagerte Puzzleteil zurückschieben
+Procedure zuruecklagern              ' das ausgelagerte Puzzleteil zurückschieben
   RGBColor RGB(100, 0, 0) ' dunkelbraun
   aus% = ausgelagert%
   Select aus%
@@ -527,7 +527,7 @@ Return
     Put px%(klick%) + breite%, py%(klick%), hintergrund$
   EndSelect
 Return
->Procedure koordinaten                ' Koordinaten der 20 Teilbilder
+Procedure koordinaten                ' Koordinaten der 20 Teilbilder
   px%(1) = xx%
   py%(1) = yy%
   px%(2) = xx% + breite%
@@ -569,12 +569,12 @@ Return
   px%(20) = xx% + breite% * 4
   py%(20) = yy% + hoehe% * 3
 Return
->Procedure teilbilder                  ' Auslesen der Teilbilder
+Procedure teilbilder                  ' Auslesen der Teilbilder
   For i% = 1 To 20
     Get px%(i%), py%(i%), px%(i%) + breite% - 1, py%(i%) + hoehe% - 1, teilbild$(i%)
   Next i%
 Return
->Procedure alert2(al$, al1$, al2$)   ' Alertfenster
+Procedure alert2(al$, al1$, al2$)   ' Alertfenster
   GraphMode R2_COPYPEN, TRANSPARENT
   DefLine 0, fx
   RGBColor RGB(100, 0, 0) ' dunkelbraun
@@ -611,7 +611,7 @@ Return
     alert| = 2
   EndIf
 Return
->Procedure hilfetext                  ' Hilfe
+Procedure hilfetext                  ' Hilfe
   RGBColor RGB(255, 255, 198)  ' creme
   PBox 0, 0, _X, _Y
   GraphMode R2_COPYPEN, TRANSPARENT
@@ -635,7 +635,7 @@ Return
   Text 20 * fx, 425 * fy, "7. Wenn alle Plättchen am richtigen Platz sind, kehrt das ausgelagerte"
   Text 20 * fx + TxtLen("1. "), 450 * fy, "Plättchen automatisch ins Spielfeld zurück. Du hast gewonnen."
 Return
->Procedure menueabfrage             ' Menü und Abfrage nach Beendigung des ersten Spiels
+Procedure menueabfrage             ' Menü und Abfrage nach Beendigung des ersten Spiels
   RGBColor RGB(255, 255, 255) ' creme        ' Aufbau des Menüs
   Text 506 * fx, 60 * fy, "Und jetzt?"
   Clr a%
@@ -729,7 +729,7 @@ Return
     EndIf
   EndIf
 Return
->Procedure ende
+Procedure ende
   RGBColor RGB(75, 0, 0)
   PBox 0, 0, _X, _Y
   Set puzzlebild = Nothing

@@ -70,7 +70,6 @@ RGBColor RGB(255, 0, 0) ' rot
 DefLine 0, Ceil(3 * fx)
 Line 6 * fx, 280 * fy, 632 * fx, 280 * fy ' Trennung oben/unten
 DefLine 0, 12 * fx
-'##E#
 DefFill 42
 PRBox 6 * fx, 7 * fy, 632 * fx, 473 * fy
 DefLine 0, 3 * fx
@@ -95,7 +94,8 @@ Win_1.Show
 SetFont schrift2%
 GraphMode R2_COPYPEN, TRANSPARENT
 SetFont schrift0%
-t$ = "Kombipaket Version 8.0, Rudolf Rosenkr‰nzer, 54456 Tawern, Tel. 06501/180202"
+t$ = "Kombipaket Version 8.1, Rudolf Rosenkr‰nzer, 54456 Tawern, Tel. 06501/180202"
+'##E#
 RGBColor RGB(255, 255, 255) ' weiﬂ
 Text _X / 2 - TxtLen(t$) / 2, 465 * fy, t$
 Clr t$
@@ -759,7 +759,7 @@ $FormVersion = 2
 :{frm1 66
 EAAAAAAAAAAAAAAAWWEAAEWRwAQFmJXbxAwElCAAE00UgMVYuNHITVmcpZGAAAAAIAAAA+AAAAIA
 AAQAAcAAACAA
-$ExeName = ..\Programme\SchiebepuzzleDemo.Exe
+$ExeName = SchiebepuzzleDemo.Exe
 $FileDescription = Beschreibung
 $Comments = Autor: Rudolf Rosenkr‰nzer
 $CompanyName = Rudolf Rosenkr‰nzer

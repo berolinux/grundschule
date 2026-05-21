@@ -1,4 +1,3 @@
-'##E#
 Global monat%, jahr%, mon$, i%, j%, fertig%, linienfarbe%, linienbreite%
 Global farbe_tage%, farbe_namen%, farbe_zus_tage%, farbe_bes_tage%
 Global heute As Date, rand%, seitenbreite%, links%, oben%, rechts%, unten%, drucken%, faktor#
@@ -120,10 +119,6 @@ Until Me Is Nothing
   lb1.AddItem "Tage im " + mon$ + #32 + Str$(mv1.Year) + " an:"
   lb1.AddItem "Wähle danach die Farbe für diese Tage!"
   cmd7.SetFocus
-  Do
-    Sleep
-  Until Me Is Nothing
-
 >Sub mv1_SelChange(startDate As Date, EndDate As Date) ' Änderung der Auswahl von Tag, Monat oder Jahr
   If lb1.Visible = True And mv1.Month = monat% And mv1.Year = jahr%  And lb1.FindExact(mv1.Value) = True
     lb1.AddItem Str$(mv1.Value)
@@ -141,10 +136,6 @@ Until Me Is Nothing
     monat% = mv1.Month
     cmd5.SetFocus
   EndIf
-  Do
-    Sleep
-  Until Me Is Nothing
-
 >Sub cmd7_Click   ' Farbe für besondere Tage und die Monatsüberschrift
   Ocx CommDlg cd
   cd.Flags = 3 ' volle Farbauswahlbox, Rückgabewert
@@ -218,16 +209,12 @@ Until Me Is Nothing
   EndIf
   cmd6.SetFocus
   fra.Visible = False
-  Do
-    Sleep
-  Until Me Is Nothing
-
+'##E#
 >Sub cmd6_Click   ' Monatskalender drucken
-  linienbreite% = 1
+  Alert 130, "In der Demoversion ist ein Ausdrukch nicht möglich!", 1, "     OK     ", i%
   Do
     Sleep
   Until Me Is Nothing
-
 >Sub cmd10_Click  ' Neu
   Clr fertig%, mon$
   lb1.Clear  ' ListBox leeren
@@ -252,10 +239,6 @@ Until Me Is Nothing
     cd.Colors(i%) = 0
   Next i%
   cmd3.SetFocus
-  Do
-    Sleep
-  Until Me Is Nothing
-
 >Sub cmd9_Click   ' Ende
   Alert 130, "Willst du das Programm beenden?", 2, "     zurück     |     Ende     ", i%
   If i% = 2
@@ -271,24 +254,24 @@ c/dMsfHOXL7KqThaVVUw3U0/HgGT50yptzUOtsKMVr1aWbRQV08Ml660RpOPPHTnXVHJOMYgmzrz
 JJTfXVjfblQJ6OuFocmKxyICqb1WIeiixU055560osR750ynjvjshQpWySPKxSWdagSMkhRySall
 Ea5nQmaJ3Kq+aaggFxhQ7XQ75djdJ04FwCJkBsOeo3rphuXsVTtze3vhe/t0/DB5QLEUxLEa3hQ6
 NSom0BlrPPVdVlVrVvV1NHd2b9OsgUvDKM1/BCtenL5OAAA=
-:{frm2 601, 1031
-VJAUDtWMNJwBEgkA/JgBGCRUvAvFENRsh9y9U9GhCFRwpNREhUiQ3IREREhECFRkVcYMRMigj9a9
-t8PY7/8/5CUTMxFBBIRQNP/aBNCiERABFECEImIgQASmLHQIEChphmhgVw+FwLc/8GcAq6ZedM/G
-B+0SDErBHkDhD7+j+rrzR/53OnJbHIIE4a45Qi3WB0lAFejCbQfJMEoruQWeo9Fo7erBhf/UY925
-cXfvj7rjRJY4g0LfcnlotUKPiDGtYNgeNSbacF+RU9lROyB8vRkVJljj55odir175LfpgOJSTcl9
-ZxZAKX+SHoqyLv+gHHqv0lC+soMAPNGDY5SXqtQdfG43UP7UYlv0d0Mey4UXQQIAR3lAd1BEA1vA
-XI7GahfwVZdGz918cETVWv5ZtRQd2pQLHr7cij9sEHBqTbhuEs2W635zzcf+OrykdAUChHaBfayt
-D3BuQ9LEQtbgdVHgx0FAbL4iTufmvMbKI0Cjie5KyPsbN/hfC7xNW5978mGCJe9bF464NTh1tH8t
-YvuPfXfQnDmPKcZ+CeC8wsVUGGCcF9tFTtCSC/m3nZOxegRem4kXToVQwpElmwbJBkwvDsHo5Cxp
-x39Hyh1LbpgULnbYLs5ZQDvrxWwqFebQLsYK8rvySl+Jte+Piq7njXySB4MZsdI7rAIc+FCslPZc
-4J8/9wYDwDB0oCmFE7+CHpFDhfUl33QYKYEGYthiAEB5XASI9LEc7GWhf5ZeExY+duTcVb8rvG9I
-WBfwoSEKLzRPIvEXjY+4OyjPJVwOpKg+HCmA6AAAAA==
 :{frm1 172, 181
-oCAUDtWMgCQtAsJA1CQA4AxLwT1jwrwzw/PFz+T8E8lEORUIz7gEkQRYSQvweOXYOZzQh+ZRE+N8
-uJMRERERE4JhLW+HrgR4QPCBeelnose5ZiVlZERoER2dHREREROhLXpAV0svJiI8BdhNmDWQmD6J
-QQU11UvAaCu0o6KKHRERMz8/HWREhVE+RE//xubMAgiUKgEhNtJhfRodRS5cCCKRkGRkREREjBAA
+oCAUDtWMgCQtAsJA1CQA4AxLwT1jwrwzw/PFz+T8E8lEORUIz7gEkQRYSQvweOXYOZzQh+ZFD/N8
+uJMRERERE4JhLW+HrgR4QPCBeelnose5ZiVlZERoER2dHREREROhLXpAV0wvJiI8BdhNmDWQmD6J
+QQU11UvAaCu0o6KKHRERMz8/HWREhVE+RE//xubMAgiUKgEhNtJYfRodRS5cCCKRkGRkREREjBAA
 AA==
-$ExeName = ..\Programme\KalenderDemo.Exe
+:{frm2 613, 1031
+hJAUDtWMZJwBEQlAEKgBAARUvAvFERxG2L3Tj8GhCFRwjlREhcCdVIREhECFSWxhxExICO2r1vE/
+t8OxWu/z/GIQNrHXEmgUBx88rF0oYSEREUQAIiZGN0YAFChQIEwZcPoEp/C4Na/JN4Azqn51x8bk
+8zRDJWDOIGCorZ3R3115o78b3/jtBMIE4hFLDOwqWKQtE0zZElaY/RQQgt3CRxh2Xg92VDF+drnx
+b3/d99OuvOGlgDDEepDezScWKlFrBdWUG4rxYTjqwPeVftnj+x/3I6VJkjj55oZSr175JbpgMJGT
+8c9ZRYAbmslGQtKn86CS5w7ksUwmFfBcUjuA6MJL1OotPT+m2ZXPj8kshmuT7nyCGCB8crEY7NgB
+Y8XgHivhfhfMsy4Mm7r55IiVZ8mndGxszueK5Yd3fcsnl4IQ75K0lgytj+d+8M3nvzmEZGBKhwCl
+gNN52wWgHG/FCo+G2NVFgHPTYZ7A58n7n5JtiCokF7F1iVkX42auD/y3jXMy735LNyTc63KQuh3s
+eG3eQyDz19576CK6g1iCVanwRDeY1K+CCC8wkvrYqVQmwv29ZWPcFYPPT6RqIs2QQoEfiw7SCXC/
+OQ/AFVMTjv7LEDrTIUKY0y5FCGu8IQDnpxWQpFOX4X4QU4XdlhJ1PO98PE92PHnclC40ju2grvCa
+htfhAXxP6EsE+/WsfB0EEwIT4ah52EqkOwiwPql3vQzUQHaAhaICyuFwTM9LQFh/CB1b4W4XcmDJ
+EN/O3Jt6M+1XjesqgO+YCTQ1WZO21fHXjY+wdkDdCmQ+kpA/F5iwXBAAAA==
+$ExeName = KalenderDemo.Exe
 $LanguageId = 0407
 $FileFlags# = 3
 $DatFile

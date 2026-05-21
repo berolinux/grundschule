@@ -106,15 +106,15 @@ Win_1.Show
 GraphMode R2_COPYPEN, TRANSPARENT
 SetFont schrift0%
 Color RGB(255, 255, 255)   ' weiﬂ
-a$ = "Kombipaket Version 8.0, Rudolf Rosenkr‰nzer, 54456 Tawern, Tel. 06501/180202"
+a$ = "Kombipaket Version 8.1, Rudolf Rosenkr‰nzer, 54456 Tawern, Tel. 06501/180202"
 Text _X / 2 - TxtLen(a$) / 2, 465 * fy, a$
-'##E#
 Clr a$
 SetFont schrift1%
 Color RGB(0, 0, 235) ' blau
 Text 42 * fx, 300 * fy, "Gib bitte deinen Namen ein,"
 Text 42 * fx, 320 * fy, "danach       die Fertig-Taste (Return)!"
 SetFont schriftw1%
+'##E#
 Color RGB(255, 0, 0) ' rot
 Text 110 * fx, 320 * fy, "Ú"
 DefLine 0, 1 * fx
@@ -6165,7 +6165,7 @@ Return
 Return
 $DatFile
 $FormVersion = 2
-$ExeName = ..\Programme\SchreibenDemo.Exe
+$ExeName = SchreibenDemo.Exe
 $FileDescription = Beschreibung
 $Comments = Autor: Rudolf Rosenkr‰nzer
 $CompanyName = Rudolf Rosenkr‰nzer
